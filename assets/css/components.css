@@ -55,7 +55,7 @@
 .item { display: flex; flex-direction: column; background: var(--color-panel); border: 1px solid var(--color-line); backdrop-filter: blur(6px); }
 .item-head { position: relative; padding: 18px 20px; border-bottom: 1px solid var(--color-line); background: linear-gradient(90deg, var(--color-accent-soft), transparent); }
 .item.exotic .item-head { background: linear-gradient(90deg, var(--color-exotic-soft), transparent); }
-.item.exotic { border-color: rgba(214, 178, 94, .45); }
+.item.exotic { border-color: var(--color-exotic-line); }
 /* Selo de preço no canto do cabeçalho da ficha */
 .item-price {
   position: absolute;

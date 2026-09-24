@@ -11,10 +11,10 @@ body {
   /* Espaço: brilho violeta atrás do orbe e algumas estrelas */
   background:
     radial-gradient(ellipse 60% 45% at 72% 22%, var(--color-accent-glow), transparent 70%),
-    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, .5), transparent),
-    radial-gradient(1px 1px at 80% 70%, rgba(255, 255, 255, .4), transparent),
-    radial-gradient(1px 1px at 45% 85%, rgba(255, 255, 255, .35), transparent),
-    radial-gradient(1px 1px at 10% 60%, rgba(255, 255, 255, .3), transparent),
+    radial-gradient(1px 1px at 20% 30%, var(--color-star), transparent),
+    radial-gradient(1px 1px at 80% 70%, var(--color-star), transparent),
+    radial-gradient(1px 1px at 45% 85%, var(--color-star), transparent),
+    radial-gradient(1px 1px at 10% 60%, var(--color-star), transparent),
     var(--color-bg);
   background-attachment: fixed;
 }
@@ -71,6 +71,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: 6px 12px;
 }
 .lang-toggle:hover { border-color: var(--color-line-strong); }
+/* Botão de tema: mesmo desenho do de idioma */
+.theme-toggle { font-size: .85rem; line-height: 1; }
 
 /* Rodapé */
 .site-footer { border-top: 1px solid var(--color-line); padding-block: 26px; margin-top: 40px; }
@@ -99,6 +101,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .nav-links { gap: 10px; font-size: .66rem; letter-spacing: .1em; }
   .btn-nav { padding: 7px 9px; font-size: .64rem; letter-spacing: .1em; }
   .lang-toggle { padding: 5px 8px; font-size: .68rem; letter-spacing: .08em; }
+  .nav-actions { gap: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

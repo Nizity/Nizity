@@ -15,7 +15,7 @@
 }
 
 :root {
-  /* O visual é escuro por identidade (o orbe foi desenhado para fundo escuro) */
+  /* Escuro é a identidade (V2); a versão clara "Lavanda" segue o sistema ou o botão ☀/☾ */
   color-scheme: dark;
 
   /* Primitivos: só são usados aqui, para definir os semânticos */
@@ -45,6 +45,9 @@
   --color-exotic-soft: rgba(214, 178, 94, .35);
   --color-success: var(--green-400);
   --color-bar-track: rgba(232, 230, 240, .1);
+  --color-exotic-line: rgba(214, 178, 94, .45);
+  --color-star: rgba(255, 255, 255, .5);
+  --color-scanline: rgba(255, 255, 255, .025);
 
   --font-sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
@@ -53,4 +56,48 @@
   --max-width: 1200px;
   --gutter: 24px;
   --header-height: 76px;
+}
+
+/* Versão clara "Lavanda": pelo sistema (se o visitante não escolheu escuro) ou pelo botão */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --color-bg: #ECEAF3;
+    --color-panel: rgba(255, 255, 255, .72);
+    --color-panel-solid: #F7F6FB;
+    --color-text: #15131F;
+    --color-muted: #57536A;
+    --color-line: rgba(21, 19, 31, .14);
+    --color-line-strong: rgba(21, 19, 31, .5);
+    --color-accent: var(--void-700);
+    --color-accent-soft: rgba(109, 40, 217, .14);
+    --color-accent-glow: rgba(139, 92, 246, .22);
+    --color-exotic: #8A6516;
+    --color-exotic-soft: rgba(180, 140, 50, .22);
+    --color-success: #15803D;
+    --color-bar-track: rgba(21, 19, 31, .1);
+    --color-exotic-line: rgba(138, 101, 22, .45);
+    --color-star: rgba(91, 33, 182, .25);
+    --color-scanline: rgba(21, 19, 31, .03);
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #ECEAF3;
+  --color-panel: rgba(255, 255, 255, .72);
+  --color-panel-solid: #F7F6FB;
+  --color-text: #15131F;
+  --color-muted: #57536A;
+  --color-line: rgba(21, 19, 31, .14);
+  --color-line-strong: rgba(21, 19, 31, .5);
+  --color-accent: var(--void-700);
+  --color-accent-soft: rgba(109, 40, 217, .14);
+  --color-accent-glow: rgba(139, 92, 246, .22);
+  --color-exotic: #8A6516;
+  --color-exotic-soft: rgba(180, 140, 50, .22);
+  --color-success: #15803D;
+  --color-bar-track: rgba(21, 19, 31, .1);
+  --color-exotic-line: rgba(138, 101, 22, .45);
+  --color-star: rgba(91, 33, 182, .25);
+  --color-scanline: rgba(21, 19, 31, .03);
 }

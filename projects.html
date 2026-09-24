@@ -8,7 +8,9 @@
   <meta property="og:title" content="Projetos — Nizity">
   <meta property="og:url" content="https://nizity.com/projects.html">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#07070B">
+  <meta name="theme-color" content="#07070B" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ECEAF3" media="(prefers-color-scheme: light)">
+  <script src="assets/theme.js"></script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-tight-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -26,6 +28,7 @@
         <a class="btn btn-nav" href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
       </nav>
       <div class="nav-actions">
+        <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
       </div>
     </div>
