@@ -2,9 +2,8 @@
 // Projeto sem vídeo cadastrado mostra "Vídeo em breve". Para ativar um vídeo novo,
 // coloque o arquivo em assets/videos/ e acrescente uma linha aqui.
 // Dois formatos: WebM (VP9) primeiro; MP4 (H.264) para Safari/iPhone. O navegador usa o que tocar.
-const DEMO_VIDEOS = {
-  salao: { webm: "assets/videos/salao.webm", mp4: "assets/videos/salao.mp4", poster: "assets/videos/salao.jpg" }
-};
+// O Salão não usa vídeo: tem demo interativa em demo/salao/. Núcleo e campo aguardam os vídeos.
+const DEMO_VIDEOS = {};
 
 function setupDemo() {
   const dialog = document.getElementById("demo");
