@@ -47,7 +47,7 @@ const sound = {
 };
 
 function setupReveal() {
-  const targets = document.querySelectorAll(".hero > div:first-child > *, .section-title, .item, .step, .band, .contact, .intro > div");
+  const targets = document.querySelectorAll(".hero > div:first-child > *, .section-title, .item, .step, .contact, .intro > div");
   if (reduceMotion || !("IntersectionObserver" in window)) return;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

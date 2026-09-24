@@ -38,20 +38,6 @@
 .step h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .step p { color: var(--color-muted); }
 
-/* Faixa que leva à página de projetos */
-.band {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  border: 1px solid var(--color-line);
-  background: var(--color-panel);
-  padding: 32px;
-}
-.band h2 { font-weight: 300; font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1.15; max-width: 640px; }
-.band h2 strong { font-weight: 600; }
-
 /* Contato */
 .contact { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
 .contact h2 { font-weight: 300; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1; letter-spacing: -0.02em; }
@@ -79,5 +65,4 @@
   .cards, .steps, .projects { grid-template-columns: 1fr; }
   .contact, .intro { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
-  .band { padding: 24px; }
 }
