@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nizity</title>
-  <meta name="description" content="Nizity — tecnologia simples para negócios que querem crescer.">
-  <meta property="og:title" content="Nizity">
-  <meta property="og:description" content="Tecnologia simples para negócios que querem crescer.">
+  <title>Nizity — Dev Full-Stack</title>
+  <meta name="description" content="Nizity — Guilherme, dev full-stack no Rio de Janeiro. Sites, sistemas e aplicativos sob medida.">
+  <meta property="og:title" content="Nizity — Dev Full-Stack">
+  <meta property="og:description" content="Sites que convertem. Sistemas que escalam.">
   <meta property="og:url" content="https://nizity.com">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -20,17 +20,17 @@
     <div class="container nav">
       <a href="#top" class="logo" aria-label="Nizity">
         <img src="assets/favicon.svg" alt="" width="28" height="28">
-        <span>Nizity</span>
+        <span>nizity</span>
       </a>
       <nav class="nav-links" id="nav-links">
-        <a href="#sobre" data-i18n="nav.about">Sobre</a>
-        <a href="#solucoes" data-i18n="nav.solutions">Soluções</a>
-        <a href="#como-funciona" data-i18n="nav.how">Como funciona</a>
-        <a href="#contato" data-i18n="nav.contact">Contato</a>
+        <a href="#about" data-i18n="nav.about">Sobre</a>
+        <a href="#projects" data-i18n="nav.projects">Projetos</a>
+        <a href="#services" data-i18n="nav.services">Serviços</a>
+        <a href="#contact" data-i18n="nav.contact">Contato</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -40,88 +40,145 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-inner">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Bem-vindo à Nizity</p>
-        <h1 data-i18n="hero.title">Tecnologia simples para negócios que querem crescer.</h1>
-        <p class="lead" data-i18n="hero.lead">Criamos soluções digitais que economizam tempo, organizam informações e ajudam você a tomar decisões melhores.</p>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Dev Full-Stack · Rio de Janeiro</p>
+        <h1 data-i18n="hero.title">Sites que convertem. Sistemas que escalam.</h1>
+        <p class="lead" data-i18n="hero.lead">Eu sou Guilherme, o dev por trás da Nizity. Crio sites, sistemas e aplicativos sob medida, do planejamento até o ar.</p>
         <div class="hero-cta">
-          <a href="#contato" class="btn btn-primary" data-i18n="hero.cta">Fale com a gente</a>
-          <a href="#solucoes" class="btn btn-ghost" data-i18n="hero.secondary">Conheça as soluções</a>
+          <a href="#services" class="btn btn-primary" data-i18n="hero.cta">Ver serviços</a>
+          <a href="#projects" class="btn btn-ghost" data-i18n="hero.secondary">Ver projetos</a>
         </div>
       </div>
     </section>
 
-    <section id="sobre" class="section">
+    <section id="about" class="section">
       <div class="container split">
         <div>
-          <p class="eyebrow" data-i18n="about.eyebrow">Sobre nós</p>
-          <h2 data-i18n="about.title">Quem somos</h2>
+          <p class="eyebrow" data-i18n="about.eyebrow">Sobre</p>
+          <h2 data-i18n="about.title">Quem está por trás da Nizity</h2>
         </div>
         <div>
-          <p data-i18n="about.p1">A Nizity nasceu para tornar a tecnologia acessível. Acreditamos que ferramentas bem feitas devem ser fáceis de usar e trazer resultado desde o primeiro dia.</p>
-          <p data-i18n="about.p2">Unimos design, dados e engenharia para entregar produtos confiáveis, pensados para as necessidades reais de cada cliente.</p>
+          <p data-i18n="about.p1">Nizity é o nome que uso em todo lugar e a marca de tudo o que eu construo. Sou desenvolvedor full-stack e trabalho do banco de dados à tela do celular.</p>
+          <p data-i18n="about.p2">Gosto de software que resolve um problema real, é simples de usar e não quebra quando o cliente mais precisa.</p>
+          <ul class="chips" aria-label="Stack">
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>PostgreSQL</li>
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>React Native / Expo</li>
+            <li>Godot</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="solucoes" class="section section-alt">
+    <section id="projects" class="section section-alt">
       <div class="container">
-        <p class="eyebrow" data-i18n="solutions.eyebrow">Soluções</p>
-        <h2 data-i18n="solutions.title">O que oferecemos</h2>
+        <p class="eyebrow" data-i18n="projects.eyebrow">Projetos</p>
+        <h2 data-i18n="projects.title">O que estou construindo</h2>
+        <div class="cards cards-2">
+          <article class="card project">
+            <span class="tag" data-i18n="projects.status.dev">Em desenvolvimento</span>
+            <h3 data-i18n="projects.p1.title">Gestão de comunidades esportivas</h3>
+            <p data-i18n="projects.p1.text">SaaS para gestores organizarem turmas, presenças e comunicação, substituindo planilhas e grupos de WhatsApp.</p>
+            <ul class="tech"><li>FastAPI</li><li>PostgreSQL</li><li>React Native</li></ul>
+          </article>
+          <article class="card project">
+            <span class="tag" data-i18n="projects.status.dev">Em desenvolvimento</span>
+            <h3 data-i18n="projects.p2.title">Coleta de dados em campo</h3>
+            <p data-i18n="projects.p2.text">Plataforma offline-first e white-label para equipes que coletam dados sem internet. Nada se perde: sincroniza quando a conexão volta.</p>
+            <ul class="tech"><li>Expo</li><li>SQLite</li><li>FastAPI</li></ul>
+          </article>
+          <article class="card project">
+            <span class="tag" data-i18n="projects.status.dev">Em desenvolvimento</span>
+            <h3 data-i18n="projects.p3.title">Nizity Games</h3>
+            <p data-i18n="projects.p3.text">Selo de jogos mobile. O primeiro título está em produção, com foco em jogabilidade e monetização ética.</p>
+            <ul class="tech"><li>Godot</li><li>GDScript</li><li>Android</li></ul>
+          </article>
+          <article class="card project">
+            <span class="tag tag-muted" data-i18n="projects.status.lab">Laboratório</span>
+            <h3 data-i18n="projects.p4.title">IA local</h3>
+            <p data-i18n="projects.p4.text">Assistente de IA que roda no próprio computador, com voz e segurança por construção. Laboratório interno que melhora todo o resto.</p>
+            <ul class="tech"><li>Python</li><li>LLM local</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <p class="eyebrow" data-i18n="services.eyebrow">Serviços</p>
+        <h2 data-i18n="services.title">Como posso ajudar</h2>
         <div class="cards">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15v-4M12 15V8M16 15v-6"/></svg>
-            </div>
-            <h3 data-i18n="solutions.c1.title">Análise de dados</h3>
-            <p data-i18n="solutions.c1.text">Transformamos seus números em painéis claros e relatórios que mostram o que realmente importa.</p>
+          <article class="card plan">
+            <h3 data-i18n="services.s1.title">Landing page</h3>
+            <p data-i18n="services.s1.text">Um site de uma página, rápido e bonito, feito para transformar visitas em contatos.</p>
+            <ul class="checks">
+              <li data-i18n="services.s1.f1">Design responsivo (celular e computador)</li>
+              <li data-i18n="services.s1.f2">Botão direto para o seu WhatsApp</li>
+              <li data-i18n="services.s1.f3">Domínio próprio e HTTPS</li>
+            </ul>
+            <p class="price" data-i18n="services.price">Sob consulta</p>
+            <a href="#contact" class="btn btn-ghost" data-i18n="services.cta">Pedir orçamento</a>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
-            </div>
-            <h3 data-i18n="solutions.c2.title">Automação</h3>
-            <p data-i18n="solutions.c2.text">Eliminamos tarefas repetitivas para que sua equipe foque no que gera valor.</p>
+          <article class="card plan plan-featured">
+            <h3 data-i18n="services.s2.title">Sistema sob medida</h3>
+            <p data-i18n="services.s2.text">Painel web ou aplicativo com banco de dados, pensado para o fluxo real do seu negócio.</p>
+            <ul class="checks">
+              <li data-i18n="services.s2.f1">Levantamento do problema antes do código</li>
+              <li data-i18n="services.s2.f2">Web e/ou app Android</li>
+              <li data-i18n="services.s2.f3">Segurança e LGPD desde o início</li>
+            </ul>
+            <p class="price" data-i18n="services.price">Sob consulta</p>
+            <a href="#contact" class="btn btn-primary" data-i18n="services.cta">Pedir orçamento</a>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-            </div>
-            <h3 data-i18n="solutions.c3.title">Sites e aplicativos</h3>
-            <p data-i18n="solutions.c3.text">Desenvolvemos sites e sistemas modernos, rápidos e fáceis de manter.</p>
+          <article class="card plan">
+            <h3 data-i18n="services.s3.title">Manutenção</h3>
+            <p data-i18n="services.s3.text">Acompanhamento mensal para o seu site ou sistema continuar no ar, seguro e atualizado.</p>
+            <ul class="checks">
+              <li data-i18n="services.s3.f1">Correções e pequenas melhorias</li>
+              <li data-i18n="services.s3.f2">Atualizações de segurança</li>
+              <li data-i18n="services.s3.f3">Suporte direto comigo</li>
+            </ul>
+            <p class="price" data-i18n="services.price">Sob consulta</p>
+            <a href="#contact" class="btn btn-ghost" data-i18n="services.cta">Pedir orçamento</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="como-funciona" class="section">
+    <section id="process" class="section section-alt">
       <div class="container">
-        <p class="eyebrow" data-i18n="how.eyebrow">Como funciona</p>
-        <h2 data-i18n="how.title">Do problema à solução em três passos</h2>
+        <p class="eyebrow" data-i18n="process.eyebrow">Como funciona</p>
+        <h2 data-i18n="process.title">Do problema à entrega em três passos</h2>
         <ol class="steps">
           <li>
             <span class="step-num">1</span>
-            <h3 data-i18n="how.s1.title">Conversa</h3>
-            <p data-i18n="how.s1.text">Entendemos seu negócio, seus desafios e seus objetivos.</p>
+            <h3 data-i18n="process.s1.title">Conversa</h3>
+            <p data-i18n="process.s1.text">Você me conta o problema. Eu pergunto como funciona hoje, antes de falar em solução.</p>
           </li>
           <li>
             <span class="step-num">2</span>
-            <h3 data-i18n="how.s2.title">Proposta</h3>
-            <p data-i18n="how.s2.text">Apresentamos um plano claro, com prazos e custos definidos.</p>
+            <h3 data-i18n="process.s2.title">Proposta</h3>
+            <p data-i18n="process.s2.text">Um plano claro, com escopo, prazo e preço definidos. Sem surpresa no meio do caminho.</p>
           </li>
           <li>
             <span class="step-num">3</span>
-            <h3 data-i18n="how.s3.title">Entrega</h3>
-            <p data-i18n="how.s3.text">Construímos, testamos e acompanhamos os resultados com você.</p>
+            <h3 data-i18n="process.s3.title">Entrega</h3>
+            <p data-i18n="process.s3.text">Construo, testo e coloco no ar. Depois, acompanho se está resolvendo de verdade.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section id="contato" class="section section-cta">
+    <section id="contact" class="section section-cta">
       <div class="container cta-box">
         <h2 data-i18n="contact.title">Vamos conversar?</h2>
-        <p data-i18n="contact.text">Conte sua ideia ou desafio. Respondemos em até um dia útil.</p>
-        <a href="mailto:contato@nizity.com" class="btn btn-light" data-i18n="contact.cta">contato@nizity.com</a>
+        <p data-i18n="contact.text">Conte sua ideia ou seu problema. Respondo em até um dia útil.</p>
+        <div class="hero-cta">
+          <a href="#" id="whatsapp-link" class="btn btn-light" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">Chamar no WhatsApp</a>
+          <a href="#" id="email-link" class="btn btn-outline-light">contato@nizity.com</a>
+        </div>
       </div>
     </section>
   </main>
@@ -133,6 +190,7 @@
     </div>
   </footer>
 
+  <script src="assets/i18n.js"></script>
   <script src="assets/main.js"></script>
 </body>
 </html>
