@@ -79,27 +79,30 @@ function setupInteractionSounds() {
   });
 }
 
-// Segurar E enche o botão do topo e, ao completar, leva ao contato
+// Segurar E enche o botão do topo e, ao completar, abre o WhatsApp (mesmo destino do botão)
 function setupHoldToConfirm() {
   const button = document.querySelector(".btn-hold");
-  const contact = document.getElementById("contact");
-  if (!contact) return;
+  if (!button) return;
   let start = null;
   let frame = null;
   const reset = () => {
     start = null;
     cancelAnimationFrame(frame);
-    if (button) button.style.setProperty("--hold", 0);
+    button.style.setProperty("--hold", 0);
   };
   const go = () => {
     reset();
     sound.confirm();
-    contact.scrollIntoView();
-    contact.querySelector("a:not([hidden])")?.focus({ preventScroll: true });
+    if (button.getAttribute("href") === "#") return;
+    // Com "noopener" o window.open sempre devolve null; por isso o opener é cortado à mão.
+    // Se o navegador bloquear a nova aba, abre na mesma.
+    const tab = window.open(button.href, "_blank");
+    if (tab) tab.opener = null;
+    else window.location.href = button.href;
   };
   const tick = (time) => {
     const progress = Math.min((time - start) / HOLD_MS, 1);
-    if (button) button.style.setProperty("--hold", progress);
+    button.style.setProperty("--hold", progress);
     if (progress >= 1) return go();
     frame = requestAnimationFrame(tick);
   };
@@ -107,7 +110,7 @@ function setupHoldToConfirm() {
     if (event.key.toLowerCase() !== "e" || event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
     if (event.target.closest("input, textarea, select, [contenteditable]")) return;
     // Sem animação (movimento reduzido ou sem o botão): vai direto
-    if (reduceMotion || !button) return go();
+    if (reduceMotion) return go();
     start = performance.now();
     sound.tone(300, 900, HOLD_MS / 1000, 0.03);
     frame = requestAnimationFrame(tick);

@@ -23,16 +23,11 @@
     <div class="container nav">
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
-        <a href="#services" data-i18n="nav.services">Serviços</a>
-        <a href="#process" data-i18n="nav.process">Processo</a>
         <a href="projects.html" data-i18n="nav.projects">Projetos</a>
-        <a href="#contact" data-i18n="nav.contact">Contato</a>
+        <a class="btn btn-nav" href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-          <span></span><span></span><span></span>
-        </button>
       </div>
     </div>
   </header>
@@ -43,7 +38,7 @@
         <p class="kicker" data-i18n="hero.kicker">Aceitando novos projetos</p>
         <h1 data-i18n-html="hero.title">Sites e sistemas <strong>sob medida.</strong></h1>
         <p class="lead" data-i18n="hero.lead">Eu sou Guilherme. Do primeiro papo ao site no ar, você fala direto comigo.</p>
-        <a class="btn btn-hold" href="#contact"><span class="key" aria-hidden="true">E</span><span data-i18n="hero.cta">Pedir orçamento</span></a>
+        <a class="btn btn-hold" href="#" data-whatsapp="contact.message" target="_blank" rel="noopener"><span class="key" aria-hidden="true">E</span><span data-i18n="hero.cta">Pedir orçamento</span></a>
       </div>
       <div class="orb-wrap">
         <canvas id="orb" aria-hidden="true"></canvas>
@@ -62,6 +57,7 @@
           <div class="item-head">
             <span class="item-code">NZ-01</span>
             <h3 data-i18n="services.s1.title">Landing page</h3>
+            <span class="item-price" data-i18n="services.price">Sob consulta</span>
             <span class="item-type" data-i18n="services.s1.type">Página única</span>
           </div>
           <div class="item-body">
@@ -77,13 +73,14 @@
               <li class="perk" data-i18n="services.s1.p3">Domínio próprio e HTTPS</li>
             </ul>
           </div>
-          <a class="item-foot" href="#contact"><span data-i18n="services.price">Sob consulta</span><span aria-hidden="true">→</span></a>
+          <a class="item-foot" href="#" data-whatsapp="services.s1.message" target="_blank" rel="noopener"><span data-i18n="services.cta">Quero este</span><span aria-hidden="true">→</span></a>
         </article>
 
         <article class="item exotic">
           <div class="item-head">
             <span class="item-code">NZ-02</span>
             <h3 data-i18n="services.s2.title">Sistema sob medida</h3>
+            <span class="item-price" data-i18n="services.price">Sob consulta</span>
             <span class="item-type" data-i18n="services.s2.type">Web e app</span>
           </div>
           <div class="item-body">
@@ -99,13 +96,14 @@
               <li class="perk" data-i18n="services.s2.p3">Segurança e LGPD desde o início</li>
             </ul>
           </div>
-          <a class="item-foot" href="#contact"><span data-i18n="services.price">Sob consulta</span><span aria-hidden="true">→</span></a>
+          <a class="item-foot" href="#" data-whatsapp="services.s2.message" target="_blank" rel="noopener"><span data-i18n="services.cta">Quero este</span><span aria-hidden="true">→</span></a>
         </article>
 
         <article class="item">
           <div class="item-head">
             <span class="item-code">NZ-03</span>
             <h3 data-i18n="services.s3.title">Manutenção</h3>
+            <span class="item-price" data-i18n="services.price">Sob consulta</span>
             <span class="item-type" data-i18n="services.s3.type">Mensal</span>
           </div>
           <div class="item-body">
@@ -121,7 +119,7 @@
               <li class="perk" data-i18n="services.s3.p3">Suporte direto comigo</li>
             </ul>
           </div>
-          <a class="item-foot" href="#contact"><span data-i18n="services.price">Sob consulta</span><span aria-hidden="true">→</span></a>
+          <a class="item-foot" href="#" data-whatsapp="services.s3.message" target="_blank" rel="noopener"><span data-i18n="services.cta">Quero este</span><span aria-hidden="true">→</span></a>
         </article>
       </div>
     </section>
@@ -145,16 +143,6 @@
     </section>
 
 
-    <section id="contact" class="container section contact">
-      <div>
-        <h2 data-i18n-html="contact.title">Vamos <strong>conversar?</strong></h2>
-        <p data-i18n="contact.text">Conte sua ideia ou seu problema. Respondo em até um dia útil.</p>
-      </div>
-      <div class="contact-actions">
-        <a class="btn" id="whatsapp-link" href="#" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
-        <a class="btn btn-ghost" id="email-link" href="#" hidden>E-mail</a>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">

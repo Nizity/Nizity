@@ -17,11 +17,13 @@ function detectLang() {
 }
 
 function updateContactLinks(dict) {
-  // Os links só existem nas páginas que têm seção de contato
-  const whatsappLink = document.getElementById("whatsapp-link");
-  if (whatsappLink && CONTACT.whatsapp) {
-    whatsappLink.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(dict["contact.message"])}`;
-    whatsappLink.hidden = false;
+  // Todo link com data-whatsapp abre o WhatsApp com a mensagem daquela chave (ex.: o pacote da ficha)
+  if (CONTACT.whatsapp) {
+    document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+      const message = dict[link.dataset.whatsapp] || dict["contact.message"];
+      link.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
+      link.hidden = false;
+    });
   }
   const emailLink = document.getElementById("email-link");
   if (emailLink && CONTACT.email) {
@@ -54,20 +56,6 @@ function applyLang(lang) {
   try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignora */ }
 }
 
-function setupMobileMenu() {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navLinks = document.getElementById("nav-links");
-  const closeMenu = () => {
-    navLinks.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  };
-  menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-  navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-}
-
 let currentLang = detectLang();
 applyLang(currentLang);
 
@@ -76,7 +64,6 @@ document.getElementById("lang-toggle").addEventListener("click", () => {
   applyLang(currentLang);
 });
 
-setupMobileMenu();
 setupReveal();
 setupInteractionSounds();
 setupHoldToConfirm();

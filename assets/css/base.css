@@ -56,7 +56,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
   text-transform: uppercase;
   color: var(--color-muted);
 }
-.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--color-text); }
+.nav-links { align-items: center; }
+.nav-links a:not(.btn):hover { color: var(--color-text); }
+/* Botão de orçamento no menu: único destaque do cabeçalho */
+.btn-nav { padding: 9px 14px; font-size: .72rem; color: var(--color-text); border-color: var(--color-accent); }
+.btn-nav:hover { background: var(--color-accent); color: var(--color-bg); }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 .lang-toggle {
   font-family: var(--font-mono);
@@ -67,8 +71,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: 6px 12px;
 }
 .lang-toggle:hover { border-color: var(--color-line-strong); }
-.menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; padding: 10px 6px; }
-.menu-toggle span { width: 22px; height: 1.5px; background: var(--color-text); }
 
 /* Rodapé */
 .site-footer { border-top: 1px solid var(--color-line); padding-block: 26px; margin-top: 40px; }
@@ -85,21 +87,18 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .footer-inner a:hover { color: var(--color-text); }
 
 @media (max-width: 860px) {
-  .menu-toggle { display: flex; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    flex-direction: column;
-    gap: 0;
-    background: var(--color-panel-solid);
-    border-bottom: 1px solid var(--color-line);
-  }
-  .nav-links.open { display: flex; }
-  .nav-links a { padding: 16px var(--gutter); border-top: 1px solid var(--color-line); }
+  .logo { letter-spacing: .28em; }
+  .nav-links { gap: 14px; }
+}
+
+/* Celular: logo, Projetos, Orçamento e idioma precisam caber numa linha */
+@media (max-width: 480px) {
+  :root { --gutter: 16px; }
+  .nav { gap: 10px; }
+  .logo { font-size: .8rem; letter-spacing: .16em; gap: 8px; }
+  .nav-links { gap: 10px; font-size: .66rem; letter-spacing: .1em; }
+  .btn-nav { padding: 7px 9px; font-size: .64rem; letter-spacing: .1em; }
+  .lang-toggle { padding: 5px 8px; font-size: .68rem; letter-spacing: .08em; }
 }
 
 @media (prefers-reduced-motion: reduce) {

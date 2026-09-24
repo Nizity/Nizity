@@ -53,9 +53,22 @@
 
 /* Painel de "inspecionar item" */
 .item { display: flex; flex-direction: column; background: var(--color-panel); border: 1px solid var(--color-line); backdrop-filter: blur(6px); }
-.item-head { padding: 18px 20px; border-bottom: 1px solid var(--color-line); background: linear-gradient(90deg, var(--color-accent-soft), transparent); }
+.item-head { position: relative; padding: 18px 20px; border-bottom: 1px solid var(--color-line); background: linear-gradient(90deg, var(--color-accent-soft), transparent); }
 .item.exotic .item-head { background: linear-gradient(90deg, var(--color-exotic-soft), transparent); }
 .item.exotic { border-color: rgba(214, 178, 94, .45); }
+/* Selo de preço no canto do cabeçalho da ficha */
+.item-price {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: .64rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border: 1px solid var(--color-line);
+  padding: 3px 8px;
+}
 .item-code { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .2em; color: var(--color-muted); }
 .item-head h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; margin-top: 4px; }
 .item-type { font-size: .75rem; color: var(--color-muted); letter-spacing: .12em; text-transform: uppercase; }
