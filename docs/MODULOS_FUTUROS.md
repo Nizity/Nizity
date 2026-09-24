@@ -8,6 +8,11 @@
 - **Agendamento (Calendly):** avaliar depois do primeiro contato real que pedir.
 - **Blog:** só se houver cadência de publicação.
 
+## Orbe do Núcleo no site
+
+- **Subagentes do Núcleo:** mostrar, quando o Núcleo delega, pequenos satélites em volta do orbe. Só a quantidade e o estado, nunca o conteúdo. Pedido do fundador em 2026-09-24; depende do orbe vivo (D13) e de o Núcleo estabilizar.
+- **Ligação real (D13):** Cloudflare Worker recebendo só o nome do estado, com token secreto; o site lê e anima.
+
 ## Nizity Salão
 
 - **Pedido feito pelo cliente via QR:** depois da comanda do garçom provar valor. Exige confirmação do garçom ou sessão de mesa (evita pedido falso e mesa errada).
