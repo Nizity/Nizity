@@ -18,8 +18,9 @@ Pré-requisito: Fase 0 (D6).
 - [ ] Coletar do fundador: número do WhatsApp (`CONTACT` em `assets/main.js`), e-mail que funcione (hoje `contato@nizity.com`, provisório), confirmar se os 4 projetos podem aparecer (e links, se houver), foto (sim/não), preços dos pacotes (ou manter "sob consulta").
 - [x] Reescrever conteúdo (2026-09-24, projetos e stack a confirmar pelo fundador): Hero pessoal ("Eu sou Guilherme, dev por trás da Nizity"), Projetos, Serviços em pacotes, Sobre + Stack, Contato (WhatsApp).
 - [x] Criar branch `main` a partir do estado aprovado (2026-09-24).
-- [x] Decidir hospedagem: Cloudflare Pages (D14).
-- [ ] Conectar o repositório no Cloudflare Pages e apontar nizity.com (passos no README; feito pelo fundador no painel).
+- [x] Decidir hospedagem: Cloudflare, Worker com arquivos estáticos (D14).
+- [x] Conectar o repositório na Cloudflare (projeto `nizity`, build OK, 2026-09-24).
+- [ ] Trocar o branch de produção do Worker para `main` e adicionar o domínio nizity.com (passos no README).
 - [ ] Trocar o branch padrão do GitHub para `main` (Settings → General → Default branch).
 - [ ] HTTPS ativo, `www` redirecionando.
 - [x] Evidência: screenshot desktop e mobile nos dois idiomas; contraste AA do roxo primário corrigido (2026-09-24).
