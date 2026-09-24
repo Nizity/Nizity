@@ -6,9 +6,9 @@
 
 - [x] D6: domínio confirmado como do fundador (2026-09-24).
 - [ ] Avisar o chat da Base e o da Empresa: os dois ainda dizem "não registrado".
-- [ ] D5: ordem de ataque. O Salão entra agora ou só o portfólio?
+- [x] D5: o Salão entra agora, junto com o Núcleo (2026-09-24).
 - [ ] D8: aprovar o formato do `CLAUDE.md`.
-- [ ] D4: stack do Salão (só se D5 = entra agora).
+- [x] D4: stack da Base para o Salão (2026-09-24).
 - [ ] Levar ao chat da Empresa: vender serviço dispara o gatilho de formalização (MEI/CNPJ) da VISAO. Falar com contador antes do primeiro cliente.
 
 ## Fase 1 — Portfólio que vende (site atual, estático)
@@ -28,18 +28,22 @@ Pré-requisito: Fase 0 (D6).
 
 ## Fase 2 — Validação do Salão (sem código)
 
-Pré-requisito: D5 permitir.
+> **Pulada por decisão do fundador (2026-09-24):** construir antes de validar. Desvio consciente registrado no DIARIO. Os itens abaixo continuam valendo como tarefa paralela: o primeiro restaurante que testar é o gatilho para rever o escopo.
 
 - [ ] 3 a 5 conversas com restaurantes usando `SALAO_ROTEIRO_ENTREVISTA.md`.
 - [ ] Escrever **antes** critério de sucesso e de fracasso, com número e prazo. Sugestão: "em 4 semanas de piloto, 1 restaurante lança ≥80% dos pedidos pela comanda e não volta ao papel; senão, corto ou pivoto".
 - [ ] Conseguir 1 piloto (sinal de compromisso: tempo, indicação ou dinheiro).
 - [ ] North Star definida: **pedidos reais lançados pela comanda/semana**.
 
-## Fase 3 — Salão MVP (só com piloto confirmado)
+## Fase 3 — Salão MVP (aprovada em 2026-09-24, sem piloto)
 
-Pré-requisito: Fase 2 com piloto + D4 decidida.
+Escopo em D16 e `SALAO_CONTEXTO.md`. Código em repo próprio e privado (criar o repo pede confirmação do fundador). Tudo local e sem custo durante o desenvolvimento.
 
-- [ ] Doc de contexto próprio (`SALAO_CONTEXTO.md`) e plano de fases.
-- [ ] Escopo MVP: cadastro do cardápio → comanda do garçom → telão da cozinha em tempo real (mesa, prato, observação, tempo, botão "pronto"). Multi-tenant (restaurante = tenant) desde o dia 1.
+- [x] Doc de contexto próprio (`SALAO_CONTEXTO.md`).
+- [ ] Repo `Nizity/salao` (privado): `backend/` FastAPI + SQLAlchemy + Alembic + pytest, `frontend/` React + TS + Vite, `docker-compose.yml` com Postgres local.
+- [ ] Fatia 1 — Base: restaurante = tenant (`restaurant_id` em toda tabela), login de dono e funcionário, cadastro de cardápio (categorias, itens, preço, disponível) e mesas.
+- [ ] Fatia 2 — Comanda → cozinha: garçom abre mesa e lança itens com observação; cozinha vê em tempo real (WebSocket) com mesa, prato, observação e tempo; marca "preparando" e "pronto"; garçom é avisado.
+- [ ] Fatia 3 — Cardápio QR só para consulta: página pública por restaurante/mesa, QR em PDF para imprimir, sem botão de pedir.
+- [ ] Evidência por fatia: pytest verde; Playwright com garçom e cozinha em 2 abas (pedido chega em < 2 s, "pronto" volta); cardápio a 390 px sem login; axe sem violações; restaurante A não vê dados do B.
 - [ ] Termos de Uso + Política de Privacidade antes do piloto (garçons são dado pessoal; checar transferência internacional conforme o fornecedor).
 - [ ] Auditoria de marco (segurança OWASP + revisão adversarial) antes do piloto.

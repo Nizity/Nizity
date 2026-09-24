@@ -46,6 +46,13 @@
 - Botões de contato com funções distintas: topo e tecla E abrem o WhatsApp; cada ficha abre o WhatsApp com a mensagem do pacote ("Quero este"); preço vira selo na ficha; seção "Vamos conversar?" sai da home (fica em projetos).
 - Evidência: Playwright 2 páginas × desktop/mobile × PT/EN, cabeçalho cabe em 390 px, sem âncora quebrada, mensagens do WhatsApp corretas por pacote, segurar E abre uma aba só; axe 0 violações.
 
+**Salão aprovado (mesma sessão)**
+- Decisões do fundador: D4 = stack da Base; D5 = o Salão anda junto com o Núcleo; D16 = comanda → cozinha + cardápio QR só para consulta.
+- **Desvio consciente:** construir o Salão **sem validar** com restaurantes (a Fase 2 do PLANO foi pulada). Risco: construir algo que ninguém usa. Gatilho para rever: o primeiro restaurante que testar. O Claude discordou e registrou.
+- Discordância no escopo: o cardápio QR é uma segunda dor. Solução combinada: ele só entra depois que a comanda → cozinha funcionar.
+- Criado `docs/SALAO_CONTEXTO.md`. O código vai para um repo próprio e privado; criar o repo pede confirmação do fundador.
+- Pergunta do fundador: o site não depende do PC dele (Cloudflare + GitHub). Só o orbe ao vivo, no futuro, usa o PC, e sem sinal ele cai para demonstração.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
