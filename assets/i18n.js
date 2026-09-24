@@ -2,7 +2,7 @@
 const translations = {
   pt: {
     "meta.title.home": "Nizity",
-    "meta.description.home": "Nizity — Guilherme, dev full-stack. Sites, sistemas e aplicativos sob medida.",
+    "meta.description.home": "Nizity — Guilherme. Sites, sistemas e aplicativos sob medida.",
     "nav.home": "Início",
     "nav.projects": "Projetos",
     "nav.quote": "Orçamento",
@@ -80,7 +80,7 @@ const translations = {
   },
   en: {
     "meta.title.home": "Nizity",
-    "meta.description.home": "Nizity — Guilherme, full-stack developer. Custom websites, systems and apps.",
+    "meta.description.home": "Nizity — Guilherme. Custom websites, systems and apps.",
     "nav.home": "Home",
     "nav.projects": "Projects",
     "nav.quote": "Get a quote",

@@ -1,7 +1,7 @@
 // Textos da página de projetos (acrescentados ao objeto de i18n.js)
 Object.assign(translations.pt, {
   "meta.title.projects": "Projetos — Nizity",
-  "meta.description.projects": "Projetos e stack de Guilherme (Nizity), dev full-stack.",
+  "meta.description.projects": "Projetos e stack de Guilherme (Nizity).",
   "projects.kicker": "Projetos",
   "projects.title": "O que estou <strong>construindo.</strong>",
   "projects.lead": "Produtos próprios, cada um nascido de um problema real.",
@@ -28,7 +28,7 @@ Object.assign(translations.pt, {
 
 Object.assign(translations.en, {
   "meta.title.projects": "Projects — Nizity",
-  "meta.description.projects": "Projects and stack of Guilherme (Nizity), full-stack developer.",
+  "meta.description.projects": "Projects and stack of Guilherme (Nizity).",
   "projects.kicker": "Projects",
   "projects.title": "What I'm <strong>building.</strong>",
   "projects.lead": "My own products, each one born from a real problem.",

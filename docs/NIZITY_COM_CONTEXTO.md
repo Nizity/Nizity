@@ -8,7 +8,7 @@ Conversa do fundador com uma IA do WhatsApp (resumida pelo fundador em 2026-09-2
 
 - nizity.com como **portfólio**: experiências em programação e **venda de serviços**.
 - Estrutura sugerida: Hero com proposta clara, 3–6 projetos (problema → solução → tech), serviços em pacotes (Landing Page, Sistema sob medida, Manutenção), Sobre + Stack, prova social, contato via WhatsApp/Calendly.
-- Marca: Nizity é o nick pessoal do fundador → **marca pessoal forte**, com "Eu sou Guilherme, dev por trás da Nizity". Bio padrão: "Nizity — Dev Full-Stack | Criador da nizity.com | Rio de Janeiro".
+- Marca: Nizity é o nick pessoal do fundador → **marca pessoal forte**, com "Eu sou Guilherme, dev por trás da Nizity". Bio padrão: "Criador da nizity.com" (o fundador pediu, em 2026-09-24, para tirar "Dev Full-Stack" de todo lugar).
 - Produto: **Nizity Salão**, com cardápio via QR Code por mesa, comanda do garçom no celular, telão da cozinha (KDS) em tempo real (mesa, prato, personalização, tempo) e visão do garçom. Venda como kit por R$197/mês, sem taxa por pedido.
 - A IA do WhatsApp sugeriu Next.js + Tailwind + Supabase + Vercel, Stripe/Mercado Pago e roteiro de 7 dias. **Vários pontos conflitam com a Base** (ver D4, D7).
 
