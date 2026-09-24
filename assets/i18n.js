@@ -1,7 +1,7 @@
 // Textos comuns e da página inicial, em cada idioma. Os da página de projetos ficam em i18n-projects.js.
 const translations = {
   pt: {
-    "meta.title.home": "Nizity — Dev Full-Stack",
+    "meta.title.home": "Nizity",
     "meta.description.home": "Nizity — Guilherme, dev full-stack. Sites, sistemas e aplicativos sob medida.",
     "nav.home": "Início",
     "nav.projects": "Projetos",
@@ -79,7 +79,7 @@ const translations = {
     "cap.criar_capacidade": "criar capacidade"
   },
   en: {
-    "meta.title.home": "Nizity — Full-Stack Developer",
+    "meta.title.home": "Nizity",
     "meta.description.home": "Nizity — Guilherme, full-stack developer. Custom websites, systems and apps.",
     "nav.home": "Home",
     "nav.projects": "Projects",
