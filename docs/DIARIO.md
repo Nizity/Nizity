@@ -35,6 +35,12 @@
 - Pendência: cores dos estados do orbe que a especificação não detalha (ouvindo, lembrando, lendo, olhando, agindo, delegando, concluído) foram escolhidas por mim; confirmar com a sessão do Núcleo.
 - Desvio consciente: visual feito no Code com mockups, não no Claude Design.
 
+**Publicação e orbe novo (mesma sessão)**
+- Site no ar: Worker `nizity` na Cloudflare; nizity.com com DNS, HTTPS e cabeçalhos de segurança conferidos. Pendências do fundador: `www`, "Sempre usar HTTPS", produção no `main`, branch padrão do GitHub, repositório e perfil privados, desligar o `workers.dev`.
+- A pedido do fundador: faixa "produtos próprios" removida, som sempre ligado (sem botão), e-mail fora do site, só 2 projetos.
+- Orbe novo recebido da sessão do Núcleo (sólidos de arame, nebulosa, estrela, glifos das capacidades) e contrato com `capability`. Integrado sem editar o código do app; demonstração com estados e capacidades; legenda com capacidade em uso e glifo sob o mouse, em PT/EN.
+- Evidência: Playwright (2 páginas × desktop/mobile × PT/EN) sem erro; axe-core 0 violações; CSP testada (inclusive com o Web Analytics liberado); orbe desenha, troca de estado e de capacidade nos dois idiomas.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
