@@ -8,6 +8,15 @@
 
 .orb-wrap { position: relative; height: 580px; }
 .orb-wrap canvas { width: 100%; height: 100%; }
+/* Linhas horizontais bem fracas atrás do orbe, como no app do Núcleo */
+.orb-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 4px);
+  mask-image: radial-gradient(circle at center, #000 30%, transparent 70%);
+  pointer-events: none;
+}
 .orb-hud {
   position: absolute;
   left: 12%;
@@ -18,9 +27,13 @@
   text-transform: uppercase;
   color: var(--color-muted);
   border-left: 1px solid var(--color-accent);
-  padding-left: 12px;
+  padding: 6px 12px;
   line-height: 1.8;
+  /* Fundo translúcido: os glifos do orbe passam por trás da legenda sem atrapalhar a leitura */
+  background: var(--color-panel);
+  backdrop-filter: blur(4px);
 }
+.orb-hud > * { display: block; }
 .orb-hud b { color: var(--color-accent); font-weight: 500; }
 .orb-hud a { text-decoration: underline; text-underline-offset: 3px; }
 .orb-hud a:hover { color: var(--color-text); }

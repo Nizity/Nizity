@@ -7,7 +7,6 @@ const CONTACT = {
 
 const STORAGE_KEY = "nizity-lang";
 const page = document.body.dataset.page || "home";
-const orbs = [];
 
 function detectLang() {
   try {
@@ -50,7 +49,8 @@ function applyLang(lang) {
   // O botão mostra o idioma para o qual vai trocar
   document.getElementById("lang-toggle").textContent = lang === "pt" ? "EN" : "PT";
   updateContactLinks(dict);
-  orbs.forEach((orb) => orb.refreshLabel());
+  // O orbe (orb-mount.js) atualiza a própria legenda ao ouvir este evento
+  document.dispatchEvent(new CustomEvent("nizity:langchange"));
   try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignora */ }
 }
 
@@ -68,16 +68,7 @@ function setupMobileMenu() {
   navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
 }
 
-function setupOrbs() {
-  const labelFor = (state) => translations[currentLang][`orb.${state}`] || state;
-  const heroCanvas = document.getElementById("orb");
-  if (heroCanvas) orbs.push(createOrb(heroCanvas, { labelEl: document.getElementById("orb-state"), labels: labelFor }));
-  const miniCanvas = document.getElementById("mini-orb");
-  if (miniCanvas) orbs.push(createOrb(miniCanvas, { radius: 30 }));
-}
-
 let currentLang = detectLang();
-setupOrbs();
 applyLang(currentLang);
 
 document.getElementById("lang-toggle").addEventListener("click", () => {

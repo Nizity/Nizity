@@ -1,8 +1,9 @@
 # Cabeçalhos de segurança (Cloudflare Pages lê este arquivo; o GitHub Pages ignora)
+# script-src/connect-src liberam o Web Analytics da Cloudflare (contador de visitas sem cookies).
 # style-src precisa de 'unsafe-inline' por causa das larguras das barras (style="width: …").
 # Quando o orbe for ligado ao Worker, acrescentar a URL dele em connect-src.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'none'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
