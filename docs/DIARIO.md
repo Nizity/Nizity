@@ -88,6 +88,17 @@
 - **Versão clara "Lavanda"** (cinza-lilás, não branco), escolhida entre 2 propostas. Segue o tema do sistema do visitante, e o botão ☀/☾ ao lado do idioma troca e guarda a escolha (`assets/theme.js`, carregado no `<head>` para não piscar). O orbe funciona bem no claro, sem mudar o código do app.
 - Evidência: Playwright com 2 páginas × desktop/celular × claro/escuro × PT/EN. Tema certo pelo sistema, botão troca e persiste entre páginas, cabeçalho cabe a 390 px, axe 0 violações nos dois temas, sem erro nem CSP.
 
+**Salão: design, telão e demo interativa (mesma sessão)**
+- Design com temas à escolha: cada aparelho tem o botão ☀/☾ (garçom abre em Lavanda, cozinha em Escuro), e o dono escolhe o tema do cardápio do QR (Quente, Lavanda ou Escuro; padrão Quente). Mockups antes, com o axe OK nas 15 telas.
+- Observação do fundador: o telão fica no alto, ninguém alcança para tocar. O telão virou **só exibição** (`/turno/telao`) e os botões foram para o **Controle da cozinha** (tablet ou celular na bancada), em tempo real.
+- A prévia do Salão deixou de ser vídeo e virou uma **demo interativa** em `nizity.com/demo/salao/`: o próprio app com uma API simulada no navegador (sem servidor, sem custo, nada sai do aparelho) e um tour de 9 passos. Núcleo e campo continuam com vídeo (simular seria enganar).
+- Evidência:
+  - Salão: pytest 32/32 e Playwright 9/9 (inclui o telão sem botões seguindo o controle);
+  - demo: tour completo no computador (PT) e no celular (EN), com axe 0, sem requisição externa e sem erro ou CSP;
+  - site: link, idioma herdado, voltar ao site, "em breve" nos outros dois, axe 0.
+- Reforço: o backend recusa segredo JWT com menos de 32 caracteres.
+- O Salão continua **sem push** (21 commits só no container). O `Nizity/salao` ainda não existe.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
