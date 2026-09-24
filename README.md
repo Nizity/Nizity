@@ -14,7 +14,8 @@ assets/i18n-projects.js Textos PT/EN da página de projetos
 assets/orb.js           Orbe do Núcleo (visual; hoje em demonstração)
 assets/main.js          Contato, idioma, menu mobile e atalho da tecla E
 assets/favicon.svg      Ícone
-CNAME               Domínio personalizado (nizity.com) para o GitHub Pages
+_headers                Cabeçalhos de segurança (Cloudflare Pages)
+CNAME                   Domínio para o GitHub Pages (não usado no Cloudflare)
 ```
 
 ## Editar textos
@@ -31,13 +32,13 @@ python3 -m http.server 8000
 
 e acesse http://localhost:8000.
 
-## Publicar no GitHub Pages com o domínio nizity.com
+## Publicar (Cloudflare Pages, domínio nizity.com)
 
-1. No GitHub, abra **Settings → Pages** do repositório.
-2. Em **Source**, escolha **Deploy from a branch**, selecione o branch do site e a pasta `/ (root)`.
-3. Em **Custom domain**, confirme `nizity.com` e marque **Enforce HTTPS** quando a opção aparecer.
-4. No painel do registrador do domínio, configure o DNS:
-   - Quatro registros **A** para `@`:
-     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - Um registro **CNAME** para `www` apontando para `nizity.github.io`
-5. A propagação do DNS pode levar algumas horas.
+O branch `main` é a versão de produção. Trabalho novo entra por outro branch e pull request.
+
+1. Em **dash.cloudflare.com**, abra **Workers & Pages → Create → Pages → Connect to Git** e escolha o repositório `Nizity/Nizity`.
+2. Configure: branch de produção `main`, **Framework preset: None**, **Build command: vazio**, **Build output directory: `/`**.
+3. Depois do primeiro deploy, abra o projeto → **Custom domains → Set up a custom domain** → `nizity.com` (e, se quiser, `www.nizity.com`). Como o DNS já está na Cloudflare, os registros e o HTTPS são criados sozinhos.
+4. O arquivo `_headers` aplica os cabeçalhos de segurança (CSP, anti-clickjacking). Ao ligar o orbe a um Worker, acrescente a URL dele em `connect-src`.
+
+O arquivo `CNAME` só é usado se um dia o site for para o GitHub Pages.
