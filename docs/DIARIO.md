@@ -53,6 +53,18 @@
 - Criado `docs/SALAO_CONTEXTO.md`. O código vai para um repo próprio e privado; criar o repo pede confirmação do fundador.
 - Pergunta do fundador: o site não depende do PC dele (Cloudflare + GitHub). Só o orbe ao vivo, no futuro, usa o PC, e sem sinal ele cai para demonstração.
 
+**Salão: fatias 1 e 2 (mesma sessão)**
+- O código está em `/home/user/salao` no container, **sem push**: o GitHub recusou criar o repositório (403, o app não tem permissão). O fundador precisa criar o `Nizity/salao` privado e dar acesso ao Claude. Até lá, o trabalho se perde se o container for reciclado.
+- Fatia 1: login por restaurante, equipe, cardápio e mesas; tela do dono.
+- Fatia 2: comanda do garçom → telão da cozinha por WebSocket (token na 1ª mensagem, não na URL), aviso de pronto com vibração e bipe, reconexão automática com o retrato das comandas abertas. Item já pedido é arquivado, não apagado; nome e preço ficam copiados na comanda.
+- Evidência:
+  - pytest: 25/25, com isolamento de pedidos e do WebSocket entre restaurantes;
+  - Playwright: 5/5, com o pedido chegando à cozinha em 89–104 ms e o aviso de pronto ao garçom em 122–135 ms (requisito: < 2 s), e a reconexão testada derrubando o WebSocket de verdade;
+  - axe sem violações;
+  - 390 px sem rolagem horizontal;
+  - migrações do Alembic aplicadas, desfeitas e aplicadas de novo.
+- Limite conhecido: o canal em tempo real vive na memória de um processo. Com mais de um servidor, é preciso trocar por LISTEN/NOTIFY do Postgres.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
