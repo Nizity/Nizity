@@ -82,6 +82,12 @@
 - **Vazamento em produção, corrigido com o OK do fundador:** a Cloudflare publicava a pasta inteira do repo, e `nizity.com/.git/` (histórico completo, incluindo o commit antigo com o Gmail) e `nizity.com/docs/*` estavam acessíveis. Resolvido pelo `.assetsignore`. Quem baixou antes pode ter uma cópia, então vale considerar o histórico como público.
 - O Salão continua sem push (13 commits só no container). Na fila: design do Salão e design da prévia em vídeo.
 
+**Ajustes pedidos pelo fundador (mesma sessão)**
+- "Dev Full-Stack" / "full-stack" saiu de todo lugar (título da aba e descrições das duas páginas, PT/EN).
+- A legenda do orbe (Núcleo, estado, capacidade) saiu. No lugar entrou o botão "O que é isso? →", que leva a `projects.html#nucleus`; o cartão do Núcleo acende uma vez ao chegar.
+- **Versão clara "Lavanda"** (cinza-lilás, não branco), escolhida entre 2 propostas. Segue o tema do sistema do visitante, e o botão ☀/☾ ao lado do idioma troca e guarda a escolha (`assets/theme.js`, carregado no `<head>` para não piscar). O orbe funciona bem no claro, sem mudar o código do app.
+- Evidência: Playwright com 2 páginas × desktop/celular × claro/escuro × PT/EN. Tema certo pelo sistema, botão troca e persiste entre páginas, cabeçalho cabe a 390 px, axe 0 violações nos dois temas, sem erro nem CSP.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.

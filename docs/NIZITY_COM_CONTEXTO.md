@@ -31,6 +31,7 @@ Conversa do fundador com uma IA do WhatsApp (resumida pelo fundador em 2026-09-2
 | D14 | 2026-09-24 | Hospedagem: **Cloudflare, Worker com arquivos estáticos** (projeto `nizity`), a partir do branch `main` (DNS já na Cloudflare, aceita `_headers` de segurança, mesmo lugar do futuro Worker do orbe). `main` = produção; trabalho novo por branch + PR. | Worker criado pelo fundador e build OK; falta trocar para `main` e ligar o domínio |
 | D15 | 2026-09-24 | Web Analytics da Cloudflare (contador de visitas sem cookies) liberado na CSP (`static.cloudflareinsights.com` em script-src, `cloudflareinsights.com` em connect-src). | Decidido pelo fundador |
 | D16 | 2026-09-24 | Escopo do MVP do Salão: comanda do garçom → telão da cozinha em tempo real **+ cardápio QR só para consulta**. Sem pedido pelo cliente, pagamento ou estoque. O cardápio QR entra **depois** da comanda → cozinha funcionar. Repo próprio e privado, fora do site. Detalhe em `SALAO_CONTEXTO.md`. | Decidido pelo fundador; ordem das fatias proposta pelo Claude |
+| D17 | 2026-09-24 | Versão clara "Lavanda" (#ECEAF3, violeta #6D28D9) além do escuro V2. Abre conforme o sistema do visitante; o botão ☀/☾ troca e guarda. O escuro continua sendo a identidade. | Decidido pelo fundador |
 | D8 | — | Onde o CLAUDE.md busca as regras: comando do PROMPT_BASE (sessão local) + resumo mínimo (sessão na nuvem). Aplicado em 2026-09-24. | **Aguardando aprovação** do fundador |
 
 ## Posição do Claude (para o fundador pesar)
