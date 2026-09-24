@@ -41,6 +41,11 @@
 - Orbe novo recebido da sessão do Núcleo (sólidos de arame, nebulosa, estrela, glifos das capacidades) e contrato com `capability`. Integrado sem editar o código do app; demonstração com estados e capacidades; legenda com capacidade em uso e glifo sob o mouse, em PT/EN.
 - Evidência: Playwright (2 páginas × desktop/mobile × PT/EN) sem erro; axe-core 0 violações; CSP testada (inclusive com o Web Analytics liberado); orbe desenha, troca de estado e de capacidade nos dois idiomas.
 
+**Menu e contato (mesma sessão)**
+- Menu reduzido a logo + Projetos (ou Início) + botão "Orçamento"; saem Serviços, Processo, Contato e o menu hambúrguer.
+- Botões de contato com funções distintas: topo e tecla E abrem o WhatsApp; cada ficha abre o WhatsApp com a mensagem do pacote ("Quero este"); preço vira selo na ficha; seção "Vamos conversar?" sai da home (fica em projetos).
+- Evidência: Playwright 2 páginas × desktop/mobile × PT/EN, cabeçalho cabe em 390 px, sem âncora quebrada, mensagens do WhatsApp corretas por pacote, segurar E abre uma aba só; axe 0 violações.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
