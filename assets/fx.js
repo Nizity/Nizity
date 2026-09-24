@@ -71,7 +71,7 @@ function setupReveal() {
 }
 
 function setupInteractionSounds() {
-  document.querySelectorAll(".item, .btn, .nav-links a, .item-foot, .lang-toggle, .demo-close").forEach((el) => {
+  document.querySelectorAll(".item, .btn, .nav-links a, .item-foot, .lang-toggle, .demo-close, .orb-what").forEach((el) => {
     el.addEventListener("pointerenter", () => sound.hover());
   });
   document.addEventListener("click", (event) => {

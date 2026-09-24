@@ -1,5 +1,5 @@
 // Monta o orbe do Núcleo nas páginas. Enquanto não existe a ligação real com o Núcleo (Worker),
-// roda uma demonstração que passa pelos estados e capacidades. Os rótulos vêm de i18n.js.
+// roda uma demonstração que passa pelos estados e capacidades. Só visual: sem legenda.
 import { AtlasOrb, GLYPHS } from "./atlas_orb.js";
 
 // [estado, capacidade em uso, duração em ms]
@@ -22,16 +22,6 @@ const DEMO_SEQUENCE = [
 ];
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function currentDict() {
-  const lang = document.documentElement.lang.startsWith("pt") ? "pt" : "en";
-  // "translations" é declarada em i18n.js (script clássico); não fica em window, mas é visível pelo nome
-  return (typeof translations !== "undefined" && translations[lang]) || {};
-}
-
-function capabilityLabel(key) {
-  return currentDict()[`cap.${key}`] || (GLYPHS[key] && GLYPHS[key].label) || key;
-}
 
 // Desenha um orbe num canvas; o raio acompanha o tamanho do canvas
 function mountOrb(canvas, radiusFactor, minRadius, maxRadius) {
@@ -59,43 +49,18 @@ function mountOrb(canvas, radiusFactor, minRadius, maxRadius) {
   return orb;
 }
 
-// Legenda do orbe da página inicial: estado, capacidade em uso e glifo sob o mouse
-function setupHud(orb, canvas) {
-  const stateEl = document.getElementById("orb-state");
-  const capRow = document.getElementById("orb-cap-row");
-  const capEl = document.getElementById("orb-cap");
-  const current = { state: "idle", capability: null, hover: null };
-
-  const render = () => {
-    const dict = currentDict();
-    stateEl.textContent = dict[`orb.${current.state}`] || current.state;
-    canvas.dataset.state = current.state;
-    const shown = current.hover || current.capability;
-    capRow.hidden = !shown;
-    if (shown) capEl.textContent = capabilityLabel(shown);
-  };
-
+// Orbe da página inicial: aplica estado e capacidade e destaca o glifo sob o mouse
+function setupHero(orb, canvas) {
   canvas.addEventListener("pointermove", (event) => {
     const rect = canvas.getBoundingClientRect();
-    const key = orb.glyphAt(event.clientX - rect.left, event.clientY - rect.top);
-    if (key === current.hover) return;
-    current.hover = key;
-    orb.setHover(key);
-    render();
+    orb.setHover(orb.glyphAt(event.clientX - rect.left, event.clientY - rect.top));
   });
-  canvas.addEventListener("pointerleave", () => {
-    current.hover = null;
-    orb.setHover(null);
-    render();
-  });
-  document.addEventListener("nizity:langchange", render);
+  canvas.addEventListener("pointerleave", () => orb.setHover(null));
 
   return (state, capability) => {
-    current.state = state;
-    current.capability = capability;
     orb.setState(state);
     orb.setCapability(capability);
-    render();
+    canvas.dataset.state = state;
   };
 }
 
@@ -113,7 +78,7 @@ function runDemo(apply) {
 const heroCanvas = document.getElementById("orb");
 if (heroCanvas) {
   const orb = mountOrb(heroCanvas, 0.32, 60, 170);
-  runDemo(setupHud(orb, heroCanvas));
+  runDemo(setupHero(orb, heroCanvas));
 }
 
 const miniCanvas = document.getElementById("mini-orb");
