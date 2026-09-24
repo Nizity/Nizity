@@ -16,6 +16,12 @@ Object.assign(translations.pt, {
   "projects.p4.title": "Núcleo",
   "projects.p4.problem": "Assistentes de IA na nuvem veem tudo o que você faz.",
   "projects.p4.solution": "Uma IA que roda no próprio computador, com voz e segurança por construção. O orbe da página inicial mostra o estado dela.",
+  "projects.p3.title": "Nizity Salão",
+  "projects.p3.problem": "Pedido anotado em papel se perde, sai ilegível ou demora a chegar na cozinha.",
+  "projects.p3.solution": "O garçom lança o pedido no celular e a cozinha vê na hora, num telão; quando fica pronto, o garçom é avisado.",
+  "projects.demo.open": "Ver funcionando",
+  "projects.demo.soon": "Vídeo em breve.",
+  "projects.demo.close": "Fechar",
   "contact.titleProjects": "Vamos <strong>conversar?</strong>",
   "contact.textProjects": "Vagas, parcerias ou só trocar ideia sobre algum projeto."
 });
@@ -37,6 +43,12 @@ Object.assign(translations.en, {
   "projects.p4.title": "Nucleus",
   "projects.p4.problem": "Cloud AI assistants see everything you do.",
   "projects.p4.solution": "An AI that runs on your own computer, with voice and security by design. The orb on the home page shows its state.",
+  "projects.p3.title": "Nizity Salão",
+  "projects.p3.problem": "Orders written on paper get lost, come out unreadable or reach the kitchen late.",
+  "projects.p3.solution": "The waiter sends the order from the phone and the kitchen sees it at once on a screen; when it's ready, the waiter is notified.",
+  "projects.demo.open": "See it working",
+  "projects.demo.soon": "Video coming soon.",
+  "projects.demo.close": "Close",
   "contact.titleProjects": "Let's <strong>talk?</strong>",
   "contact.textProjects": "Jobs, partnerships or just a chat about a project."
 });

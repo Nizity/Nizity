@@ -79,3 +79,22 @@
   .contact, .intro { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
 }
+
+/* Prévia em vídeo dos projetos (esboço; o visual final vem depois) */
+button.item-foot { width: 100%; background: none; border: 0; border-top: 1px solid var(--color-line); font: inherit; letter-spacing: .18em; cursor: pointer; margin-top: auto; }
+.demo {
+  width: min(960px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  margin: auto;
+  padding: 0;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-line-strong);
+}
+.demo::backdrop { background: rgba(0, 0, 0, .75); }
+.demo-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--color-line); }
+.demo-head h2 { font-size: .9rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.demo-close { background: none; border: 1px solid var(--color-line-strong); padding: 6px 12px; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; }
+.demo-close:hover { border-color: var(--color-text); }
+.demo video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.demo-soon { padding: 64px 18px; text-align: center; color: var(--color-muted); letter-spacing: .15em; text-transform: uppercase; font-size: .85rem; }
