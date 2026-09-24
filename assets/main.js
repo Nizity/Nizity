@@ -51,7 +51,6 @@ function applyLang(lang) {
   document.getElementById("lang-toggle").textContent = lang === "pt" ? "EN" : "PT";
   updateContactLinks(dict);
   orbs.forEach((orb) => orb.refreshLabel());
-  if (renderSoundToggle) renderSoundToggle();
   try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignora */ }
 }
 
@@ -78,7 +77,6 @@ function setupOrbs() {
 }
 
 let currentLang = detectLang();
-const renderSoundToggle = setupSoundToggle((on) => translations[currentLang][on ? "sound.on" : "sound.off"]);
 setupOrbs();
 applyLang(currentLang);
 

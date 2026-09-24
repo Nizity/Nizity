@@ -33,17 +33,3 @@
   pointer-events: none;
 }
 .btn-hold > * { position: relative; }
-
-/* Botão de som no cabeçalho */
-.sound-toggle {
-  font-family: var(--font-mono);
-  font-size: .75rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  background: none;
-  border: 1px solid var(--color-line);
-  padding: 6px 10px;
-  color: var(--color-muted);
-}
-.sound-toggle[aria-pressed="true"] { color: var(--color-accent); border-color: var(--color-accent); }
-.sound-toggle:hover { border-color: var(--color-line-strong); }

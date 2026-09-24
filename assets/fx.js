@@ -1,15 +1,20 @@
-// Efeitos: entrada ao rolar, sons de interface (desligados por padrão) e "segurar E" no botão do topo.
+// Efeitos: entrada ao rolar, sons de interface (sempre ligados) e "segurar E" no botão do topo.
 // Os sons são sintetizados com Web Audio: não há arquivos de áudio.
-const SOUND_KEY = "nizity-sound";
 const HOLD_MS = 600;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const sound = {
-  enabled: false,
   audio: null,
+  unlocked: false,
   lastHover: 0,
+  // O navegador só libera áudio depois do primeiro clique ou tecla do visitante
   init() {
-    try { this.enabled = localStorage.getItem(SOUND_KEY) === "on"; } catch (e) { /* ignora */ }
+    const unlock = () => {
+      this.unlocked = true;
+      this.context().resume();
+    };
+    window.addEventListener("pointerdown", unlock, { once: true });
+    window.addEventListener("keydown", unlock, { once: true });
   },
   context() {
     if (!this.audio) this.audio = new (window.AudioContext || window.webkitAudioContext)();
@@ -17,7 +22,7 @@ const sound = {
   },
   // Um tom curto com envelope; frequência pode deslizar de "from" para "to"
   tone(from, to, duration, volume, type = "sine") {
-    if (!this.enabled) return;
+    if (!this.unlocked) return;
     const ctx = this.context();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -65,29 +70,12 @@ function setupReveal() {
   });
 }
 
-function setupSoundToggle(getLabel) {
-  const toggle = document.getElementById("sound-toggle");
-  if (!toggle) return;
-  const render = () => {
-    toggle.setAttribute("aria-pressed", String(sound.enabled));
-    toggle.textContent = getLabel(sound.enabled);
-  };
-  toggle.addEventListener("click", () => {
-    sound.enabled = !sound.enabled;
-    try { localStorage.setItem(SOUND_KEY, sound.enabled ? "on" : "off"); } catch (e) { /* ignora */ }
-    render();
-    sound.confirm();
-  });
-  render();
-  return render;
-}
-
 function setupInteractionSounds() {
   document.querySelectorAll(".item, .btn, .nav-links a, .item-foot, .lang-toggle").forEach((el) => {
     el.addEventListener("pointerenter", () => sound.hover());
   });
   document.addEventListener("click", (event) => {
-    if (event.target.closest("a, button:not(#sound-toggle)")) sound.click();
+    if (event.target.closest("a, button")) sound.click();
   });
 }
 
