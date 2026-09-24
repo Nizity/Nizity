@@ -1,8 +1,8 @@
 // Dados de contato. whatsapp: DDI + DDD + número, só dígitos (ex.: "5521999999999").
-// Enquanto estiver vazio, o botão do WhatsApp fica escondido.
+// Campo vazio = botão escondido.
 const CONTACT = {
   whatsapp: "5521997464308",
-  email: "08guilherme.ac@gmail.com"
+  email: ""
 };
 
 const STORAGE_KEY = "nizity-lang";
@@ -25,9 +25,10 @@ function updateContactLinks(dict) {
     whatsappLink.hidden = false;
   }
   const emailLink = document.getElementById("email-link");
-  if (emailLink) {
+  if (emailLink && CONTACT.email) {
     emailLink.href = `mailto:${CONTACT.email}`;
     emailLink.textContent = CONTACT.email;
+    emailLink.hidden = false;
   }
 }
 
