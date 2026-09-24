@@ -5,17 +5,21 @@ Site institucional da Nizity, bilíngue (Português / Inglês). Feito em HTML, C
 ## Estrutura
 
 ```
-index.html          Página principal
-assets/styles.css   Estilos (tema claro/escuro automático)
-assets/i18n.js      Textos PT/EN
-assets/main.js      Contato, seletor de idioma e menu mobile
-assets/favicon.svg  Logo / ícone
+index.html              Página principal (clientes)
+projects.html           Projetos e stack (recrutadores)
+assets/css/             Estilos: tokens, base, componentes e seções
+assets/fonts/           Inter Tight e Geist Mono (woff2, licenças OFL)
+assets/i18n.js          Textos PT/EN comuns e da página principal
+assets/i18n-projects.js Textos PT/EN da página de projetos
+assets/orb.js           Orbe do Núcleo (visual; hoje em demonstração)
+assets/main.js          Contato, idioma, menu mobile e atalho da tecla E
+assets/favicon.svg      Ícone
 CNAME               Domínio personalizado (nizity.com) para o GitHub Pages
 ```
 
 ## Editar textos
 
-Todos os textos ficam em `assets/i18n.js`, no objeto `translations`, com uma versão em `pt` e outra em `en`. Altere as duas versões.
+Os textos ficam em `assets/i18n.js` e `assets/i18n-projects.js`, no objeto `translations`, com uma versão em `pt` e outra em `en`. Altere as duas versões.
 
 ## Ver localmente
 

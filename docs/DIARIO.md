@@ -27,6 +27,14 @@
 - Bug corrigido: `.btn` sobrescrevia o atributo `hidden` e o botão do WhatsApp aparecia sem número.
 - Evidência: screenshots 1280px PT claro e 390px EN escuro, sem rolagem horizontal, sem erro de página, todas as chaves de tradução presentes nos dois idiomas.
 
+**Redesign V2 (mesma sessão)**
+- 9 mockups (A–F, D em 4 cores, V1–V3) + referências reais (estúdios europeus/japoneses, carros, tecnologia, café, jogos). Escolhido V2 (Destiny 2) em violeta. Laranja rejeitado pelo fundador.
+- Implementado: `index.html` + `projects.html`, CSS em 4 arquivos com tokens, fontes locais, orbe do Núcleo pela especificação real (em demonstração), tecla E → contato, localização removida.
+- Barras dos serviços **sem números** (eram inventados); losangos viraram vantagens com nome.
+- Evidência: Playwright nas 2 páginas × desktop/mobile × PT/EN sem erro, sem rolagem horizontal, sem chave de tradução faltando, fontes carregadas; **axe-core WCAG A/AA: 0 violações**; tecla E, persistência de idioma e menu mobile testados.
+- Pendência: cores dos estados do orbe que a especificação não detalha (ouvindo, lembrando, lendo, olhando, agindo, delegando, concluído) foram escolhidas por mim; confirmar com a sessão do Núcleo.
+- Desvio consciente: visual feito no Code com mockups, não no Claude Design.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
