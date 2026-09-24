@@ -11,7 +11,7 @@
 **Desvios da Base nesta sessão (registrados, não escondidos)**
 - Site construído **antes** de plano aprovado. Textos genéricos de "empresa", escritos antes de saber que o site é portfólio. Tratar como rascunho visual (D3).
 - Primeiros 2 commits com mensagem em inglês e o 1º com `git add -A`. Corrigido dali em diante.
-- Primeiros pushes feitos sem portão humano (a sessão na nuvem instrui push automático). A partir do momento em que a Base foi lida, push só com confirmação.
+- Portão de push: o núcleo da Base exige confirmação para push **em produção**. Push no branch de trabalho `claude/oi-b1cjau` é permitido (a sessão na nuvem precisa dele para não perder trabalho). Corrigida no CLAUDE.md uma versão mais restrita que eu tinha escrito.
 - Landing feita no Code. Pela regra da casa, visual é do Claude Design.
 
 **Achados para levar adiante**

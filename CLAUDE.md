@@ -22,7 +22,7 @@ Módulos que valem aqui, pelo tipo: **FRONTEND** (painel web), **PRODUTO** (usu�
 - **Sempre discorde do fundador quando ele estiver errado**, explique o porquê e proponha alternativa. Sem bajulação.
 - Comunicação em pt-BR, **curta por padrão**: veredito em poucas linhas, detalhe só quando pedido.
 - **Plano antes de código:** contexto → `docs/PLANO.md` → aprovação do fundador → código.
-- **Portão humano:** push, apagar dado, gastar dinheiro ou enviar mensagem só com confirmação do fundador.
+- **Portão humano:** push em produção (`main` / branch publicado), apagar dado, gastar dinheiro ou enviar mensagem só com confirmação do fundador. Push em branch de trabalho não precisa.
 - Commits em pt-BR, um por mudança lógica, **staging específico (nunca `git add -A`)**, com trailer do modelo.
 - Identificadores em inglês; comentários, UI e commits em pt-BR.
 - Segredos só em variável de ambiente, nunca commitados.
