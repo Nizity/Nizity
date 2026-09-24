@@ -65,6 +65,13 @@
   - migrações do Alembic aplicadas, desfeitas e aplicadas de novo.
 - Limite conhecido: o canal em tempo real vive na memória de um processo. Com mais de um servidor, é preciso trocar por LISTEN/NOTIFY do Postgres.
 
+**Prévia em vídeo dos projetos (mesma sessão)**
+- A pedido do fundador, cada projeto ganhou o botão "Ver funcionando", que abre uma janela com um vídeo curto (esboço; o visual vem depois). O Salão entrou como 3º projeto (NZ-02).
+- Vídeo do Salão gravado aqui com Playwright: garçom e cozinha lado a lado, dados fictícios, 13,5 s, cerca de 145 KB por formato. Núcleo e campo mostram "Vídeo em breve"; o pedido para as sessões do PC está em `docs/PEDIDO_VIDEOS.md`.
+- Achado: o Chromium de teste não toca H.264. Por isso o vídeo vai em **WebM (VP9) + MP4 (H.264)**, e o navegador escolhe o formato.
+- Evidência: Playwright com desktop/celular × PT/EN, 2 rodadas. O vídeo toca, pausa ao fechar, fecha com Esc, com o clique fora e com o botão; o "em breve" aparece nos outros 2; sem rolagem horizontal; axe 0 violações com a janela aberta e fechada; sem erro de console nem de CSP.
+- Para o design: no celular, o vídeo lado a lado fica pequeno. Fazer uma versão vertical, só com a tela do garçom.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
