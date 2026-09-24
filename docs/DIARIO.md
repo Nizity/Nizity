@@ -72,6 +72,16 @@
 - Evidência: Playwright com desktop/celular × PT/EN, 2 rodadas. O vídeo toca, pausa ao fechar, fecha com Esc, com o clique fora e com o botão; o "em breve" aparece nos outros 2; sem rolagem horizontal; axe 0 violações com a janela aberta e fechada; sem erro de console nem de CSP.
 - Para o design: no celular, o vídeo lado a lado fica pequeno. Fazer uma versão vertical, só com a tela do garçom.
 
+**Salão, Fatia 3 e vazamento no site (mesma sessão)**
+- Fatia 3: cardápio público `/m/<token>` (sem login, só consulta, "em falta" riscado) e PDF com uma página A4 por mesa e o QR em vetor. O QR antigo deixa de valer quando o dono gera um novo.
+- Evidência:
+  - pytest 31/31;
+  - Playwright 6/6 (PDF, cardápio no celular sem login, em falta refletindo, QR antigo inválido; axe 0);
+  - os 6 QRs do PDF foram renderizados e **lidos com um decodificador de QR**, todos com a URL certa.
+- Erro meu, corrigido: o `conftest` herdava `SALAO_DATABASE_URL` e apagou as tabelas do banco de e2e. Agora os testes só rodam em banco com "test" no nome.
+- **Vazamento em produção, corrigido com o OK do fundador:** a Cloudflare publicava a pasta inteira do repo, e `nizity.com/.git/` (histórico completo, incluindo o commit antigo com o Gmail) e `nizity.com/docs/*` estavam acessíveis. Resolvido pelo `.assetsignore`. Quem baixou antes pode ter uma cópia, então vale considerar o histórico como público.
+- O Salão continua sem push (13 commits só no container). Na fila: design do Salão e design da prévia em vídeo.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.

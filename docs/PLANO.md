@@ -43,7 +43,7 @@ Escopo em D16 e `SALAO_CONTEXTO.md`. Código em repo próprio e privado (criar o
 - [ ] Repo `Nizity/salao` (privado): `backend/` FastAPI + SQLAlchemy + Alembic + pytest, `frontend/` React + TS + Vite, `docker-compose.yml` com Postgres local.
 - [x] Fatia 1 — Base: restaurante = tenant (`restaurant_id` em toda tabela), login de dono e funcionário, cadastro de cardápio (categorias, itens, preço, disponível) e mesas.
 - [x] Fatia 2 — Comanda → cozinha: garçom abre mesa e lança itens com observação; cozinha vê em tempo real (WebSocket) com mesa, prato, observação e tempo; marca "preparando" e "pronto"; garçom é avisado.
-- [ ] Fatia 3 — Cardápio QR só para consulta: página pública por restaurante/mesa, QR em PDF para imprimir, sem botão de pedir.
+- [x] Fatia 3 — Cardápio QR só para consulta: página pública por restaurante/mesa, QR em PDF para imprimir, sem botão de pedir.
 - [ ] Evidência por fatia: pytest verde; Playwright com garçom e cozinha em 2 abas (pedido chega em < 2 s, "pronto" volta); cardápio a 390 px sem login; axe sem violações; restaurante A não vê dados do B.
 - [ ] Termos de Uso + Política de Privacidade antes do piloto (garçons são dado pessoal; checar transferência internacional conforme o fornecedor).
 - [ ] Auditoria de marco (segurança OWASP + revisão adversarial) antes do piloto.
