@@ -1,84 +1,83 @@
 /* Seções das páginas */
 
-/* Topo: título grande + coluna lateral */
-.hero {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 56px;
-  padding-block: 64px 72px;
-  border-bottom: 1px solid var(--color-border);
-}
-.hero h1 { font-size: clamp(3.4rem, 8.5vw, 7.4rem); line-height: .92; }
-.hero-side {
-  border-left: 1px solid var(--color-border);
-  padding-left: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 28px;
-}
-.hero-side .btn { align-self: flex-start; }
-.lead { font-size: 1.12rem; color: var(--color-muted); }
-.lead strong { color: var(--color-text); }
+/* Topo: texto à esquerda, orbe à direita */
+.hero { display: grid; grid-template-columns: 1fr 1.15fr; align-items: center; min-height: 640px; gap: 24px; }
+.hero h1 { font-weight: 300; font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: 1; letter-spacing: -0.02em; margin-bottom: 26px; }
+.hero h1 strong { font-weight: 600; }
+.lead { color: var(--color-muted); font-size: 1.08rem; max-width: 440px; margin-bottom: 34px; }
 
-.section { padding-block: 64px 88px; }
-
-/* Como funciona: três colunas separadas por fios */
-.steps {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 32px;
+.orb-wrap { position: relative; height: 580px; }
+.orb-wrap canvas { width: 100%; height: 100%; }
+.orb-hud {
+  position: absolute;
+  left: 12%;
+  bottom: 40px;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-left: 1px solid var(--color-accent);
+  padding-left: 12px;
+  line-height: 1.8;
 }
-.steps li { padding: 0 28px; border-left: 1px solid var(--color-border); }
-.steps li:first-child { padding-left: 0; border-left: 0; }
-.step-num { font-family: var(--font-serif); font-style: italic; font-size: 3.4rem; line-height: 1; color: var(--color-accent-text); }
-.steps h3 { font-size: 1.35rem; letter-spacing: -0.02em; margin: 10px 0 6px; }
-.steps p { color: var(--color-muted); }
+.orb-hud b { color: var(--color-accent); font-weight: 500; }
+.orb-hud a { text-decoration: underline; text-underline-offset: 3px; }
+.orb-hud a:hover { color: var(--color-text); }
 
-/* Faixa invertida que leva à página de projetos */
-.band { background: var(--color-inverse-bg); color: var(--color-inverse-text); }
-.band .container {
+.section { padding-block: 64px; }
+
+/* Serviços */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+/* Processo, no estilo de etapas de missão */
+.steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.step { border-top: 1px solid var(--color-line-strong); padding-top: 18px; }
+.step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.step-num { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .15em; color: var(--color-accent); }
+.step h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.step p { color: var(--color-muted); }
+
+/* Faixa que leva à página de projetos */
+.band {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
   flex-wrap: wrap;
-  padding-block: 48px;
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  padding: 32px;
 }
-.band h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.05; }
-.band h2 em { color: var(--color-inverse-accent); }
-.band .link-arrow { font-size: 1.1rem; }
-.band .link-arrow:hover { color: var(--color-inverse-accent); }
+.band h2 { font-weight: 300; font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1.15; max-width: 640px; }
+.band h2 strong { font-weight: 600; }
 
 /* Contato */
-.contact { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
-.contact h2 { font-size: clamp(3rem, 7vw, 5.6rem); line-height: .95; }
-.contact p { color: var(--color-muted); margin: 16px 0 0; font-size: 1.1rem; }
-.contact-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+.contact { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
+.contact h2 { font-weight: 300; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1; letter-spacing: -0.02em; }
+.contact h2 strong { font-weight: 600; }
+.contact p { color: var(--color-muted); margin-top: 16px; font-size: 1.05rem; }
+.contact-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
 
 /* Página de projetos */
-.about-stack { display: flex; flex-direction: column; gap: 12px; }
-.project {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 24px;
-  padding-block: 32px;
-  border-bottom: 1px solid var(--color-border);
-}
-.project-title { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
-.project-title h3 { font-size: 1.8rem; letter-spacing: -0.03em; line-height: 1.1; }
-.project-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
-.project-body .label { display: block; margin-bottom: 6px; color: var(--color-accent-text); }
-.project-body p { color: var(--color-muted); }
+.intro { padding-block: 72px 32px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
+.intro h1 { font-weight: 300; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.02em; }
+.intro h1 strong { font-weight: 600; }
+.intro p { color: var(--color-muted); margin-top: 18px; max-width: 520px; }
+.stack-groups { display: grid; gap: 14px; }
+.stack-groups .item-type { display: block; margin-bottom: 6px; }
+.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.project-fields { display: grid; gap: 14px; margin-bottom: 18px; }
+.project-fields .item-type { display: block; color: var(--color-accent); margin-bottom: 2px; }
+.project-fields p { color: var(--color-muted); }
+.mini-orb { width: 72px; height: 72px; float: right; margin: -6px -6px 0 12px; }
 
 @media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 40px 48px; }
-  .hero-side { border-left: 0; border-top: 1px solid var(--color-border); padding: 24px 0 0; }
-  .steps { grid-template-columns: 1fr; gap: 28px; }
-  .steps li, .steps li:first-child { padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--color-border); }
-  .contact { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; min-height: 0; padding-block: 16px 24px; }
+  .orb-wrap { height: 360px; order: -1; }
+  .orb-hud { left: 0; bottom: 8px; }
+  .cards, .steps, .projects { grid-template-columns: 1fr; }
+  .contact, .intro { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
-  .project { grid-template-columns: 1fr; gap: 8px; }
-  .project-body { grid-template-columns: 1fr; gap: 16px; }
+  .band { padding: 24px; }
 }

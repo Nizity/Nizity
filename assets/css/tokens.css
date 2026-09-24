@@ -1,98 +1,56 @@
 /* Fontes auto-hospedadas (licenças OFL em assets/fonts/licenses) */
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("../fonts/instrument-serif-regular.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Inter Tight";
+  src: url("../fonts/inter-tight-variable.woff2") format("woff2");
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("../fonts/instrument-serif-italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Bricolage Grotesque";
-  src: url("../fonts/bricolage-grotesque-variable.woff2") format("woff2");
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Space Mono";
-  src: url("../fonts/space-mono-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Space Mono";
-  src: url("../fonts/space-mono-bold.woff2") format("woff2");
-  font-weight: 700;
+  font-family: "Geist Mono";
+  src: url("../fonts/geist-mono-variable.woff2") format("woff2");
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  color-scheme: light dark;
+  /* O visual é escuro por identidade (o orbe foi desenhado para fundo escuro) */
+  color-scheme: dark;
 
   /* Primitivos: só são usados aqui, para definir os semânticos */
-  --paper-100: #F4F1EA;
-  --paper-300: #E8E3D8;
-  --white: #FFFFFF;
-  --ink-900: #111111;
-  --ink-800: #141210;
-  --ink-700: #1D1A17;
-  --ink-500: #4A4740;
-  --stone-300: #B8B2A7;
-  --violet-600: #6D28D9;
-  --violet-400: #A78BFA;
-  --violet-300: #C4B5FD;
-  --green-700: #15803D;
+  --space-950: #07070B;
+  --space-900: #0E0D14;
+  --space-850: #12111A;
+  --mist-100: #E8E6F0;
+  --mist-400: #9A97A8;
+  --void-300: #C4B5FD;
+  --void-400: #A78BFA;
+  --void-700: #6D28D9;
+  --gold-400: #D6B25E;
   --green-400: #4ADE80;
 
   /* Semânticos: os componentes só consomem estes */
-  --color-bg: var(--paper-100);
-  --color-surface: var(--white);
-  --color-text: var(--ink-900);
-  --color-muted: var(--ink-500);
-  --color-border: var(--ink-900);
-  --color-accent: var(--violet-600);
-  --color-accent-text: var(--violet-600);
-  --color-on-accent: var(--white);
-  --color-shadow: var(--ink-900);
-  --color-success: var(--green-700);
-  --color-inverse-bg: var(--ink-900);
-  --color-inverse-text: var(--paper-100);
-  --color-inverse-accent: var(--violet-300);
+  --color-bg: var(--space-950);
+  --color-panel: rgba(18, 17, 26, .78);
+  --color-panel-solid: var(--space-850);
+  --color-text: var(--mist-100);
+  --color-muted: var(--mist-400);
+  --color-line: rgba(232, 230, 240, .16);
+  --color-line-strong: rgba(232, 230, 240, .55);
+  --color-accent: var(--void-400);
+  --color-accent-soft: rgba(109, 40, 217, .35);
+  --color-accent-glow: rgba(109, 40, 217, .22);
+  --color-exotic: var(--gold-400);
+  --color-exotic-soft: rgba(214, 178, 94, .35);
+  --color-success: var(--green-400);
+  --color-bar-track: rgba(232, 230, 240, .1);
 
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-sans: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "Space Mono", ui-monospace, monospace;
+  --font-sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 
-  --shadow-hard: 5px 5px 0 var(--color-shadow);
+  --tracking-wide: .22em;
   --max-width: 1200px;
-  --gutter: 20px;
+  --gutter: 24px;
   --header-height: 76px;
-}
-
-/* Tema escuro: mesma identidade, papel e tinta invertidos */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: var(--ink-800);
-    --color-surface: var(--ink-700);
-    --color-text: var(--paper-100);
-    --color-muted: var(--stone-300);
-    --color-border: var(--paper-300);
-    --color-accent: var(--violet-400);
-    --color-accent-text: var(--violet-300);
-    --color-on-accent: var(--ink-900);
-    --color-shadow: var(--violet-400);
-    --color-success: var(--green-400);
-    --color-inverse-bg: var(--paper-100);
-    --color-inverse-text: var(--ink-900);
-    --color-inverse-accent: var(--violet-600);
-  }
 }

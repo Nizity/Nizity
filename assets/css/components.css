@@ -1,99 +1,128 @@
 /* Peças reutilizadas nas duas páginas */
 
-/* Botões: borda preta e sombra "carimbada" */
+/* Rótulo em caixa-alta com traço à esquerda */
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 24px;
+}
+.kicker::before { content: ""; width: 36px; height: 1px; background: currentColor; }
+
+/* Título de seção com linha até a borda */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: .8rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+}
+.section-title::after { content: ""; flex: 1; height: 1px; background: var(--color-line); }
+
+/* Botões finos em caixa-alta; a tecla aparece só onde há teclado */
 .btn {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 1.02rem;
-  border: 2px solid var(--color-border);
-  padding: 15px 26px;
-  transition: transform .15s, box-shadow .15s;
-}
-.btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--color-shadow); }
-.btn-primary { background: var(--color-accent); color: var(--color-on-accent); box-shadow: var(--shadow-hard); }
-.btn-outline { background: var(--color-surface); box-shadow: var(--shadow-hard); }
-
-/* Rótulo pequeno em fonte mono */
-.label {
-  font-family: var(--font-mono);
-  font-size: .78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: .8rem;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  letter-spacing: .08em;
+  border: 1px solid var(--color-text);
+  padding: 15px 22px;
+  transition: background .15s, color .15s;
 }
-
-/* Linha de status com bolinha verde */
-.kicker { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
-.status-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--color-success);
-  flex-shrink: 0;
-}
-
-/* Capitular de revista no primeiro parágrafo */
-.dropcap::first-letter {
-  font-family: var(--font-serif);
-  float: left;
-  font-size: 4.2rem;
-  line-height: .8;
-  padding: 6px 8px 0 0;
-  color: var(--color-text);
-}
-
-/* Selo retangular (preço, status do projeto) */
-.tag {
-  display: inline-block;
+.btn:hover { background: var(--color-text); color: var(--color-bg); }
+.btn-ghost { border-color: var(--color-line-strong); }
+.key {
   font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: 0;
+  border: 1px solid currentColor;
+  padding: 0 6px;
+  opacity: .8;
+}
+@media (hover: none) { .key { display: none; } }
+
+/* Painel de "inspecionar item" */
+.item { display: flex; flex-direction: column; background: var(--color-panel); border: 1px solid var(--color-line); backdrop-filter: blur(6px); }
+.item-head { padding: 18px 20px; border-bottom: 1px solid var(--color-line); background: linear-gradient(90deg, var(--color-accent-soft), transparent); }
+.item.exotic .item-head { background: linear-gradient(90deg, var(--color-exotic-soft), transparent); }
+.item.exotic { border-color: rgba(214, 178, 94, .45); }
+.item-code { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .2em; color: var(--color-muted); }
+.item-head h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; margin-top: 4px; }
+.item-type { font-size: .75rem; color: var(--color-muted); letter-spacing: .12em; text-transform: uppercase; }
+.item-body { padding: 20px; flex: 1; }
+.item-body > p { color: var(--color-muted); margin-bottom: 18px; }
+.item-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-top: 1px solid var(--color-line);
   font-size: .75rem;
-  font-weight: 700;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  border: 2px solid var(--color-border);
-  background: var(--color-surface);
-  padding: 5px 10px;
-  white-space: nowrap;
 }
-.tag-accent { background: var(--color-accent); color: var(--color-on-accent); }
+.item-foot:hover { color: var(--color-accent); }
 
-/* Lista de tecnologias */
+/* Barras de comparação entre pacotes (sem número: é relativo, não medida) */
+.stats { list-style: none; display: grid; gap: 9px; }
+.stat {
+  display: grid;
+  grid-template-columns: 136px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.bar { height: 6px; background: var(--color-bar-track); }
+.bar i { display: block; height: 100%; background: var(--color-text); }
+
+/* Vantagens: losango + nome */
+.perks { list-style: none; display: grid; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--color-line); }
+.perk { display: flex; align-items: center; gap: 14px; font-size: .85rem; }
+.perk::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--color-accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-left: 3px;
+}
+.item.exotic .perk::before { border-color: var(--color-exotic); }
+
+/* Etiquetas de tecnologia */
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li {
   font-family: var(--font-mono);
-  font-size: .78rem;
-  border: 1px solid var(--color-border);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  border: 1px solid var(--color-line);
   padding: 4px 10px;
+  color: var(--color-muted);
 }
 
-/* Link com seta, sublinhado grosso */
-.link-arrow { font-weight: 700; border-bottom: 2px solid currentColor; padding-bottom: 2px; }
-.link-arrow:hover { color: var(--color-accent-text); }
-
-/* Cabeçalho de seção: título serifado + rótulo à direita */
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  border-bottom: 3px solid var(--color-border);
-  padding-bottom: 10px;
-}
-.section-head h2 { font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1; }
-
-/* Linha numerada (serviços e projetos) */
-.row {
-  display: grid;
-  grid-template-columns: 80px 1fr 1.3fr 150px;
-  gap: 24px;
+/* Selo de status do projeto */
+.status {
+  display: inline-flex;
   align-items: center;
-  padding-block: 26px;
-  border-bottom: 1px solid var(--color-border);
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
-.row-num { font-family: var(--font-serif); font-size: 2.6rem; line-height: 1; color: var(--color-accent-text); }
-.row h3 { font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1.1; }
-.row p { color: var(--color-muted); }
-.row .tag { justify-self: end; }
-
-@media (max-width: 860px) {
-  .row { grid-template-columns: 56px 1fr; gap: 8px 14px; }
-  .row > p, .row > .tag { grid-column: 2; justify-self: start; }
-}
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--color-success); }
+.status.lab::before { background: var(--color-accent); }

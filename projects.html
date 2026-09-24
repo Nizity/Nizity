@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos — Nizity</title>
+  <meta name="description" content="Projetos e stack de Guilherme (Nizity), dev full-stack.">
+  <meta property="og:title" content="Projetos — Nizity">
+  <meta property="og:url" content="https://nizity.com/projects.html">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#07070B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-tight-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="projects">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html#services" data-i18n="nav.services">Serviços</a>
+        <a href="index.html#process" data-i18n="nav.process">Processo</a>
+        <a href="projects.html" aria-current="page" data-i18n="nav.projects">Projetos</a>
+        <a href="#contact" data-i18n="nav.contact">Contato</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container intro">
+      <div>
+        <p class="kicker" data-i18n="projects.kicker">Projetos</p>
+        <h1 data-i18n-html="projects.title">Dev full-stack, <strong>do banco de dados à tela.</strong></h1>
+        <p data-i18n="projects.lead">Eu construo produtos próprios para aprender fazendo: cada um resolve um problema real e roda em produção ou está a caminho.</p>
+      </div>
+      <div class="stack-groups">
+        <div><span class="item-type">Backend</span><ul class="chips"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li></ul></div>
+        <div><span class="item-type">Frontend</span><ul class="chips"><li>TypeScript</li><li>React</li><li>Vite</li></ul></div>
+        <div><span class="item-type">Mobile / Games</span><ul class="chips"><li>React Native</li><li>Expo</li><li>Godot</li></ul></div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <h2 class="section-title" data-i18n="projects.listTitle">Em construção</h2>
+      <div class="projects">
+        <article class="item exotic" id="nucleus">
+          <div class="item-head">
+            <canvas class="mini-orb" id="mini-orb" aria-hidden="true"></canvas>
+            <span class="item-code">NZ-LAB</span>
+            <h3 data-i18n="projects.p4.title">Núcleo</h3>
+            <span class="status lab" data-i18n="projects.status.lab">Laboratório</span>
+          </div>
+          <div class="item-body">
+            <div class="project-fields">
+              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p4.problem">Assistentes de IA na nuvem veem tudo o que você faz.</p></div>
+              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p4.solution">Uma IA que roda no próprio computador, com voz e segurança por construção. O orbe da página inicial mostra o estado dela.</p></div>
+            </div>
+            <ul class="chips"><li>Python</li><li>LLM local</li></ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-P1</span>
+            <h3 data-i18n="projects.p1.title">Gestão de comunidades esportivas</h3>
+            <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
+          </div>
+          <div class="item-body">
+            <div class="project-fields">
+              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p1.problem">Turmas, presenças e avisos espalhados em planilhas e grupos de WhatsApp.</p></div>
+              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p1.solution">SaaS multi-tenant onde o gestor organiza tudo num só lugar.</p></div>
+            </div>
+            <ul class="chips"><li>FastAPI</li><li>PostgreSQL</li><li>React Native</li></ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-P2</span>
+            <h3 data-i18n="projects.p2.title">Coleta de dados em campo</h3>
+            <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
+          </div>
+          <div class="item-body">
+            <div class="project-fields">
+              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p2.problem">Equipes em campo, sem internet, perdendo dados em papel.</p></div>
+              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p2.solution">App offline-first e white-label: grava no aparelho e sincroniza quando a conexão volta.</p></div>
+            </div>
+            <ul class="chips"><li>Expo</li><li>SQLite</li><li>FastAPI</li></ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-P3</span>
+            <h3 data-i18n="projects.p3.title">Nizity Games</h3>
+            <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
+          </div>
+          <div class="item-body">
+            <div class="project-fields">
+              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p3.problem">Jogos mobile que vivem de anúncio invasivo e pagar para ganhar.</p></div>
+              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p3.solution">Selo de jogos com foco em jogabilidade e monetização ética.</p></div>
+            </div>
+            <ul class="chips"><li>Godot</li><li>GDScript</li><li>Android</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="container section contact">
+      <div>
+        <h2 data-i18n-html="contact.titleProjects">Vamos <strong>conversar?</strong></h2>
+        <p data-i18n="contact.textProjects">Vagas, parcerias ou só trocar ideia sobre algum projeto.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn" id="whatsapp-link" href="#" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
+        <a class="btn btn-ghost" id="email-link" href="#">contato@nizity.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Nizity</span>
+      <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-projects.js"></script>
+  <script src="assets/orb.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
