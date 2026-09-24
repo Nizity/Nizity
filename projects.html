@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/pages.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
 </head>
 <body data-page="projects">
   <header class="site-header">
@@ -27,6 +28,7 @@
         <a href="#contact" data-i18n="nav.contact">Contato</a>
       </nav>
       <div class="nav-actions">
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false">Som off</button>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <span></span><span></span><span></span>
@@ -39,13 +41,13 @@
     <section class="container intro">
       <div>
         <p class="kicker" data-i18n="projects.kicker">Projetos</p>
-        <h1 data-i18n-html="projects.title">Dev full-stack, <strong>do banco de dados à tela.</strong></h1>
-        <p data-i18n="projects.lead">Eu construo produtos próprios para aprender fazendo: cada um resolve um problema real e roda em produção ou está a caminho.</p>
+        <h1 data-i18n-html="projects.title">O que estou <strong>construindo.</strong></h1>
+        <p data-i18n="projects.lead">Produtos próprios, cada um nascido de um problema real.</p>
       </div>
       <div class="stack-groups">
         <div><span class="item-type">Backend</span><ul class="chips"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li></ul></div>
         <div><span class="item-type">Frontend</span><ul class="chips"><li>TypeScript</li><li>React</li><li>Vite</li></ul></div>
-        <div><span class="item-type">Mobile / Games</span><ul class="chips"><li>React Native</li><li>Expo</li><li>Godot</li></ul></div>
+        <div><span class="item-type">Mobile</span><ul class="chips"><li>React Native</li><li>Expo</li><li>SQLite</li></ul></div>
       </div>
     </section>
 
@@ -68,24 +70,10 @@
           </div>
         </article>
 
-        <article class="item">
-          <div class="item-head">
-            <span class="item-code">NZ-P1</span>
-            <h3 data-i18n="projects.p1.title">Gestão de comunidades esportivas</h3>
-            <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
-          </div>
-          <div class="item-body">
-            <div class="project-fields">
-              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p1.problem">Turmas, presenças e avisos espalhados em planilhas e grupos de WhatsApp.</p></div>
-              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p1.solution">SaaS multi-tenant onde o gestor organiza tudo num só lugar.</p></div>
-            </div>
-            <ul class="chips"><li>FastAPI</li><li>PostgreSQL</li><li>React Native</li></ul>
-          </div>
-        </article>
 
         <article class="item">
           <div class="item-head">
-            <span class="item-code">NZ-P2</span>
+            <span class="item-code">NZ-01</span>
             <h3 data-i18n="projects.p2.title">Coleta de dados em campo</h3>
             <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
           </div>
@@ -98,20 +86,6 @@
           </div>
         </article>
 
-        <article class="item">
-          <div class="item-head">
-            <span class="item-code">NZ-P3</span>
-            <h3 data-i18n="projects.p3.title">Nizity Games</h3>
-            <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
-          </div>
-          <div class="item-body">
-            <div class="project-fields">
-              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p3.problem">Jogos mobile que vivem de anúncio invasivo e pagar para ganhar.</p></div>
-              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p3.solution">Selo de jogos com foco em jogabilidade e monetização ética.</p></div>
-            </div>
-            <ul class="chips"><li>Godot</li><li>GDScript</li><li>Android</li></ul>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -122,7 +96,7 @@
       </div>
       <div class="contact-actions">
         <a class="btn" id="whatsapp-link" href="#" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
-        <a class="btn btn-ghost" id="email-link" href="#">contato@nizity.com</a>
+        <a class="btn btn-ghost" id="email-link" href="mailto:08guilherme.ac@gmail.com">08guilherme.ac@gmail.com</a>
       </div>
     </section>
   </main>
@@ -137,6 +111,7 @@
   <script src="assets/i18n.js"></script>
   <script src="assets/i18n-projects.js"></script>
   <script src="assets/orb.js"></script>
+  <script src="assets/fx.js"></script>
   <script src="assets/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+/* Animações e estados interativos. Tudo é desligado por prefers-reduced-motion (base.css). */
+
+/* Entrada ao rolar: a classe .reveal só é posta pelo JS, então sem JS tudo aparece normalmente */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Barras enchem quando a ficha aparece */
+.item.reveal .bar i { transform: scaleX(0); transform-origin: left; transition: transform .9s cubic-bezier(.2, .7, .2, 1) .25s; }
+.item.reveal.is-visible .bar i { transform: scaleX(1); }
+
+/* Fichas acendem ao passar o mouse */
+.item { transition: border-color .2s, box-shadow .25s, transform .25s; }
+.item:hover { border-color: var(--color-accent); box-shadow: 0 0 0 1px var(--color-accent-soft), 0 18px 50px -20px var(--color-accent-soft); transform: translateY(-3px); }
+.item.exotic:hover { border-color: var(--color-exotic); box-shadow: 0 0 0 1px var(--color-exotic-soft), 0 18px 50px -20px var(--color-exotic-soft); }
+.perk::before { transition: transform .3s; }
+.item:hover .perk::before { transform: rotate(135deg); }
+.step .diamond { transition: transform .4s, background .3s; }
+.step:hover .diamond { transform: rotate(225deg); background: var(--color-accent); }
+
+/* Botão do topo: preenchimento ao segurar E */
+.btn-hold { position: relative; overflow: hidden; }
+.btn-hold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent-soft);
+  transform: scaleX(var(--hold, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+.btn-hold > * { position: relative; }
+
+/* Botão de som no cabeçalho */
+.sound-toggle {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--color-line);
+  padding: 6px 10px;
+  color: var(--color-muted);
+}
+.sound-toggle[aria-pressed="true"] { color: var(--color-accent); border-color: var(--color-accent); }
+.sound-toggle:hover { border-color: var(--color-line-strong); }

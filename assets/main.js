@@ -1,8 +1,8 @@
 // Dados de contato. whatsapp: DDI + DDD + número, só dígitos (ex.: "5521999999999").
 // Enquanto estiver vazio, o botão do WhatsApp fica escondido.
 const CONTACT = {
-  whatsapp: "",
-  email: "contato@nizity.com"
+  whatsapp: "5521997464308",
+  email: "08guilherme.ac@gmail.com"
 };
 
 const STORAGE_KEY = "nizity-lang";
@@ -50,6 +50,7 @@ function applyLang(lang) {
   document.getElementById("lang-toggle").textContent = lang === "pt" ? "EN" : "PT";
   updateContactLinks(dict);
   orbs.forEach((orb) => orb.refreshLabel());
+  if (renderSoundToggle) renderSoundToggle();
   try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignora */ }
 }
 
@@ -67,18 +68,6 @@ function setupMobileMenu() {
   navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
 }
 
-// Atalho de teclado: E leva ao contato (a dica "[E]" aparece no botão do topo)
-function setupContactShortcut() {
-  document.addEventListener("keydown", (event) => {
-    if (event.key.toLowerCase() !== "e" || event.ctrlKey || event.metaKey || event.altKey) return;
-    if (event.target.closest("input, textarea, select, [contenteditable]")) return;
-    const contact = document.getElementById("contact");
-    if (!contact) return;
-    contact.scrollIntoView();
-    contact.querySelector("a:not([hidden])")?.focus({ preventScroll: true });
-  });
-}
-
 function setupOrbs() {
   const labelFor = (state) => translations[currentLang][`orb.${state}`] || state;
   const heroCanvas = document.getElementById("orb");
@@ -88,6 +77,7 @@ function setupOrbs() {
 }
 
 let currentLang = detectLang();
+const renderSoundToggle = setupSoundToggle((on) => translations[currentLang][on ? "sound.on" : "sound.off"]);
 setupOrbs();
 applyLang(currentLang);
 
@@ -97,5 +87,7 @@ document.getElementById("lang-toggle").addEventListener("click", () => {
 });
 
 setupMobileMenu();
-setupContactShortcut();
+setupReveal();
+setupInteractionSounds();
+setupHoldToConfirm();
 document.getElementById("year").textContent = new Date().getFullYear();

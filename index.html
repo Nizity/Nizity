@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/pages.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
 </head>
 <body data-page="home">
   <header class="site-header">
@@ -28,6 +29,7 @@
         <a href="#contact" data-i18n="nav.contact">Contato</a>
       </nav>
       <div class="nav-actions">
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false">Som off</button>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <span></span><span></span><span></span>
@@ -41,8 +43,8 @@
       <div>
         <p class="kicker" data-i18n="hero.kicker">Aceitando novos projetos</p>
         <h1 data-i18n-html="hero.title">Sites e sistemas <strong>sob medida.</strong></h1>
-        <p class="lead" data-i18n="hero.lead">Eu sou Guilherme, dev full-stack. Do primeiro papo ao site no ar, você fala direto comigo.</p>
-        <a class="btn" href="#contact"><span class="key" aria-hidden="true">E</span><span data-i18n="hero.cta">Pedir orçamento</span></a>
+        <p class="lead" data-i18n="hero.lead">Eu sou Guilherme. Do primeiro papo ao site no ar, você fala direto comigo.</p>
+        <a class="btn btn-hold" href="#contact"><span class="key" aria-hidden="true">E</span><span data-i18n="hero.cta">Pedir orçamento</span></a>
       </div>
       <div class="orb-wrap">
         <canvas id="orb" aria-hidden="true"></canvas>
@@ -144,7 +146,7 @@
 
     <section class="container section">
       <div class="band">
-        <h2 data-i18n-html="band.title">Também construo <strong>produtos próprios</strong>: SaaS, apps offline, jogos e uma IA local.</h2>
+        <h2 data-i18n-html="band.title">Também construo <strong>produtos próprios</strong>: um app que funciona sem internet e uma IA local.</h2>
         <a class="btn btn-ghost" href="projects.html" data-i18n="band.cta">Ver projetos</a>
       </div>
     </section>
@@ -156,7 +158,7 @@
       </div>
       <div class="contact-actions">
         <a class="btn" id="whatsapp-link" href="#" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
-        <a class="btn btn-ghost" id="email-link" href="#">contato@nizity.com</a>
+        <a class="btn btn-ghost" id="email-link" href="mailto:08guilherme.ac@gmail.com">08guilherme.ac@gmail.com</a>
       </div>
     </section>
   </main>
@@ -171,6 +173,7 @@
   <script src="assets/i18n.js"></script>
   <script src="assets/i18n-projects.js"></script>
   <script src="assets/orb.js"></script>
+  <script src="assets/fx.js"></script>
   <script src="assets/main.js"></script>
 </body>
 </html>
