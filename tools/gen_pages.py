@@ -59,7 +59,7 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
           <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
         </div>
       </nav>
-      <a class="btn btn-primary nav-cta" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/5521997464308" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
     </div>
   </header>
 
@@ -192,7 +192,7 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
           <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
         </div>
       </nav>
-      <a class="btn btn-primary nav-cta" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/5521997464308" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
     </div>
   </header>
 

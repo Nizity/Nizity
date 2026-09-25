@@ -102,6 +102,11 @@
   .hero-actions .btn, .home-acts .btn { padding: 14px 16px; letter-spacing: .14em; }
   .home-link { letter-spacing: .14em; gap: 10px; }
 }
+/* Até 400 px (e com a fonte do sistema maior) ainda mais justo; se não couber, o link desce sem vazar */
+@media (max-width: 400px) {
+  .hero-actions .btn, .home-acts .btn { padding: 13px 12px; letter-spacing: .08em; }
+  .home-link { letter-spacing: .08em; gap: 8px; padding-inline: 2px; }
+}
 
 /* Prévia em vídeo dos projetos (esboço; o visual final vem depois) */
 button.item-foot { width: 100%; background: none; border: 0; border-top: 1px solid var(--color-line); font: inherit; letter-spacing: .18em; cursor: pointer; margin-top: auto; }

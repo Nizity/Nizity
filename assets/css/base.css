@@ -57,8 +57,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2, .7, .2, 1); }
 .nav-links a:hover, .nav-links a:focus-visible, .nav-links a[aria-current] { color: var(--color-text); }
 .nav-links a:hover::after, .nav-links a:focus-visible::after, .nav-links a[aria-current]::after { transform: scaleX(1); }
-/* Tema e idioma: no computador, ao lado do menu (20 px do último link); no celular, dentro do painel do ☰ */
-.nav-prefs { display: flex; align-items: center; gap: 8px; margin-left: -14px; }
+/* Tema e idioma: no computador, ao lado do menu (28 px do último link, como antes); no celular, dentro do painel do ☰ */
+.nav-prefs { display: flex; align-items: center; gap: 8px; margin-left: -6px; }
 /* Botão de orçamento do topo: só no celular, à direita, como o "Comprar" da Bambu Lab */
 .nav .nav-cta { display: none; }
 .lang-toggle {
@@ -118,9 +118,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Celular e tablet, como na Bambu Lab: ☰ à esquerda, marca no meio, "Orçamento" à direita.
    Serviços, Produtos, Projetos, tema e idioma ficam no painel que o ☰ abre */
 @media (max-width: 860px) {
-  .nav { display: grid; grid-template-columns: 1fr auto 1fr; position: relative; }
+  .nav { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); position: relative; }
   .logo { grid-column: 2; grid-row: 1; font-size: 1.45rem; }
-  .menu-toggle { display: inline-block; grid-column: 1; grid-row: 1; justify-self: start; border: 0; padding: 6px 8px 6px 0; font-size: 1.35rem; line-height: 1; }
+  .menu-toggle { display: inline-block; grid-column: 1; grid-row: 1; justify-self: start; min-width: 44px; min-height: 44px; text-align: left; border: 0; padding: 0; font-size: 1.35rem; line-height: 1; }
   .nav .nav-cta { display: inline-flex; grid-column: 3; grid-row: 1; justify-self: end; padding: 9px 12px; font-size: .66rem; letter-spacing: .16em; }
   /* O menu vira um painel logo abaixo do cabeçalho */
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 70; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 6px var(--gutter) 16px; background: var(--color-panel-solid); border-bottom: 1px solid var(--color-line); font-size: .8rem; letter-spacing: .2em; }
