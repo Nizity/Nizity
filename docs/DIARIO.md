@@ -103,6 +103,16 @@
 - O fundador criou o `Nizity/salao` (privado). Os 23 commits foram enviados ao `main` e conferidos pela API: mesmo hash no topo (`1490551`) e visibilidade `private`. Antes do push, a checagem de segredos no histórico não achou nada (só as senhas falsas dos testes e a do Postgres local).
 - Perfil do GitHub privado e e-mail escondido, pelo fundador.
 
+**Divisão de trabalho nuvem × PC (2026-09-25)**
+- Decisão do fundador: **esta sessão (nuvem) cuida do código** do Salão e do Arena. O PC fica com o que só ele faz: rodar no aparelho (A57), APK, túnel e testes no hardware.
+- Transporte: **código pelo GitHub**; instruções, imagens e APKs pelo **Google Drive**, na pasta "Nizity — para o PC" (subpastas `arena/` e `salao/`). Segredo não vai por nenhum dos dois.
+- Portas no PC: 8000 = campo, 8010 = Arena, 8020 = Salão (a API e o Postgres do Salão ficaram configuráveis).
+- Instruções em `docs/pc/` e no Drive:
+  - `PC_ARENA_1_subir_para_o_github.md`: checar segredos, criar `Nizity/arena` privado e dar push; também responde ao pedido de túnel;
+  - `PC_SALAO_rodar_no_pc.md`: rodar e testar no PC; publicar pelo túnel só com piloto.
+- O pedido de design do Arena (paleta, tipografia, mockups das 6 telas) fica para quando o repo chegar: a nuvem faz a partir do código real.
+- Não deu para responder à sessão do Arena por SendMessage: a nuvem não alcança sessões do PC.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
