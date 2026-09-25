@@ -103,6 +103,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .lang-toggle { padding: 5px 8px; font-size: .68rem; letter-spacing: .08em; }
   .nav-actions { gap: 6px; }
 }
+/* Celular estreito (360 px): com o botão de tema, tudo aperta mais um pouco para não vazar */
+@media (max-width: 380px) {
+  .nav { gap: 6px; }
+  .logo { letter-spacing: .1em; gap: 6px; }
+  .nav-links { gap: 8px; letter-spacing: .04em; }
+  .btn-nav { padding: 6px 7px; letter-spacing: .04em; }
+  .lang-toggle { padding: 4px 6px; letter-spacing: 0; }
+  .nav-actions { gap: 4px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
