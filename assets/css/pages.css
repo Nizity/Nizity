@@ -70,14 +70,37 @@
 .mini-orb { width: 72px; height: 72px; float: right; margin: -6px -6px 0 12px; }
 
 @media (max-width: 860px) {
-  /* Celular: texto em cima, Núcleo embaixo */
-  .hero > div:first-child { padding-top: 28px; }
-  .orb-wrap { top: 32%; left: calc(50% - 50vw); }
+  /* Celular, como na Bambu Lab: texto e dois caminhos em cima, o Núcleo logo abaixo, como a foto do produto */
+  .hero { min-height: 0; }
+  .hero > div:first-child { padding-top: 32px; }
+  .orb-wrap { position: relative; inset: auto; height: min(92vw, 480px); margin: -12px calc(50% - 50vw) 0; }
   .cards, .steps, .projects { grid-template-columns: 1fr; }
   .contact, .intro { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
   .item-actions { grid-template-columns: 1fr; }
   .item-actions .item-foot + .item-foot { border-left: 0; }
+}
+
+/* Link em caixa-alta com seta (o "Saiba mais" sem caixa) */
+.home-link { display: inline-flex; align-items: center; gap: 12px; padding: 15px 4px; font-size: .8rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; transition: color .15s; }
+.home-link:hover, .home-link:focus-visible { color: var(--color-accent); }
+.hero-actions { align-items: center; }
+
+/* Vitrine da home no celular: uma seção por categoria */
+.home-sec { padding-top: 48px; }
+.home-sec .kicker { margin-bottom: 14px; }
+.home-sec h2 { font-weight: 500; font-size: 1.6rem; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 18px; }
+.home-text { color: var(--color-muted); margin: -8px 0 18px; }
+.home-sec .item { margin-bottom: 12px; }
+.home-sec .item-body { padding-block: 14px; }
+.home-sec .item-body > p { margin-bottom: 0; }
+.home-shot { width: 100%; height: auto; border: 1px solid var(--color-line); margin-bottom: 14px; }
+.home-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 18px; }
+/* Celular estreito: os dois caminhos cabem na mesma linha */
+@media (max-width: 480px) {
+  .hero-actions, .home-acts { gap: 6px; }
+  .hero-actions .btn, .home-acts .btn { padding: 14px 16px; letter-spacing: .14em; }
+  .home-link { letter-spacing: .14em; gap: 10px; }
 }
 
 /* Prévia em vídeo dos projetos (esboço; o visual final vem depois) */

@@ -121,3 +121,9 @@
 **Orbe e intro alinhados ao Núcleo (2026-09-25)**
 - `assets/atlas_orb.js` substituído pela versão exportada do app (commit 37016f4): a intro importa SOLIDS, rotate, FAMILY_COLOR, nebula e paintStar em vez de copiar. Só o `strokeGlyph` segue copiado (ainda não exportado; pedido ao Núcleo pelo fundador).
 - Ajustes finos aprovados pelo fundador e publicados no quadro G v12: a nuvem ganha uma tabela por tema (no claro, linhas mais escuras e grossas, mistura normal) e as arestas "fold" se recolhem para a primeira ponta no começo da queda (fim do emaranhado). Evidência: quadros com relógio controlado antes × depois nos dois temas; intro sem pulo e fluida nos dois temas.
+
+**Celular no estilo Bambu Lab, com a cara da Nizity (2026-09-25)**
+- Esboço aprovado pelo fundador ("Agora sim"). Um 1º esboço centralizado e arredondado foi recusado por perder a essência; valeu o 2º, na linguagem do computador.
+- Topo no celular (todas as páginas): ☰ à esquerda, marca no meio, "Orçamento" à direita (WhatsApp na home, chat nas páginas internas). O ☰ abre Serviços, Produtos, Projetos, tema e idioma. No computador nada muda.
+- Home no celular: título, frase e os dois caminhos lado a lado; o Núcleo logo abaixo, como a foto do produto; ao rolar, 01 Serviços (fichas NZ), 02 Produtos (Salão com imagem real e Arena "Em breve") e 03 Projetos.
+- Evidência: capturas em 360, 390 e 768 px nos dois temas, sem rolagem lateral; axe sem violações na home; testes da home, construção, espanhol, menu e intro passando.

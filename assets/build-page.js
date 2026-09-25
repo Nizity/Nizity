@@ -13,6 +13,9 @@ const STEPS = [
   [".nav-links a:nth-child(1)", 3.2, 0.45, "write"],
   [".nav-links a:nth-child(2)", 3.2, 0.45, "write"],
   [".nav-links a:nth-child(3)", 3.2, 0.45, "write"],
+  // Celular: ☰ e "Orçamento" no topo
+  [".menu-toggle", 3.2, 0.45, "line"],
+  [".nav-cta", 3.2, 0.45, "line"],
 ];
 
 const clamp = (x) => Math.max(0, Math.min(1, x));
@@ -33,7 +36,7 @@ const ease = (x) => 1 - Math.pow(1 - x, 3);
 export function createBuilder() {
   const root = document.documentElement;
   if (!root.classList.contains("building")) return null;
-  // Só o que está visível (no celular o menu fica no painel do ☰, fora da tela)
+  // Só o que está visível (no celular os links ficam no painel do ☰; no computador não há ☰ nem "Orçamento")
   const parts = STEPS.map(([sel, at, dur, kind]) => ({ el: document.querySelector(sel), at, dur, kind })).filter((p) => p.el && p.el.getClientRects().length);
 
   let done = false;
