@@ -51,7 +51,6 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
         <a href="index.html#services" data-i18n="svc.back">Serviços</a>
-        <a class="btn btn-nav" href="#" data-chat-open data-chat-text="{k}.chat" data-whatsapp="services.{s}.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
@@ -161,7 +160,6 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
         <a href="index.html" data-i18n="nav.home">Início</a>
-        <a class="btn btn-nav" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
