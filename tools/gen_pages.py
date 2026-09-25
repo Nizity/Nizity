@@ -1,4 +1,4 @@
-# Gera as páginas que seguem um molde: as 3 de serviço (service-*.html), a de privacidade e a 404.
+# Gera as páginas que seguem um molde: as 3 de serviço (service-*.html), produtos, privacidade e 404.
 # Rodar: python3 tools/gen_pages.py (depois de mudar o <head> de projects.html, os textos ou este arquivo).
 # Os textos ficam em assets/i18n*.js; o português é escrito direto no HTML (sem JS e para o Google).
 import json, os, re, subprocess
@@ -51,11 +51,11 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
         <a href="index.html#services" data-i18n="svc.back">Serviços</a>
-        <a href="index.html#products" data-i18n="nav.products">Produtos</a>
+        <a href="products.html" data-i18n="nav.products">Produtos</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
-        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
+        <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
       </div>
     </div>
   </header>
@@ -161,11 +161,11 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
         <a href="index.html" data-i18n="nav.home">Início</a>
-        <a href="index.html#products" data-i18n="nav.products">Produtos</a>
+        <a href="products.html" data-i18n="nav.products">Produtos</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
-        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
+        <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
       </div>
     </div>
   </header>
@@ -189,6 +189,8 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
 </body>
 </html>
 '''
+    if file == "products.html":
+        html = html.replace('<a href="products.html" data-i18n="nav.products">Produtos</a>', '<a href="projects.html" data-i18n="nav.projects">Projetos</a>')
     html = fill(html)
     if file == "404.html":
         # A 404 é servida em qualquer endereço (ex.: /a/b): caminhos absolutos para não quebrar
@@ -219,4 +221,52 @@ simple_page("404.html", "notfound", "meta.title.notfound", "", '''    <section c
         <p data-i18n="notfound.text"></p>
         <a class="btn" href="index.html"><span data-i18n="notfound.home"></span></a>
       </div>
+    </section>''')
+
+# Produtos: o que se vende pronto (a página de projetos continua sendo para recrutadores)
+PRODUCT_CARDS = '''      <div class="projects">
+        <article class="item exotic">
+          <div class="item-head">
+            <span class="item-code">NZ-P1</span>
+            <h3 data-i18n="products.p1.title">Nizity Salão</h3>
+            <span class="item-price" data-i18n="products.p1.price">Piloto gratuito</span>
+            <span class="item-type" data-i18n="products.p1.type">Para restaurantes</span>
+          </div>
+          <div class="item-body">
+            <p data-i18n="products.p1.text">O garçom lança o pedido no celular e a cozinha vê na hora, num telão. Quando fica pronto, o garçom é avisado.</p>
+            <ul class="perks">
+              <li class="perk" data-i18n="products.p1.p1">Comanda no celular do garçom</li>
+              <li class="perk" data-i18n="products.p1.p2">Telão da cozinha em tempo real</li>
+              <li class="perk" data-i18n="products.p1.p3">Cardápio por QR Code na mesa</li>
+            </ul>
+          </div>
+          <div class="item-actions">
+            <a class="item-foot" href="demo/salao/"><span data-i18n="products.demo">Experimentar a demo</span><span aria-hidden="true">→</span></a>
+            <a class="item-foot" href="#" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta">Quero ser piloto</span><span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-P2</span>
+            <h3 data-i18n="products.p2.title">Arena</h3>
+            <span class="item-price" data-i18n="products.soon">Em breve</span>
+            <span class="item-type" data-i18n="products.p2.type">Para comunidades esportivas</span>
+          </div>
+          <div class="item-body">
+            <p data-i18n="products.p2.text">Um app para a sua turma organizar jogos, participantes e as colaborações do grupo.</p>
+          </div>
+          <span class="item-foot is-soon" data-i18n="products.soon">Em breve</span>
+        </article>
+      </div>'''
+simple_page("products.html", "products", "meta.title.products", "meta.description.products", f'''    <section class="container intro">
+      <div>
+        <p class="kicker" data-i18n="products.kicker"></p>
+        <h1 data-i18n-html="products.pageTitle"></h1>
+        <p data-i18n="products.lead"></p>
+      </div>
+    </section>
+
+    <section class="container section">
+{PRODUCT_CARDS}
     </section>''')

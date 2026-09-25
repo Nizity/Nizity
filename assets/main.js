@@ -6,6 +6,8 @@ const CONTACT = {
 };
 
 const STORAGE_KEY = "nizity-lang";
+// Código de idioma de cada tradução no <html lang> (leitores de tela e buscadores)
+const HTML_LANG = { pt: "pt-BR", en: "en", es: "es" };
 const page = document.body.dataset.page || "home";
 
 function detectLang() {
@@ -13,7 +15,10 @@ function detectLang() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved && translations[saved]) return saved;
   } catch (e) { /* localStorage indisponível (aba anônima, bloqueio) */ }
-  return (navigator.language || "pt").toLowerCase().startsWith("pt") ? "pt" : "en";
+  const browser = (navigator.language || "pt").toLowerCase();
+  if (browser.startsWith("pt")) return "pt";
+  if (browser.startsWith("es")) return "es";
+  return "en";
 }
 
 function updateContactLinks(dict) {
@@ -35,7 +40,7 @@ function updateContactLinks(dict) {
 
 function applyLang(lang) {
   const dict = translations[lang];
-  document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+  document.documentElement.lang = HTML_LANG[lang];
   if (dict[`meta.title.${page}`]) document.title = dict[`meta.title.${page}`];
   const description = document.querySelector('meta[name="description"]');
   if (description && dict[`meta.description.${page}`]) description.setAttribute("content", dict[`meta.description.${page}`]);
@@ -48,8 +53,7 @@ function applyLang(lang) {
     const html = dict[el.dataset.i18nHtml];
     if (html) el.innerHTML = html;
   });
-  // O botão mostra o idioma para o qual vai trocar
-  document.getElementById("lang-toggle").textContent = lang === "pt" ? "EN" : "PT";
+  document.getElementById("lang-toggle").value = lang;
   updateContactLinks(dict);
   // O orbe (orb-mount.js) atualiza a própria legenda ao ouvir este evento
   document.dispatchEvent(new CustomEvent("nizity:langchange"));
@@ -59,8 +63,8 @@ function applyLang(lang) {
 let currentLang = detectLang();
 applyLang(currentLang);
 
-document.getElementById("lang-toggle").addEventListener("click", () => {
-  currentLang = currentLang === "pt" ? "en" : "pt";
+document.getElementById("lang-toggle").addEventListener("change", (event) => {
+  currentLang = event.target.value;
   applyLang(currentLang);
 });
 

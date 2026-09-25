@@ -36,3 +36,22 @@ Object.assign(translations.en, {
   "privacy.s5.title": "Who is responsible",
   "privacy.s5.text": "Guilherme, who runs nizity.com. If anything here changes, this page is updated along with the date above.",
 });
+
+Object.assign(translations.es, {
+  "meta.title.privacy": "Privacidad — Nizity",
+  "meta.description.privacy": "Cómo nizity.com trata tus datos: sin cookies, sin rastreo, nada guardado en el sitio.",
+  "privacy.kicker": "Privacidad",
+  "privacy.title": "Tus datos <strong>en nizity.com.</strong>",
+  "privacy.lead": "En resumen: el sitio no usa cookies, no te rastrea y no guarda lo que escribes.",
+  "privacy.updated": "Actualizado el 25 de septiembre de 2026.",
+  "privacy.s1.title": "Qué guarda el sitio",
+  "privacy.s1.text": "Nada de nuestro lado. Tu propio navegador guarda solo tres preferencias: el idioma, el tema (claro u oscuro) y si ya viste la animación de apertura. No salen de tu dispositivo y puedes borrarlas limpiando los datos del sitio en el navegador.",
+  "privacy.s2.title": "El chat y WhatsApp",
+  "privacy.s2.text": "Lo que escribes en el chat no es enviado ni guardado por el sitio: al tocar enviar, el mensaje se abre listo en tu WhatsApp y solo se envía si lo confirmas allí. A partir de ahí rige la política de privacidad de WhatsApp. Uso tu nombre, número y mensajes solo para responder y hablar sobre tu proyecto, y no comparto esos datos con nadie.",
+  "privacy.s3.title": "Alojamiento",
+  "privacy.s3.text": "El sitio está alojado en Cloudflare, que procesa datos técnicos de la conexión (como la dirección IP) para entregar las páginas y proteger el sitio contra ataques. El sitio no usa cookies ni herramientas de rastreo o publicidad.",
+  "privacy.s4.title": "Tus derechos",
+  "privacy.s4.text": "Según la ley brasileña de protección de datos (LGPD), puedes pedir saber qué datos tuyos tengo, corregirlos o borrarlos. Solo pídelo por el mismo WhatsApp de nuestra conversación.",
+  "privacy.s5.title": "Quién es el responsable",
+  "privacy.s5.text": "Guilherme, responsable de nizity.com. Si algo aquí cambia, esta página se actualiza junto con la fecha de arriba.",
+});

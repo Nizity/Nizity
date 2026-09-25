@@ -5,7 +5,7 @@
 (() => {
   if (!CONTACT.whatsapp) return;
   const docked = window.matchMedia("(min-width: 1880px)");
-  const dict = () => translations[document.documentElement.lang === "en" ? "en" : "pt"];
+  const dict = () => translations[document.documentElement.lang.slice(0, 2)] || translations.pt;
 
   const root = document.createElement("aside");
   root.className = "chat";

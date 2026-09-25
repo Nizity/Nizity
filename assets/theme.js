@@ -15,9 +15,13 @@
     const button = document.getElementById("theme-toggle");
     if (!button) return;
     const toLight = current() === "dark";
-    const pt = root.lang.startsWith("pt");
+    const labels = {
+      pt: ["Usar tema claro", "Usar tema escuro"],
+      en: ["Use light theme", "Use dark theme"],
+      es: ["Usar tema claro", "Usar tema oscuro"],
+    }[root.lang.slice(0, 2)] || ["Use light theme", "Use dark theme"];
     button.textContent = toLight ? "☀" : "☾";
-    button.setAttribute("aria-label", toLight ? (pt ? "Usar tema claro" : "Use light theme") : (pt ? "Usar tema escuro" : "Use dark theme"));
+    button.setAttribute("aria-label", toLight ? labels[0] : labels[1]);
   }
 
   document.addEventListener("DOMContentLoaded", () => {
