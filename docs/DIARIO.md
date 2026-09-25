@@ -117,3 +117,7 @@
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
 3. Com a Fase 0 fechada, aprovar o PLANO e começar a Fase 1.
+
+**Orbe e intro alinhados ao Núcleo (2026-09-25)**
+- `assets/atlas_orb.js` substituído pela versão exportada do app (commit 37016f4): a intro importa SOLIDS, rotate, FAMILY_COLOR, nebula e paintStar em vez de copiar. Só o `strokeGlyph` segue copiado (ainda não exportado; pedido ao Núcleo pelo fundador).
+- Ajustes finos aprovados pelo fundador e publicados no quadro G v12: a nuvem ganha uma tabela por tema (no claro, linhas mais escuras e grossas, mistura normal) e as arestas "fold" se recolhem para a primeira ponta no começo da queda (fim do emaranhado). Evidência: quadros com relógio controlado antes × depois nos dois temas; intro sem pulo e fluida nos dois temas.
