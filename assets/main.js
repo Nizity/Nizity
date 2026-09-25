@@ -72,6 +72,24 @@ document.getElementById("lang-toggle").addEventListener("change", (event) => {
   applyLang(currentLang);
 });
 
+// Celular: o menu vira um painel que abre pelo botão ☰ (cabe mais itens no futuro)
+function setupMenu() {
+  const button = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-links");
+  if (!button || !nav) return;
+  const header = button.closest(".nav");
+  const setOpen = (open) => {
+    header.classList.toggle("menu-open", open);
+    button.setAttribute("aria-expanded", String(open));
+  };
+  button.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
+  nav.addEventListener("click", (event) => { if (event.target.closest("a")) setOpen(false); });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && header.classList.contains("menu-open")) { setOpen(false); button.focus(); }
+  });
+}
+
+setupMenu();
 setupReveal();
 setupInteractionSounds();
 setupHoldToConfirm();

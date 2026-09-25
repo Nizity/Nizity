@@ -55,6 +55,7 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
         <a href="projects.html" data-i18n="nav.projects">Projetos</a>
       </nav>
       <div class="nav-actions">
+        <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
         <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
       </div>
@@ -167,6 +168,7 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
         <a href="projects.html" data-i18n="nav.projects">Projetos</a>
       </nav>
       <div class="nav-actions">
+        <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
         <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
       </div>

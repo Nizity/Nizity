@@ -6,15 +6,14 @@
 // [seletor, início (s da intro), duração, jeito de nascer]. Acontece ANTES da queda, enquanto a mente
 // gira com os projetos acesos: três peças por vez, cada feixe saindo de um losango grande de projeto
 // e acompanhando a rotação. write: abre da esquerda para a direita; line: vira uma linha e depois
-// abre na altura; rule: a linha da faixa de baixo. Termina antes de T_IN (início da queda)
+// abre na altura. Termina antes de T_IN (início da queda)
 const STEPS = [
   [".hero h1", 2.2, 0.8, "write"],
   [".hero .lead", 2.2, 0.9, "write"],
   [".hero .btn-hold", 2.25, 0.7, "line"],
-  [".hub", 3.15, 0.6, "rule"],
-  [".hub a:nth-child(1)", 3.25, 0.45, "write"],
-  [".hub a:nth-child(2)", 3.75, 0.45, "write"],
-  [".hub a:nth-child(3)", 3.75, 0.45, "write"],
+  [".nav-links a:nth-child(1)", 3.2, 0.45, "write"],
+  [".nav-links a:nth-child(2)", 3.2, 0.45, "write"],
+  [".nav-links a:nth-child(3)", 3.2, 0.45, "write"],
 ];
 
 const clamp = (x) => Math.max(0, Math.min(1, x));
@@ -35,7 +34,8 @@ const ease = (x) => 1 - Math.pow(1 - x, 3);
 export function createBuilder(orbCanvas, intro) {
   const root = document.documentElement;
   if (!root.classList.contains("building")) return null;
-  const parts = STEPS.map(([sel, at, dur, kind]) => ({ el: document.querySelector(sel), at, dur, kind })).filter((p) => p.el);
+  // Só o que está visível (no celular o menu fica no painel do ☰, fora da tela)
+  const parts = STEPS.map(([sel, at, dur, kind]) => ({ el: document.querySelector(sel), at, dur, kind })).filter((p) => p.el && p.el.getClientRects().length);
   parts.forEach((p) => p.el.setAttribute("data-build", p.kind));
 
   // Feixes: um canvas por cima de tudo, sem pegar cliques
