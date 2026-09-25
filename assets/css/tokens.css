@@ -42,6 +42,7 @@
   --color-accent-soft: rgba(109, 40, 217, .35);
   --color-accent-glow: rgba(109, 40, 217, .22);
   --color-exotic: var(--gold-400);
+  --color-orb: #E0529C;
   --color-exotic-soft: rgba(214, 178, 94, .35);
   --color-success: var(--green-400);
   --color-bar-track: rgba(232, 230, 240, .1);
@@ -73,6 +74,8 @@
     --color-accent-soft: rgba(109, 40, 217, .14);
     --color-accent-glow: rgba(139, 92, 246, .22);
     --color-exotic: #8A6516;
+  --color-orb: #C0307E;
+    --color-orb: #C0307E;
     --color-exotic-soft: rgba(180, 140, 50, .22);
     --color-success: #15803D;
     --color-bar-track: rgba(21, 19, 31, .1);
