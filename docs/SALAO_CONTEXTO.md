@@ -21,6 +21,7 @@ O pedido anotado em papel se perde, sai ilegível ou demora a chegar na cozinha,
 2. **Comanda → cozinha** em tempo real (WebSocket), com reconexão sem perder pedido.
 3. **Cardápio QR só para consulta**, gerado dos mesmos dados, com QR em PDF para imprimir.
 4. **Resumo do dia** (aprovado em 2026-09-25): leitura das comandas fechadas para o dono — total das comandas, mesas atendidas, ticket médio e desempenho por garçom. Não é financeiro: nada de pagamento, caixa ou gastos.
+5. **Vincular aparelho por QR** (aprovado em 2026-09-25): o dono mostra um QR de uso único (10 min) e o celular do garçom, o tablet ou a TV entram logados, sem digitar restaurante, usuário e senha. Dono pode desconectar os aparelhos de uma pessoa.
 
 ## Fora do escopo (vetado ou para depois)
 
