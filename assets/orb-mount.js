@@ -115,7 +115,7 @@ if (heroCanvas) {
   let orb = null;
   const start = () => runDemo(setupHero(orb, heroCanvas));
   // O Núcleo constrói a página no mesmo relógio da intro
-  const builder = intro ? createBuilder(heroCanvas, intro) : null;
+  const builder = intro ? createBuilder() : null;
   orb = mountOrb(heroCanvas, 0.26, 80, 240, intro, () => { heroCanvas.dataset.intro = "done"; builder?.finish(); start(); });
   if (intro) {
     heroCanvas.dataset.intro = "running";

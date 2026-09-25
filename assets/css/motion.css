@@ -52,7 +52,6 @@
 /* A home sendo construída pelo Núcleo (build-page.js). Antes do script rodar, as peças já
    começam escondidas (recortadas até sumir); o script vai abrindo o recorte */
 .building .hero h1, .building .hero .lead, .building .hero .btn-hold, .building .nav-links a { clip-path: inset(0 100% 0 0); }
-.build-beams { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
 /* Segurança: se o script falhar, a página aparece sozinha depois de 12 s */
 .building .hero h1, .building .hero .lead, .building .hero .btn-hold, .building .nav-links a { animation: build-failsafe 0s 12s forwards; }
 @keyframes build-failsafe { to { clip-path: none; } }
