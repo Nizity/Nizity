@@ -110,3 +110,20 @@ button.item-foot { width: 100%; background: none; border: 0; border-top: 1px sol
 .demo-close:hover { border-color: var(--color-text); }
 .demo video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
 .demo-soon { padding: 64px 18px; text-align: center; color: var(--color-muted); letter-spacing: .15em; text-transform: uppercase; font-size: .85rem; }
+
+/* Páginas de serviço */
+.svc-cta { display: grid; justify-items: end; gap: 16px; }
+.svc-cta .item-price { position: static; }
+.svc-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.svc-h { font-size: .8rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; }
+.svc-detail .perks { margin-top: 0; padding-top: 0; border-top: 0; }
+.svc-detail .item-body > p { margin-bottom: 0; }
+.faq { display: grid; gap: 0; }
+.faq > div { padding-block: 18px; border-top: 1px solid var(--color-line); }
+.faq > div:last-child { border-bottom: 1px solid var(--color-line); }
+.faq dt { font-weight: 600; margin-bottom: 6px; }
+.faq dd { color: var(--color-muted); max-width: 720px; }
+@media (max-width: 860px) {
+  .svc-detail { grid-template-columns: 1fr; }
+  .svc-cta { justify-items: start; }
+}

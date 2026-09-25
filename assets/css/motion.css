@@ -33,3 +33,18 @@
   pointer-events: none;
 }
 .btn-hold > * { position: relative; }
+
+/* Transição entre páginas (card de serviço ↔ página do serviço). Navegador sem suporte troca de página normalmente */
+@view-transition { navigation: auto; }
+[data-vt="svc-landing"] { view-transition-name: svc-landing; }
+[data-vt="svc-system"] { view-transition-name: svc-system; }
+[data-vt="svc-maintenance"] { view-transition-name: svc-maintenance; }
+/* O título do card cresce até virar o título da página; o resto da página desce e sobe no lugar */
+::view-transition-group(*) { animation-duration: .55s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+::view-transition-old(root) { animation: vt-out .3s ease both; }
+::view-transition-new(root) { animation: vt-in .5s cubic-bezier(.2, .7, .2, 1) .08s both; }
+@keyframes vt-out { to { opacity: 0; transform: scale(.985); filter: blur(4px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(24px); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
