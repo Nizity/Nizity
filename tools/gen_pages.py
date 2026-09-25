@@ -292,24 +292,18 @@ simple_page("products.html", "products", "meta.title.products", "meta.descriptio
         <div class="prod-text">
           <p class="kicker"><span>NZ-P1 · <span data-i18n="products.p1.type"></span></span></p>
           <h2 id="prod-p1" data-i18n="products.p1.title" data-vt="salao"></h2>
-          <p class="prod-desc" data-i18n="products.p1.text"></p>
-          <ul class="prod-list">
-            <li data-i18n="products.p1.p1"></li>
-            <li data-i18n="products.p1.p2"></li>
-            <li data-i18n="products.p1.p3"></li>
-          </ul>
+          <!-- Vitrine enxuta: uma frase e dois caminhos; os detalhes (e o piloto) ficam na página do Salão -->
+          <p class="prod-desc" data-i18n="home.prod.text"></p>
           <div class="prod-acts">
             <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo"></span></a>
             <a class="home-link" href="salao.html"><span data-i18n="products.p1.more"></span><span aria-hidden="true">→</span></a>
           </div>
-          <p class="prod-note"><span data-i18n="products.p1.price"></span> · <a href="{WA}" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta"></span> <span aria-hidden="true">→</span></a></p>
         </div>
-        <img class="shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
+        <img class="shot is-cutout" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
       </section>
 
       <section class="prod" aria-labelledby="prod-p2">
         <div class="prod-text">
-          <p class="tag-soon" data-i18n="products.soon"></p>
           <p class="kicker"><span>NZ-P2 · <span data-i18n="products.p2.type"></span></span></p>
           <h2 id="prod-p2" data-i18n="products.p2.title"></h2>
           <p class="prod-desc" data-i18n="products.p2.text"></p>
@@ -326,18 +320,11 @@ FLOW = [("waiter", "salao-garcom.webp", 520, 986, True), ("control", "salao-tabl
         ("tv", "salao-telao.webp", 1200, 676, False), ("guest", "salao-cardapio.webp", 520, 986, True)]
 flow = "\n".join(f'''          <li class="flow-step">
             <div>
-              <p class="flow-code" data-i18n="salao.flow.{k}.code"></p>
               <h3 data-i18n="salao.flow.{k}.title"></h3>
               <p data-i18n="salao.flow.{k}.text"></p>
             </div>
             <img class="shot flow-img{" is-phone" if phone else ""}" src="assets/img/{img}" width="{w}" height="{h}" loading="lazy" {alt(f"salao.flow.{k}.alt")}>
           </li>''' for k, img, w, h, phone in FLOW)
-def card(code, title, text):
-    return f'''          <article class="item">
-            <div class="item-head"><span class="item-code" data-i18n="{code}"></span><h3{title}</h3></div>
-            <div class="item-body"><p data-i18n="{text}"></p></div>
-          </article>'''
-status = "\n".join(card(f"salao.status.{k}.code", f' data-i18n="salao.status.{k}.title">', f"salao.status.{k}.text") for k in ("now", "next"))
 PILOT = f'href="{WA}" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta"></span>'
 simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao", f'''    <div class="container">
       <section class="cs-hero">
@@ -350,7 +337,7 @@ simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao",
             <a class="home-link" {PILOT}<span aria-hidden="true">→</span></a>
           </div>
         </div>
-        <img class="shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
+        <img class="shot is-cutout" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
       </section>
 
       <section class="cs-sec" aria-labelledby="salao-problem">
@@ -365,15 +352,13 @@ simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao",
         <ul class="flow">
 {flow}
         </ul>
-        <p class="cs-note" data-i18n="salao.flow.note"></p>
       </section>
 
-      <section class="cs-sec" aria-labelledby="salao-status">
-        <p class="kicker" data-i18n="salao.status.kicker"></p>
-        <h2 id="salao-status" data-i18n="salao.status.title"></h2>
-        <div class="cs-cards cs-status">
-{status}
-        </div>
+      <!-- Tecnologias em uma linha de etiquetas (sem fichas): detalhe para quem quer saber, sem pesar para o dono -->
+      <section class="cs-sec cs-tech" aria-labelledby="salao-tech">
+        <p class="kicker" id="salao-tech" data-i18n="salao.tech.kicker"></p>
+        <ul class="chips"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>WebSocket</li><li>React</li><li>TypeScript</li></ul>
+        <p class="cs-note" data-i18n="salao.flow.note"></p>
       </section>
 
       <section class="cs-end" aria-labelledby="salao-end">
