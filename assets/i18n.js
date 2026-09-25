@@ -63,7 +63,7 @@ const translations = {
     "products.pageTitle": "Pronto para <strong>usar.</strong>",
     "products.lead": "Soluções prontas para problemas de um tipo de negócio. Sem projeto sob medida: você começa a usar.",
     "products.soon": "Em breve",
-    "products.demo": "Experimentar a demo",
+    "products.demo": "Testar a demo",
     "products.p1.title": "Nizity Salão",
     "products.p1.price": "Piloto gratuito",
     "products.p1.type": "Para restaurantes",

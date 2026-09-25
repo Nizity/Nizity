@@ -144,6 +144,55 @@ button.item-foot { width: 100%; background: none; border: 0; border-top: 1px sol
   .svc-cta { justify-items: start; }
 }
 
+/* Tela real do produto, com o fio das fichas */
+.shot { width: 100%; height: auto; border: 1px solid var(--color-line); }
+
+/* Página longa de produto (Salão): topo com a tela, seções numeradas "01 · …" e o convite no fim */
+.cs-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.cs-hero { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; padding-block: 72px 40px; }
+.cs-hero > * { min-width: 0; }
+.cs-hero h1 { font-weight: 500; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px; }
+.cs-hero .lead { margin-bottom: 28px; }
+.cs-sec { padding-block: 72px; border-top: 1px solid var(--color-line); }
+.cs-sec h2 { font-weight: 500; font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.15; letter-spacing: -0.02em; max-width: 760px; margin-bottom: 16px; }
+.cs-text { color: var(--color-muted); font-size: 1.1rem; max-width: 640px; }
+/* Como funciona: uma tela por passo, texto e imagem alternando de lado */
+.flow { list-style: none; margin-top: 24px; }
+.flow-step { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding-block: 36px; border-top: 1px solid var(--color-line); }
+.flow-step > * { min-width: 0; }
+.flow-step:nth-child(even) .flow-img { order: -1; }
+.flow-code { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 8px; }
+.flow-step h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; }
+.flow-step p:not(.flow-code) { color: var(--color-muted); font-size: 1.05rem; max-width: 480px; }
+.flow-img { border-radius: 10px; }
+/* Tela de celular: estreita e centrada, com o canto do aparelho */
+.flow-img.is-phone { max-width: 260px; justify-self: center; border-radius: 18px; }
+/* Fichas de tecnologia e de situação */
+.cs-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
+.cs-cards > * { min-width: 0; }
+.cs-cards .item-code { text-transform: uppercase; }
+.cs-cards .item-head h3 { overflow-wrap: anywhere; }
+.cs-cards .item-body > p { margin-bottom: 0; }
+.cs-status { grid-template-columns: 1fr 1fr; }
+.cs-end { padding-block: 80px; border-top: 1px solid var(--color-line); }
+.cs-end h2 { font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px; }
+.cs-end h2 strong { font-weight: 600; }
+.cs-end p { color: var(--color-muted); margin-bottom: 26px; }
+.cs-back { display: inline-block; margin-top: 28px; padding-block: 8px; font-size: .75rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); transition: color .15s; }
+.cs-back:hover, .cs-back:focus-visible { color: var(--color-text); }
+@media (max-width: 860px) {
+  .cs-hero, .flow-step, .cs-status { grid-template-columns: 1fr; gap: 28px; }
+  .cs-sec { padding-block: 48px; }
+  .cs-hero { padding-block: 36px 24px; }
+  .flow-step { padding-block: 28px; }
+  .flow-step:nth-child(even) .flow-img { order: 0; }
+  .cs-cards { grid-template-columns: 1fr 1fr; }
+  .cs-end { padding-block: 56px; }
+}
+@media (max-width: 520px) {
+  .cs-cards { grid-template-columns: 1fr; }
+}
+
 /* Privacidade e 404 */
 .privacy-updated { margin-top: 18px; font-size: .8rem; color: var(--color-muted); }
 .notfound { min-height: 50vh; }

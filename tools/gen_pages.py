@@ -1,7 +1,7 @@
-# Gera as páginas que seguem um molde: serviços (services.html e as 3 service-*.html), produtos, privacidade e 404.
+# Gera as páginas que seguem um molde: serviços (services.html e as 3 service-*.html), produtos, Salão, privacidade e 404.
 # Rodar: python3 tools/gen_pages.py (depois de mudar o <head> de projects.html, os textos ou este arquivo).
 # Os textos ficam em assets/i18n*.js; o português é escrito direto no HTML (sem JS e para o Google).
-import json, os, re, subprocess
+import html as html_lib, json, os, re, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = [
   # arquivo, chave, código, quantos itens de "incluso", exemplos [(chave, href)], faq extra?
@@ -10,7 +10,7 @@ PAGES = [
   ("service-maintenance.html", "maintenance", "NZ-03", "s3", [], False, ""),
 ]
 PT = json.loads(subprocess.check_output(["node", "-e",
-  "const fs=require('fs');eval(fs.readFileSync('assets/i18n.js','utf8')+fs.readFileSync('assets/i18n-services.js','utf8')+fs.readFileSync('assets/i18n-privacy.js','utf8')+';console.log(JSON.stringify(translations.pt))')"], cwd=ROOT))
+  "const fs=require('fs');eval(fs.readFileSync('assets/i18n.js','utf8')+fs.readFileSync('assets/i18n-services.js','utf8')+fs.readFileSync('assets/i18n-privacy.js','utf8')+fs.readFileSync('assets/i18n-salao.js','utf8')+';console.log(JSON.stringify(translations.pt))')"], cwd=ROOT))
 
 def fill(html):
     # Texto em português já no HTML (para quem abre sem JS e para o Google); o main.js troca o idioma
@@ -172,7 +172,8 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
 
 
 # Cabeçalho e rodapé das páginas simples (privacidade e 404)
-def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
+# current: item do menu que fica marcado quando a página mora dentro dele (ex.: o Salão, dentro de Produtos)
+def simple_page(file, page, title_key, desc_key, body, i18n_extra="", current=None):
     head = (HEAD.replace("<title>Projetos — Nizity</title>", f"<title>{PT[title_key]}</title>")
                 .replace('content="Projetos e stack de Guilherme (Nizity)."', f'content="{PT.get(desc_key, PT["meta.description.home"])}"')
                 .replace('<meta property="og:title" content="Projetos — Nizity">', f'<meta property="og:title" content="{PT[title_key]}">')
@@ -234,7 +235,10 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
 </body>
 </html>
 '''
-    html = html.replace(f'<a href="{file}" data-i18n=', f'<a href="{file}" aria-current="page" data-i18n=')
+    if current:
+        html = html.replace(f'<a href="{current}" data-i18n=', f'<a href="{current}" aria-current="true" data-i18n=')
+    else:
+        html = html.replace(f'<a href="{file}" data-i18n=', f'<a href="{file}" aria-current="page" data-i18n=')
     html = fill(html)
     if file == "404.html":
         # A 404 é servida em qualquer endereço (ex.: /a/b): caminhos absolutos para não quebrar
@@ -266,6 +270,12 @@ simple_page("404.html", "notfound", "meta.title.notfound", "", '''    <section c
         <a class="btn" href="index.html"><span data-i18n="notfound.home"></span></a>
       </div>
     </section>''')
+
+# Peças das páginas de produto: link do WhatsApp (sem JS já abre; o main.js acrescenta a mensagem)
+# e texto alternativo em português já no HTML, trocado pelo main.js conforme o idioma
+WA = "https://wa.me/5521997464308"
+def alt(key):
+    return f'alt="{html_lib.escape(PT[key])}" data-i18n-alt="{key}"'
 
 # Produtos: o que se vende pronto (a página de projetos continua sendo para recrutadores)
 PRODUCT_CARDS = '''      <div class="projects">
@@ -314,6 +324,85 @@ simple_page("products.html", "products", "meta.title.products", "meta.descriptio
     <section class="container section">
 {PRODUCT_CARDS}
     </section>''')
+
+# Salão: página longa do produto (nizity.com/salao). Mora dentro de Produtos no menu.
+# Como funciona = 4 telas: garçom (celular), cozinha na bancada (tablet, marca preparando/pronto),
+# cozinha na parede (telão, só mostra) e cliente (QR, só consulta). Imagens são telas reais do Salão
+FLOW = [("waiter", "salao-garcom.webp", 520, 986, True), ("control", "salao-tablet.webp", 1120, 766, False),
+        ("tv", "salao-telao.webp", 1200, 676, False), ("guest", "salao-cardapio.webp", 520, 986, True)]
+flow = "\n".join(f'''          <li class="flow-step">
+            <div>
+              <p class="flow-code" data-i18n="salao.flow.{k}.code"></p>
+              <h3 data-i18n="salao.flow.{k}.title"></h3>
+              <p data-i18n="salao.flow.{k}.text"></p>
+            </div>
+            <img class="shot flow-img{" is-phone" if phone else ""}" src="assets/img/{img}" width="{w}" height="{h}" loading="lazy" {alt(f"salao.flow.{k}.alt")}>
+          </li>''' for k, img, w, h, phone in FLOW)
+def card(code, title, text):
+    return f'''          <article class="item">
+            <div class="item-head"><span class="item-code" data-i18n="{code}"></span><h3{title}</h3></div>
+            <div class="item-body"><p data-i18n="{text}"></p></div>
+          </article>'''
+tech = "\n".join([card("salao.tech.back.code", ">FastAPI + PostgreSQL", "salao.tech.back.text"),
+                  card("salao.tech.live.code", ">WebSocket", "salao.tech.live.text"),
+                  card("salao.tech.front.code", ">React + TypeScript", "salao.tech.front.text"),
+                  card("salao.tech.tests.code", ' data-i18n="salao.tech.tests.title">', "salao.tech.tests.text")])
+status = "\n".join(card(f"salao.status.{k}.code", f' data-i18n="salao.status.{k}.title">', f"salao.status.{k}.text") for k in ("now", "next"))
+PILOT = f'href="{WA}" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta"></span>'
+simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao", f'''    <div class="container">
+      <section class="cs-hero">
+        <div>
+          <p class="kicker"><span><span data-i18n="salao.kicker"></span> · NZ-P1</span></p>
+          <h1 data-i18n="products.p1.title" data-vt="salao"></h1>
+          <p class="lead" data-i18n="salao.lead"></p>
+          <div class="cs-acts">
+            <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo"></span></a>
+            <a class="btn btn-ghost" {PILOT}</a>
+          </div>
+        </div>
+        <img class="shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
+      </section>
+
+      <section class="cs-sec" aria-labelledby="salao-problem">
+        <p class="kicker" data-i18n="salao.problem.kicker"></p>
+        <h2 id="salao-problem" data-i18n="salao.problem.title"></h2>
+        <p class="cs-text" data-i18n="salao.problem.text"></p>
+      </section>
+
+      <section class="cs-sec" aria-labelledby="salao-flow">
+        <p class="kicker" data-i18n="salao.flow.kicker"></p>
+        <h2 id="salao-flow" data-i18n="salao.flow.title"></h2>
+        <ul class="flow">
+{flow}
+        </ul>
+      </section>
+
+      <section class="cs-sec" aria-labelledby="salao-tech">
+        <p class="kicker" data-i18n="salao.tech.kicker"></p>
+        <h2 id="salao-tech" data-i18n="salao.tech.title"></h2>
+        <div class="cs-cards">
+{tech}
+        </div>
+      </section>
+
+      <section class="cs-sec" aria-labelledby="salao-status">
+        <p class="kicker" data-i18n="salao.status.kicker"></p>
+        <h2 id="salao-status" data-i18n="salao.status.title"></h2>
+        <div class="cs-cards cs-status">
+{status}
+        </div>
+      </section>
+
+      <section class="cs-end" aria-labelledby="salao-end">
+        <h2 id="salao-end" data-i18n-html="salao.end.title"></h2>
+        <p data-i18n="salao.end.text"></p>
+        <div class="cs-acts">
+          <a class="btn btn-primary" {PILOT}</a>
+          <a class="btn btn-ghost" href="demo/salao/"><span data-i18n="products.demo"></span></a>
+        </div>
+        <a class="cs-back" href="products.html"><span aria-hidden="true">←</span> <span data-i18n="salao.back"></span></a>
+      </section>
+    </div>''', "\n  <script src=\"assets/i18n-salao.js\"></script>", current="products.html")
 
 # Serviços: os 3 pacotes; cada card leva à página do serviço (com a transição do título)
 SERVICE_CARDS = '''      <div class="cards">
