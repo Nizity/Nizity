@@ -100,8 +100,8 @@ function strokeGlyph(ctx, prims, s) {
 /* ------------------------------ fim da cópia ------------------------------ */
 
 const MAG = [224, 82, 156], LIL = [201, 184, 255];
-const T_IN = 2.2, DUR = 1.5;               // a nuvem respira, depois cai em 1,5 s
-const LAND = T_IN + 0.55 + DUR;            // ≈ 4,25 s: nebulosa e estrela nascem
+const T_IN = 4.3, DUR = 1.5;               // a nuvem respira e acende os projetos; depois cai em 1,5 s
+const LAND = T_IN + 0.55 + DUR;            // ≈ 6,35 s: nebulosa e estrela nascem
 export const INTRO_END = LAND + 1.6;       // clarão apagado: o AtlasOrb assume
 
 // Gravidade: demora a sair, chega rápido, uma acomodada leve além do ponto
@@ -141,7 +141,53 @@ function buildBrain() {
     base += s.verts.length;
   });
   verts.forEach((_, vi) => edges.push({ kind: "fold", a: vi * PER + 1, b: vi * PER + 2 }));
-  return { verts, nodes, edges };
+
+  // Os projetos: cada um é uma REGIÃO da mente. Antes da queda acendem um a um, como onda do
+  // centro para fora: os atuais em magenta, os futuros em azul-claro, respirando (ainda não são).
+  const projects = [
+    { c: "#E0529C", future: false }, { c: "#E0529C", future: false },
+    { c: "#E0529C", future: false }, { c: "#E0529C", future: false },
+    { c: "#9DD8FF", future: true }, { c: "#9DD8FF", future: true },
+  ].map((p, i, all) => {
+    const yy = 1 - ((i + 0.5) / all.length) * 2, rr = Math.sqrt(1 - yy * yy), tt = i * 2.39996 + 0.7;
+    return { ...p, rgb: hexToRgb(p.c), x: Math.cos(tt) * rr * 0.68, y: yy * 0.68, z: Math.sin(tt) * rr * 0.68 };
+  });
+  nodes.forEach((n) => {
+    let best = -1, bd = 0.6;
+    projects.forEach((p, j) => { const d = Math.hypot(n.bx - p.x, n.by - p.y, n.bz - p.z); if (d < bd) { bd = d; best = j; } });
+    if (best >= 0) { n.proj = best; n.pd = bd; }
+  });
+  // Constelação de cada projeto: cada membro liga ao membro mais próximo que está mais perto do
+  // centro; as linhas CRESCEM para fora com a onda e, na queda, recolhem para a ponta de dentro.
+  const projEdges = [];
+  projects.forEach((_, j) => {
+    const members = nodes.map((n, i) => ({ n, i })).filter((m) => m.n.proj === j).sort((a, b) => a.n.pd - b.n.pd);
+    members.forEach((m, idx) => {
+      if (!idx) return;
+      let best = members[0], bd = Infinity;
+      for (let q = 0; q < idx; q++) {
+        const o = members[q].n, d = Math.hypot(m.n.bx - o.bx, m.n.by - o.by, m.n.bz - o.bz);
+        if (d < bd) { bd = d; best = members[q]; }
+      }
+      projEdges.push({ a: best.i, b: m.i, j });
+    });
+  });
+  return { verts, nodes, edges, projects, projEdges };
+}
+
+// Até onde a luz do projeto chegou nesta lembrança (0..1), sem a acomodada: a linha cresce com isto
+function attackOf(n, s) {
+  if (n.proj === undefined) return 0;
+  return clamp((s - (0.6 + n.proj * 0.55 + n.pd * 0.5)) / 0.28);
+}
+// Quanto a lembrança está acesa: ataque rápido, pico e um brilho estável que ela leva para a queda
+function litOf(n, s, projects) {
+  if (n.proj === undefined) return 0;
+  const x = (s - (0.6 + n.proj * 0.55 + n.pd * 0.5)) / 0.28;
+  if (x <= 0) return 0;
+  let v = Math.min(1, x) * (x > 1 ? 0.55 + 0.45 * Math.exp(-(x - 1) * 0.9) : 1);
+  if (projects[n.proj].future) v *= 0.72 + 0.28 * Math.sin(s * 2.6 + n.proj * 1.7);
+  return v;
 }
 
 function diamond(ctx, x, y, r, rot) {
@@ -152,7 +198,7 @@ function diamond(ctx, x, y, r, rot) {
 
 // Cria a intro. draw() devolve false quando acabou; angle() é o ângulo do orbe no fim (para o AtlasOrb seguir dele).
 export function createIntro() {
-  const { verts, nodes, edges } = buildBrain();
+  const { verts, nodes, edges, projects, projEdges } = buildBrain();
   let start = -1, last = 0, yaw = 0, skipAt = -1;
   const brainScale = 290 / 92;   // raio da nuvem em relação ao do orbe (protótipo: 290 para R = 92)
 
@@ -195,8 +241,10 @@ export function createIntro() {
       const bx = cx + X * RAD * sc * cloudBreath, by = cy + n.by * RAD * sc * cloudBreath;
       const o = n.kind === "v" ? orbV[n.vi] : orbG[n.gi];
       const k = ks[i];
-      return { x: bx + (o.x - bx) * k, y: by + (o.y - by) * k, Z, k: clamp(k), o };
+      return { x: bx + (o.x - bx) * k, y: by + (o.y - by) * k, Z, k: clamp(k), o, lit: litOf(n, s, projects), att: attackOf(n, s) };
     });
+    // Enquanto os projetos acendem, o resto da mente recua um pouco
+    const hush = 0.4 * clamp((s - 0.6) / 3.2);
 
     // Nebulosa e estrela nascem do centro quando as lembranças pousam (crescem, não aparecem)
     const grow = fall((s - LAND + 0.35) / 0.8);
@@ -214,7 +262,7 @@ export function createIntro() {
     const wireW = Math.max(0.6, Math.min(1.1, R / 40));
     for (const e of edges) {
       const A = pos[e.a], B = pos[e.b];
-      const brainA = 0.05 + 0.12 * ((A.Z + B.Z) / 2 + 1) / 2, kk = Math.min(A.k, B.k);
+      const brainA = (0.05 + 0.12 * ((A.Z + B.Z) / 2 + 1) / 2) * (1 - hush) + 0.25 * Math.min(A.lit, B.lit), kk = Math.min(A.k, B.k);
       let alpha, width;
       if (e.kind === "wire") {
         const dz = (A.o.z + B.o.z) / 2;
@@ -225,14 +273,31 @@ export function createIntro() {
       ctx.strokeStyle = rgba(MAG, alpha); ctx.lineWidth = width;
       ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
     }
+    for (const e of projEdges) {
+      const A = pos[e.a], B = pos[e.b];
+      const reach = B.att * (1 - clamp(Math.max(A.k, B.k) * 1.8));
+      if (reach < 0.02) continue;
+      const ex = A.x + (B.x - A.x) * reach, ey = A.y + (B.y - A.y) * reach;
+      ctx.strokeStyle = rgba(projects[e.j].rgb, 0.2 + 0.55 * Math.max(A.lit, B.lit));
+      ctx.lineWidth = 0.9;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(ex, ey); ctx.stroke();
+    }
     nodes.forEach((n, i) => {
-      const P = pos[i], k = P.k;
+      const P = pos[i], k = P.k, lit = P.lit;
       const shrink = Math.pow(1 - k, 0.8);
       if (shrink > 0.02) {
-        const size = (n.big ? 4.6 : 2.4) * (1 + P.Z * 0.3) * shrink;
+        const size = (n.big ? 4.6 : 2.4) * (1 + P.Z * 0.3) * (1 + 0.45 * lit) * shrink;
         const target = n.kind === "v" ? MAG : hexToRgb(FAMILY_COLOR[GLYPHS[KEYS[n.gi]].family]);
-        ctx.strokeStyle = rgba(mix(n.big ? MAG : LIL, target, k), 0.35 + 0.45 * (P.Z + 1) / 2);
-        ctx.lineWidth = 1;
+        let col = n.big ? MAG : LIL;
+        if (lit > 0) col = mix(col, projects[n.proj].rgb, lit);
+        col = mix(col, target, k);
+        const a0 = (0.35 + 0.45 * (P.Z + 1) / 2) * (1 - hush);
+        if (lit > 0.05) {
+          ctx.fillStyle = rgba(col, 0.2 * lit * shrink);
+          ctx.beginPath(); ctx.arc(P.x, P.y, size * 2.6, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.strokeStyle = rgba(col, a0 + (0.98 - a0) * lit);
+        ctx.lineWidth = 1 + 0.3 * lit;
         diamond(ctx, P.x, P.y, size, Math.PI / 4 + s * 0.5 + n.spin);
       }
       if (n.kind === "g" && k > 0.02) {
