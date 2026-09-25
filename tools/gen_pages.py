@@ -337,10 +337,6 @@ def card(code, title, text):
             <div class="item-head"><span class="item-code" data-i18n="{code}"></span><h3{title}</h3></div>
             <div class="item-body"><p data-i18n="{text}"></p></div>
           </article>'''
-tech = "\n".join([card("salao.tech.back.code", ">FastAPI + PostgreSQL", "salao.tech.back.text"),
-                  card("salao.tech.live.code", ">WebSocket", "salao.tech.live.text"),
-                  card("salao.tech.front.code", ">React + TypeScript", "salao.tech.front.text"),
-                  card("salao.tech.tests.code", ' data-i18n="salao.tech.tests.title">', "salao.tech.tests.text")])
 status = "\n".join(card(f"salao.status.{k}.code", f' data-i18n="salao.status.{k}.title">', f"salao.status.{k}.text") for k in ("now", "next"))
 PILOT = f'href="{WA}" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta"></span>'
 simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao", f'''    <div class="container">
@@ -369,14 +365,7 @@ simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao",
         <ul class="flow">
 {flow}
         </ul>
-      </section>
-
-      <section class="cs-sec" aria-labelledby="salao-tech">
-        <p class="kicker" data-i18n="salao.tech.kicker"></p>
-        <h2 id="salao-tech" data-i18n="salao.tech.title"></h2>
-        <div class="cs-cards">
-{tech}
-        </div>
+        <p class="cs-note" data-i18n="salao.flow.note"></p>
       </section>
 
       <section class="cs-sec" aria-labelledby="salao-status">

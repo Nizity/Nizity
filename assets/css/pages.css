@@ -184,6 +184,8 @@ button.item-foot { width: 100%; background: none; border: 0; border-top: 1px sol
 .cs-cards .item-code { text-transform: uppercase; }
 .cs-cards .item-head h3 { overflow-wrap: anywhere; }
 .cs-cards .item-body > p { margin-bottom: 0; }
+/* Uma linha para o dono (sem nomes de tecnologia): funciona sem instalar e aguenta Wi-Fi caindo */
+.cs-note { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--color-line); color: var(--color-muted); max-width: 720px; }
 .cs-status { grid-template-columns: 1fr 1fr; }
 .cs-end { padding-block: 80px; border-top: 1px solid var(--color-line); }
 .cs-end h2 { font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px; }
