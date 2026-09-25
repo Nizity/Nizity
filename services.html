@@ -27,17 +27,18 @@
 <body data-page="services">
   <header class="site-header">
     <div class="container nav">
+      <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
       <a class="logo" href="index.html" aria-label="Nizity"><span aria-hidden="true">n<span class="logo-i">ı<svg class="logo-orb" viewBox="-1.12 -1.12 2.24 2.24"><g stroke-width="0.14" stroke-linecap="round"><line x1="0.526" y1="0.304" x2="0.000" y2="0.982" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.851" y2="0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.851" y1="-0.491" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.526" y1="0.304" x2="-0.851" y2="-0.491" stroke-opacity="1"/></g></svg></span>zity</span></a>
       <nav class="nav-links" id="nav-links">
         <a href="services.html" aria-current="page" data-i18n="nav.services">Serviços</a>
         <a href="products.html" data-i18n="nav.products">Produtos</a>
         <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+        <div class="nav-prefs">
+          <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
+          <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
+        </div>
       </nav>
-      <div class="nav-actions">
-        <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
-        <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
-        <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
-      </div>
+      <a class="btn btn-primary nav-cta" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
     </div>
   </header>
 

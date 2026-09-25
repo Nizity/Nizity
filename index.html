@@ -28,17 +28,18 @@
 <body data-page="home">
   <header class="site-header">
     <div class="container nav">
+      <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
       <a class="logo" href="index.html" aria-label="Nizity"><span aria-hidden="true">n<span class="logo-i">ı<svg class="logo-orb" viewBox="-1.12 -1.12 2.24 2.24"><g stroke-width="0.14" stroke-linecap="round"><line x1="0.526" y1="0.304" x2="0.000" y2="0.982" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.851" y2="0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.851" y1="-0.491" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.526" y1="0.304" x2="-0.851" y2="-0.491" stroke-opacity="1"/></g></svg></span>zity</span></a>
       <nav class="nav-links" id="nav-links">
         <a href="services.html" data-i18n="nav.services">Serviços</a>
         <a href="products.html" data-i18n="nav.products">Produtos</a>
         <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+        <div class="nav-prefs">
+          <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
+          <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
+        </div>
       </nav>
-      <div class="nav-actions">
-        <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
-        <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
-        <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
-      </div>
+      <a class="btn btn-primary nav-cta" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
     </div>
   </header>
 
@@ -49,7 +50,7 @@
         <p class="lead" data-i18n="hero.lead">Eu sou Guilherme. Do primeiro papo ao site no ar, você fala direto comigo.</p>
         <div class="hero-actions">
           <a class="btn btn-hold btn-primary-m" href="#" data-whatsapp="contact.message" target="_blank" rel="noopener"><span class="key" aria-hidden="true">E</span><span data-i18n="hero.cta">Pedir orçamento</span></a>
-          <a class="btn btn-ghost hero-more m-only" href="services.html"><span data-i18n="hero.more">Ver serviços</span><span aria-hidden="true">→</span></a>
+          <a class="home-link hero-more m-only" href="services.html"><span data-i18n="hero.more">Ver serviços</span><span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="orb-wrap">
@@ -57,7 +58,67 @@
       </div>
     </section>
 
+    <!-- Celular: ao rolar, uma vitrine por categoria, como na Bambu Lab. No computador a home fica limpa -->
+    <div class="home-more m-only">
+      <section class="container home-sec" aria-labelledby="home-svc">
+        <p class="kicker" data-i18n="home.svc.kicker">01 · Serviços</p>
+        <h2 id="home-svc" data-i18n="home.svc.title">Do site ao sistema.</h2>
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-01</span>
+            <h3 data-i18n="services.s1.title"></h3>
+            <span class="item-type" data-i18n="services.s1.type"></span>
+          </div>
+          <div class="item-body"><p data-i18n="services.s1.text"></p></div>
+          <a class="item-foot" href="service-landing.html"><span data-i18n="home.more">Saiba mais</span><span aria-hidden="true">→</span></a>
+        </article>
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-02</span>
+            <h3 data-i18n="services.s2.title"></h3>
+            <span class="item-type" data-i18n="services.s2.type"></span>
+          </div>
+          <div class="item-body"><p data-i18n="services.s2.text"></p></div>
+          <a class="item-foot" href="service-system.html"><span data-i18n="home.more">Saiba mais</span><span aria-hidden="true">→</span></a>
+        </article>
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-03</span>
+            <h3 data-i18n="services.s3.title"></h3>
+            <span class="item-type" data-i18n="services.s3.type"></span>
+          </div>
+          <div class="item-body"><p data-i18n="services.s3.text"></p></div>
+          <a class="item-foot" href="service-maintenance.html"><span data-i18n="home.more">Saiba mais</span><span aria-hidden="true">→</span></a>
+        </article>
+      </section>
 
+      <section class="container home-sec" aria-labelledby="home-prod">
+        <p class="kicker" data-i18n="home.prod.kicker">02 · Produtos</p>
+        <h2 id="home-prod" data-i18n="products.p1.title">Nizity Salão</h2>
+        <p class="home-text" data-i18n="home.prod.text">Comanda no celular do garçom e telão da cozinha em tempo real, para restaurantes.</p>
+        <img class="home-shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" loading="lazy" alt="Telão da cozinha e celular do garçom no Nizity Salão" data-i18n-alt="home.prod.alt">
+        <div class="home-acts">
+          <a class="btn btn-ghost" href="demo/salao/"><span data-i18n="home.prod.demo">Testar a demo</span></a>
+          <a class="home-link" href="products.html"><span data-i18n="nav.products">Produtos</span><span aria-hidden="true">→</span></a>
+        </div>
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-P2</span>
+            <h3 data-i18n="products.p2.title">Arena</h3>
+            <span class="item-type" data-i18n="products.p2.type"></span>
+          </div>
+          <div class="item-body"><p data-i18n="products.p2.text"></p></div>
+          <span class="item-foot is-soon" data-i18n="products.soon">Em breve</span>
+        </article>
+      </section>
+
+      <section class="container home-sec" aria-labelledby="home-proj">
+        <p class="kicker" data-i18n="home.proj.kicker">03 · Projetos</p>
+        <h2 id="home-proj" data-i18n="home.proj.title">O que estou construindo.</h2>
+        <p class="home-text" data-i18n="home.proj.text">O Núcleo, a coleta de campo sem internet e o que vem por aí.</p>
+        <a class="home-link" href="projects.html"><span data-i18n="home.proj.cta">Ver projetos</span><span aria-hidden="true">→</span></a>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">

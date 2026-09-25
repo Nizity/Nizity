@@ -52,6 +52,10 @@ function applyLang(lang) {
     const text = dict[el.dataset.i18nLabel];
     if (text) el.setAttribute("aria-label", text);
   });
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    const text = dict[el.dataset.i18nAlt];
+    if (text) el.alt = text;
+  });
   // Textos com destaque em negrito: vêm só dos nossos arquivos de tradução, nunca de fora
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
     const html = dict[el.dataset.i18nHtml];
@@ -72,7 +76,7 @@ document.getElementById("lang-toggle").addEventListener("change", (event) => {
   applyLang(currentLang);
 });
 
-// Celular: o menu vira um painel que abre pelo botão ☰ (cabe mais itens no futuro)
+// Celular: o menu vira um painel que abre pelo botão ☰ (links, tema e idioma)
 function setupMenu() {
   const button = document.getElementById("menu-toggle");
   const nav = document.getElementById("nav-links");
