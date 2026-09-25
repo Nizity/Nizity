@@ -56,6 +56,7 @@ Escopo em D16 e `SALAO_CONTEXTO.md`. Código em repo próprio e privado (criar o
 - [x] Fatia 1 — Base: restaurante = tenant (`restaurant_id` em toda tabela), login de dono e funcionário, cadastro de cardápio (categorias, itens, preço, disponível) e mesas.
 - [x] Fatia 2 — Comanda → cozinha: garçom abre mesa e lança itens com observação; cozinha vê em tempo real (WebSocket) com mesa, prato, observação e tempo; marca "preparando" e "pronto"; garçom é avisado.
 - [x] Fatia 3 — Cardápio QR só para consulta: página pública por restaurante/mesa, QR em PDF para imprimir, sem botão de pedir.
+- [ ] Fatia 4 — Resumo do dia (aprovada pelo fundador em 2026-09-25): tela só do dono, lida das comandas fechadas (sem dado novo): total das comandas, mesas atendidas, ticket médio e, por garçom, mesas e total. Escolher o dia; o dia vira numa hora de corte configurável (padrão 5h). Nome honesto "Total das comandas" (não é faturamento: o app não sabe desconto, taxa de serviço nem calote). Fora: gastos, caixa, pagamento, taxa de 10%. Esboço da tela antes do código. Na demo, o painel do dono (Equipe, Cardápio, Mesas, Resumo) passa a aparecer.
 - [ ] Evidência por fatia: pytest verde; Playwright com garçom e cozinha em 2 abas (pedido chega em < 2 s, "pronto" volta); cardápio a 390 px sem login; axe sem violações; restaurante A não vê dados do B.
 - [ ] Termos de Uso + Política de Privacidade antes do piloto (garçons são dado pessoal; checar transferência internacional conforme o fornecedor).
 - [ ] Auditoria de marco (segurança OWASP + revisão adversarial) antes do piloto.

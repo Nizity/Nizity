@@ -127,3 +127,8 @@
 - Topo no celular (todas as páginas): ☰ à esquerda, marca no meio, "Orçamento" à direita (WhatsApp na home, chat nas páginas internas). O ☰ abre Serviços, Produtos, Projetos, tema e idioma. No computador nada muda.
 - Home no celular: título, frase e os dois caminhos lado a lado; o Núcleo logo abaixo, como a foto do produto; ao rolar, 01 Serviços (fichas NZ), 02 Produtos (Salão com imagem real e Arena "Em breve") e 03 Projetos.
 - Evidência: capturas em 360, 390 e 768 px nos dois temas, sem rolagem lateral; axe sem violações na home; testes da home, construção, espanhol, menu e intro passando.
+
+**Demo com tema claro e Fatia 4 aprovada (2026-09-25)**
+- Demo do Salão ganhou tema claro na casca (Lavanda do site), seguindo a escolha salva no site ("nizity-theme") ou o sistema, com botão ☀/☾ que sincroniza os dois. Script de tema externo por causa da CSP. Evidência: axe 0 violações em 44 telas, E2E 9/9, sem piscar no 1º quadro, sem erro de CSP no site local.
+- Fundador pediu gestão de funcionários e financeiro. Funcionários já existem (Admin → Equipe). Financeiro completo foi recusado por escopo (uma dor só, sem piloto, dinheiro vetado); o fundador recortou para "resumo tirado das comandas" e isso foi aprovado como Fatia 4 (ver PLANO).
+- Erro meu registrado: a página longa do Salão e a animação do pedido deixaram o tablet da bancada de fora (é nele que a cozinha marca preparando/pronto). Corrigir antes de publicar.

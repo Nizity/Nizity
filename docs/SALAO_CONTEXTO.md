@@ -20,6 +20,7 @@ O pedido anotado em papel se perde, sai ilegível ou demora a chegar na cozinha,
 1. **Base:** restaurante = tenant (`restaurant_id` em toda tabela), login, cardápio e mesas.
 2. **Comanda → cozinha** em tempo real (WebSocket), com reconexão sem perder pedido.
 3. **Cardápio QR só para consulta**, gerado dos mesmos dados, com QR em PDF para imprimir.
+4. **Resumo do dia** (aprovado em 2026-09-25): leitura das comandas fechadas para o dono — total das comandas, mesas atendidas, ticket médio e desempenho por garçom. Não é financeiro: nada de pagamento, caixa ou gastos.
 
 ## Fora do escopo (vetado ou para depois)
 
