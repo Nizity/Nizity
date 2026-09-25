@@ -141,7 +141,7 @@
 .status.lab::before { background: var(--color-accent); }
 
 /* Chat que termina no WhatsApp (chat.js). Sem caixa nem cabeçalho de card: é uma conversa solta no espaço.
-   Tela larga: mora na lateral esquerda, sempre aberto. Resto: os botões de orçamento abrem um painel */
+   Tela larga: mora no canto inferior direito, sempre aberto. Resto: os botões de orçamento abrem um painel */
 .chat { position: fixed; z-index: 50; }
 .chat-panel { display: none; }
 .chat.is-open .chat-panel { display: block; }
@@ -175,8 +175,8 @@
 .chat-send:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .chat-note { margin-top: 10px; font-size: .68rem; color: var(--color-muted); }
 
-/* Tela larga: solto no vazio da esquerda, centrado na altura, sem fechar */
-.chat.is-docked { left: 32px; top: 50%; transform: translateY(-50%); width: calc((100vw - var(--max-width)) / 2 - 64px); max-width: 330px; }
+/* Tela larga: solto no vazio da direita, no canto de baixo, sem fechar */
+.chat.is-docked { right: 32px; bottom: 32px; width: calc((100vw - var(--max-width)) / 2 - 64px); max-width: 330px; }
 .chat.is-docked .chat-close { display: none; }
 
 /* Resto: painel que abre pelos botões de orçamento */

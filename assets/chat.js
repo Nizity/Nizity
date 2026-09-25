@@ -1,5 +1,5 @@
 // Chat do site que termina no WhatsApp: a pessoa escreve aqui e a mensagem abre pronta no WhatsApp.
-// Nada é guardado nem enviado a servidor. Em tela larga fica aberto na lateral esquerda; no resto, os botões
+// Nada é guardado nem enviado a servidor. Em tela larga fica aberto no canto inferior direito; no resto, os botões
 // de orçamento ([data-chat-open]) abrem o painel (no celular, de baixo para cima). Sem JS, eles vão direto ao WhatsApp.
 // Depende de translations (i18n.js) e CONTACT (main.js).
 (() => {
@@ -56,7 +56,13 @@
     event.preventDefault();
     if (!docked.matches) opener = link;
     setOpen(true);
+    // Nas páginas de serviço o botão já começa a frase com o serviço; a pessoa completa
+    if (link.dataset.chatText && !text.value.trim()) {
+      text.value = dict()[link.dataset.chatText];
+      text.dispatchEvent(new Event("input"));
+    }
     text.focus();
+    text.setSelectionRange(text.value.length, text.value.length);
   }));
   root.querySelector(".chat-close").addEventListener("click", () => setOpen(false));
   root.addEventListener("keydown", (event) => {
