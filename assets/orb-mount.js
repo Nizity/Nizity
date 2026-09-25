@@ -1,7 +1,7 @@
 // Monta o orbe do Núcleo nas páginas. Enquanto não existe a ligação real com o Núcleo (Worker),
 // roda uma demonstração que passa pelos estados e capacidades. Só visual: sem legenda.
 import { AtlasOrb, GLYPHS } from "./atlas_orb.js";
-import { createIntro } from "./orb-intro.js";
+import { createIntro, SHORT_FROM } from "./orb-intro.js";
 
 // [estado, capacidade em uso, duração em ms]
 const DEMO_SEQUENCE = [
@@ -88,10 +88,22 @@ function runDemo(apply) {
   step();
 }
 
+// Lembra neste navegador que a versão completa já foi vista (sem armazenamento, sempre completa)
+function introSeen() {
+  try {
+    const seen = localStorage.getItem("nizity-intro-seen") === "1";
+    localStorage.setItem("nizity-intro-seen", "1");
+    return seen;
+  } catch {
+    return false;
+  }
+}
+
 const heroCanvas = document.getElementById("orb");
 if (heroCanvas) {
-  // Toda vez que a home abre, o orbe nasce da mente (decisão do fundador); movimento reduzido vê o orbe direto
-  const intro = reduceMotion ? null : createIntro();
+  // Toda vez que a home abre, o orbe nasce da mente (decisão do fundador): completa na 1ª visita,
+  // só a queda nas seguintes; movimento reduzido vê o orbe direto
+  const intro = reduceMotion ? null : createIntro(introSeen() ? SHORT_FROM : 0);
   let orb = null;
   const start = () => runDemo(setupHero(orb, heroCanvas));
   orb = mountOrb(heroCanvas, 0.32, 60, 170, intro, () => { heroCanvas.dataset.intro = "done"; start(); });

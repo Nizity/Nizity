@@ -103,6 +103,7 @@ const MAG = [224, 82, 156], LIL = [201, 184, 255];
 const T_IN = 4.3, DUR = 1.5;               // a nuvem respira e acende os projetos; depois cai em 1,5 s
 const LAND = T_IN + 0.55 + DUR;            // ≈ 6,35 s: nebulosa e estrela nascem
 export const INTRO_END = LAND + 1.6;       // clarão apagado: o AtlasOrb assume
+export const SHORT_FROM = T_IN - 0.4;      // versão curta (visitas seguintes): começa com os projetos já acesos, pouco antes da queda
 
 // Gravidade: demora a sair, chega rápido, uma acomodada leve além do ponto
 function fall(x) {
@@ -197,14 +198,15 @@ function diamond(ctx, x, y, r, rot) {
 }
 
 // Cria a intro. draw() devolve false quando acabou; angle() é o ângulo do orbe no fim (para o AtlasOrb seguir dele).
-export function createIntro() {
+// "from" pula o começo (em segundos): 0 é a versão completa, SHORT_FROM a curta.
+export function createIntro(from = 0) {
   const { verts, nodes, edges, projects, projEdges } = buildBrain();
   let start = -1, last = 0, yaw = 0, skipAt = -1;
   const brainScale = 290 / 92;   // raio da nuvem em relação ao do orbe (protótipo: 290 para R = 92)
 
   function draw(ctx, cx, cy, R, now, w, h) {
-    if (start < 0) start = now;
-    let s = (now - start) / 1000;
+    if (start < 0) { start = now; last = from; }
+    let s = from + (now - start) / 1000;
     if (skipAt >= 0) s = INTRO_END;       // pular: vai direto ao estado final (sem esmaecer nada)
     if (s >= INTRO_END) return false;
     const dt = Math.min(0.1, Math.max(0, s - last)); last = s;
