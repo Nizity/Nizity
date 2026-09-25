@@ -7,6 +7,7 @@
 - **Pagamento online (Stripe/Mercado Pago):** vetado até tração. Hoje: WhatsApp + Pix manual.
 - **Agendamento (Calendly):** avaliar depois do primeiro contato real que pedir.
 - **Blog:** só se houver cadência de publicação.
+- **Loja de indicações (links de afiliado):** ideia do fundador (2026-09-25), vetada por enquanto. Sem tráfego, a comissão não rende; ao lado de "sistemas sob medida", ela tira credibilidade; e transação está vetada até ter tração. Se voltar, o formato leve é uma página "o que eu uso", e só com público.
 
 ## Orbe do Núcleo no site
 

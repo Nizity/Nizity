@@ -42,6 +42,11 @@
 /* Serviços */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 
+/* Produtos: o Salão tem duas saídas (demo e piloto); o que ainda não existe mostra "em breve" sem link */
+.item-actions { display: grid; grid-template-columns: 1fr 1fr; }
+.item-actions .item-foot + .item-foot { border-left: 1px solid var(--color-line); }
+.item-foot.is-soon { color: var(--color-muted); }
+
 /* Processo, no estilo de etapas de missão */
 .steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .step { border-top: 1px solid var(--color-line-strong); padding-top: 18px; }
@@ -83,6 +88,8 @@
   .cards, .steps, .projects { grid-template-columns: 1fr; }
   .contact, .intro { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
+  .item-actions { grid-template-columns: 1fr; }
+  .item-actions .item-foot + .item-foot { border-left: 0; }
 }
 
 /* Prévia em vídeo dos projetos (esboço; o visual final vem depois) */

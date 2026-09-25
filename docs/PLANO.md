@@ -26,6 +26,16 @@ Pré-requisito: Fase 0 (D6).
 - [x] Evidência: screenshot desktop e mobile nos dois idiomas; contraste AA do roxo primário corrigido (2026-09-24).
 - [ ] Opcional: passar o visual pelo Claude Design (regra da casa: landing é trabalho do Design).
 
+## Fase 1b — Produtos e Serviços na home (aprovada em 2026-09-25)
+
+Decisão do fundador: a home, que é para clientes, separa **Serviços** (sob medida) de **Produtos** (o que se vende pronto). A página de projetos continua para recrutadores. A loja de links de indicação ficou vetada (`MODULOS_FUTUROS.md`).
+
+- [x] Seção "Produtos" depois de "Serviços":
+  - **Nizity Salão:** piloto gratuito, sem preço porque ainda não foi validado com restaurante. Links para a demo e para o WhatsApp.
+  - **App de comunidade esportiva (Arena):** "em breve", sem link.
+- [ ] Nome público e texto do app esportivo: confirmar com o fundador.
+- [x] Evidência: capturas de desktop e celular, PT/EN e claro/escuro, e axe.
+
 ## Fase 2 — Validação do Salão (sem código)
 
 > **Pulada por decisão do fundador (2026-09-24):** construir antes de validar. Desvio consciente registrado no DIARIO. Os itens abaixo continuam valendo como tarefa paralela: o primeiro restaurante que testar é o gatilho para rever o escopo.
