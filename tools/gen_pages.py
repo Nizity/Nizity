@@ -130,9 +130,28 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
   </main>
 
   <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
+        <p data-i18n="footer.tagline">Sites e sistemas sob medida, direto com quem faz.</p>
+      </div>
+      <nav class="footer-col" aria-label="Navegar" data-i18n-label="footer.nav">
+        <p class="footer-title" data-i18n="footer.nav">Navegar</p>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
+        <a href="products.html" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.contact">Contato</p>
+        <a href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.legal">Legal</p>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+      </div>
+    </div>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Nizity</span>
-      <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
       <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
     </div>
   </footer>
@@ -180,9 +199,28 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
   </main>
 
   <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
+        <p data-i18n="footer.tagline">Sites e sistemas sob medida, direto com quem faz.</p>
+      </div>
+      <nav class="footer-col" aria-label="Navegar" data-i18n-label="footer.nav">
+        <p class="footer-title" data-i18n="footer.nav">Navegar</p>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
+        <a href="products.html" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.contact">Contato</p>
+        <a href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.legal">Legal</p>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+      </div>
+    </div>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Nizity</span>
-      <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
       <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
     </div>
   </footer>

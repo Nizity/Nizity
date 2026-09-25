@@ -88,7 +88,20 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .theme-toggle { font-size: .85rem; line-height: 1; }
 
 /* Rodapé */
-.site-footer { border-top: 1px solid var(--color-line); padding-block: 26px; margin-top: 40px; }
+.site-footer { border-top: 1px solid var(--color-line); padding-block: 44px 26px; margin-top: 40px; }
+/* Rodapé: marca e frase; colunas Navegar, Contato e Legal; embaixo, © e voltar ao topo */
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 36px; }
+.footer-brand p { margin-top: 14px; max-width: 320px; color: var(--color-muted); font-size: .9rem; }
+.footer-col { display: grid; gap: 10px; align-content: start; font-size: .88rem; }
+.footer-col a { color: var(--color-muted); width: fit-content; transition: color .15s; }
+.footer-col a:hover, .footer-col a:focus-visible { color: var(--color-text); }
+.footer-title { font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; color: var(--color-text); margin-bottom: 4px; }
+/* Linha só na largura do conteúdo (o container tem margem interna) */
+.footer-inner { padding-top: 22px; background: linear-gradient(var(--color-line), var(--color-line)) center top / calc(100% - 2 * var(--gutter)) 1px no-repeat; }
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
 .footer-inner {
   display: flex;
   justify-content: space-between;
