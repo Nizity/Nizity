@@ -1,6 +1,7 @@
 // Monta o orbe do Núcleo nas páginas. Enquanto não existe a ligação real com o Núcleo (Worker),
 // roda uma demonstração que passa pelos estados e capacidades. Só visual: sem legenda.
 import { AtlasOrb, GLYPHS } from "./atlas_orb.js";
+import { createIntro } from "./orb-intro.js";
 
 // [estado, capacidade em uso, duração em ms]
 const DEMO_SEQUENCE = [
@@ -24,7 +25,8 @@ const DEMO_SEQUENCE = [
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Desenha um orbe num canvas; o raio acompanha o tamanho do canvas
-function mountOrb(canvas, radiusFactor, minRadius, maxRadius) {
+// Com "intro", o orbe nasce da mente (orb-intro.js) e só depois o AtlasOrb assume; onReady avisa.
+function mountOrb(canvas, radiusFactor, minRadius, maxRadius, intro = null, onReady = () => {}) {
   const orb = new AtlasOrb(Object.keys(GLYPHS), undefined, reduceMotion);
   const ctx = canvas.getContext("2d");
   const size = { w: 0, h: 0 };
@@ -42,6 +44,17 @@ function mountOrb(canvas, radiusFactor, minRadius, maxRadius) {
   const loop = (now) => {
     ctx.clearRect(0, 0, size.w, size.h);
     const radius = Math.max(minRadius, Math.min(maxRadius, Math.min(size.w, size.h) * radiusFactor));
+    if (intro && intro.draw(ctx, size.w / 2, size.h / 2, radius, now, size.w, size.h)) {
+      requestAnimationFrame(loop);
+      return;
+    }
+    if (intro) {
+      // Passagem: o AtlasOrb continua do mesmo ângulo, sem salto
+      orb.angle = intro.angle();
+      orb.last = now / 1000;
+      intro = null;
+      onReady();
+    }
     orb.frame(ctx, size.w / 2, size.h / 2, radius, now);
     requestAnimationFrame(loop);
   };
@@ -77,8 +90,21 @@ function runDemo(apply) {
 
 const heroCanvas = document.getElementById("orb");
 if (heroCanvas) {
-  const orb = mountOrb(heroCanvas, 0.32, 60, 170);
-  runDemo(setupHero(orb, heroCanvas));
+  // Toda vez que a home abre, o orbe nasce da mente (decisão do fundador); movimento reduzido vê o orbe direto
+  const intro = reduceMotion ? null : createIntro();
+  let orb = null;
+  const start = () => runDemo(setupHero(orb, heroCanvas));
+  orb = mountOrb(heroCanvas, 0.32, 60, 170, intro, () => { heroCanvas.dataset.intro = "done"; start(); });
+  if (intro) {
+    heroCanvas.dataset.intro = "running";
+    // Um clique/toque no orbe ou qualquer tecla pula a animação
+    const skip = () => intro.skip();
+    heroCanvas.addEventListener("pointerdown", skip, { once: true });
+    window.addEventListener("keydown", skip, { once: true });
+  } else {
+    heroCanvas.dataset.intro = "none";
+    start();
+  }
 }
 
 const miniCanvas = document.getElementById("mini-orb");
