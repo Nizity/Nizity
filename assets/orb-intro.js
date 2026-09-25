@@ -1,0 +1,273 @@
+// Abertura do orbe na home: a "mente" (nuvem de lembranças) cai sobre si mesma e VIRA o orbe.
+// Animação aprovada pelo fundador na Base do Núcleo (D-109, 24/09). Regra de ouro: nada esmaece;
+// tudo que aparece cresce de algo, e tudo que some encolhe para dentro de algo. Sem texto.
+// Terminada a queda, o mesmo canvas passa a ser desenhado pelo AtlasOrb (orb-mount.js), no mesmo ângulo.
+import { APPROVED_LOOK, FAMILY_COLOR, GLYPHS, GLYPH_ORBIT, GLYPH_SIZE, SOLIDS, hexToRgb, nebula, paintStar, rgba, rotate } from "./atlas_orb.js";
+
+/* ---------------------------------------------------------------------------
+ * CÓPIA TEMPORÁRIA: o traço do glifo (strokeGlyph) ainda não é exportado pelo atlas_orb.js.
+ * Mesma assinatura do app, (ctx, glyph, size); quando o Núcleo exportar, apagar e importar.
+ * O resto (SOLIDS, rotate, cores, nebulosa, estrela) já vem do atlas_orb.js (app 37016f4).
+ * ------------------------------------------------------------------------- */
+function strokeGlyph(ctx, glyph, s) {
+  ctx.beginPath();
+  for (const p of glyph.prims) {
+    if (p.l) { ctx.moveTo(p.l[0] * s, p.l[1] * s); ctx.lineTo(p.l[2] * s, p.l[3] * s); }
+    else if (p.r) ctx.rect(p.r[0] * s, p.r[1] * s, p.r[2] * s, p.r[3] * s);
+    else if (p.c) { ctx.moveTo((p.c[0] + p.c[2]) * s, p.c[1] * s); ctx.arc(p.c[0] * s, p.c[1] * s, p.c[2] * s, 0, Math.PI * 2); }
+    else if (p.a) { const [cx, cy, r, a0, a1] = p.a; ctx.moveTo((cx + r * Math.cos(a0)) * s, (cy + r * Math.sin(a0)) * s); ctx.arc(cx * s, cy * s, r * s, a0, a1); }
+    else if (p.p) { ctx.moveTo(p.p[0] * s, p.p[1] * s); for (let i = 2; i < p.p.length; i += 2) ctx.lineTo(p.p[i] * s, p.p[i + 1] * s); if (p.closed) ctx.closePath(); }
+    else if (p.eye) { const [w, h] = p.eye; ctx.moveTo(-w * s, 0); ctx.quadraticCurveTo(0, -h * s, w * s, 0); ctx.quadraticCurveTo(0, h * s, -w * s, 0); ctx.closePath(); }
+  }
+  ctx.stroke();
+}
+/* ------------------------------ fim da cópia ------------------------------ */
+
+const MAG = [224, 82, 156];
+export const T_IN = 4.3; const DUR = 1.5;               // a nuvem respira e acende os projetos; depois cai em 1,5 s
+const LAND = T_IN + 0.55 + DUR;            // ≈ 6,35 s: nebulosa e estrela nascem
+export const INTRO_END = LAND + 1.6;       // clarão apagado: o AtlasOrb assume
+export const SHORT_FROM = T_IN - 0.4;      // versão curta (visitas seguintes): começa com os projetos já acesos, pouco antes da queda
+
+// Gravidade: demora a sair, chega rápido, uma acomodada leve além do ponto
+function fall(x) {
+  if (x <= 0) return 0;
+  if (x >= 1) return 1;
+  if (x < 0.78) { const u = x / 0.78; return 1.05 * u * u * u; }
+  const u = (x - 0.78) / 0.22;
+  return 1 + 0.05 * Math.cos(u * Math.PI * 1.5) * (1 - u);
+}
+const clamp = (x) => Math.max(0, Math.min(1, x));
+// A nuvem por tema (ajuste aprovado pelo fundador, quadro G v12): no lavanda do site as linhas finas e
+// claras sumiam, então o claro desenha a nuvem mais escura, mais grossa e com mistura normal. O escuro é o
+// visual aprovado, sem mudança. O orbe (estrela, nebulosa, AtlasOrb) mantém as cores nos dois temas.
+const THEMES = {
+  dark: { edge: [224, 82, 156], node: [201, 184, 255], big: [224, 82, 156], wK: 1, aK: 1, blend: "lighter", proj: 0, light: false },
+  light: { edge: [150, 38, 98], node: [88, 66, 168], big: [176, 40, 110], wK: 1.6, aK: 2.2, blend: "source-over", proj: 0.35, light: true },
+};
+// Mesma regra do theme.js: a escolha salva ou, sem ela, o tema do sistema
+function currentTheme() {
+  const saved = document.documentElement.dataset.theme;
+  const light = saved ? saved === "light" : window.matchMedia("(prefers-color-scheme: light)").matches;
+  return light ? THEMES.light : THEMES.dark;
+}
+const mix = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+function rng(seed) {
+  let a = seed;
+  return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+
+// Cada lembrança tem destino no orbe: 3 em cada vértice dos 3 sólidos e 1 em cada glifo
+const KEYS = Object.keys(GLYPHS);
+const PER = 3;
+function buildBrain() {
+  const rnd = rng(11);
+  const inBall = () => {
+    const u = rnd() * 2 - 1, th = rnd() * Math.PI * 2, rr = 0.35 + 0.65 * Math.cbrt(rnd());
+    return { bx: Math.sqrt(1 - u * u) * Math.cos(th) * rr, by: u * rr, bz: Math.sqrt(1 - u * u) * Math.sin(th) * rr, rr };
+  };
+  const verts = [];
+  SOLIDS.forEach((s, si) => s.verts.forEach((p) => verts.push({ si, p })));
+  const nodes = [];
+  verts.forEach((_, vi) => { for (let k = 0; k < PER; k++) { const b = inBall(); nodes.push({ kind: "v", vi, ...b, big: rnd() < 0.1, delay: 0.55 * b.rr + 0.18 * rnd(), spin: rnd() * 6 }); } });
+  KEYS.forEach((key, gi) => { const b = inBall(); nodes.push({ kind: "g", gi, ...b, big: false, delay: 0.55 * b.rr + 0.18 * rnd(), spin: rnd() * 6 }); });
+  // "wire": vira o arame do sólido; "fold": dois nós do mesmo vértice, encolhe até sumir
+  const edges = [];
+  let base = 0;
+  SOLIDS.forEach((s) => {
+    s.edges.forEach(([i, j], ei) => edges.push({ kind: "wire", a: (base + i) * PER + (ei % PER), b: (base + j) * PER + ((ei + 1) % PER) }));
+    base += s.verts.length;
+  });
+  verts.forEach((_, vi) => edges.push({ kind: "fold", a: vi * PER + 1, b: vi * PER + 2 }));
+
+  // Os projetos: cada um é uma REGIÃO da mente. Antes da queda acendem um a um, como onda do
+  // centro para fora: os atuais em magenta, os futuros em azul-claro, respirando (ainda não são).
+  const projects = [
+    { c: "#E0529C", future: false }, { c: "#E0529C", future: false },
+    { c: "#E0529C", future: false }, { c: "#E0529C", future: false },
+    { c: "#9DD8FF", future: true }, { c: "#9DD8FF", future: true },
+  ].map((p, i, all) => {
+    const yy = 1 - ((i + 0.5) / all.length) * 2, rr = Math.sqrt(1 - yy * yy), tt = i * 2.39996 + 0.7;
+    return { ...p, rgb: hexToRgb(p.c), x: Math.cos(tt) * rr * 0.68, y: yy * 0.68, z: Math.sin(tt) * rr * 0.68 };
+  });
+  nodes.forEach((n) => {
+    let best = -1, bd = 0.6;
+    projects.forEach((p, j) => { const d = Math.hypot(n.bx - p.x, n.by - p.y, n.bz - p.z); if (d < bd) { bd = d; best = j; } });
+    if (best >= 0) { n.proj = best; n.pd = bd; }
+  });
+  // Constelação de cada projeto: cada membro liga ao membro mais próximo que está mais perto do
+  // centro; as linhas CRESCEM para fora com a onda e, na queda, recolhem para a ponta de dentro.
+  const projEdges = [];
+  projects.forEach((_, j) => {
+    const members = nodes.map((n, i) => ({ n, i })).filter((m) => m.n.proj === j).sort((a, b) => a.n.pd - b.n.pd);
+    members.forEach((m, idx) => {
+      if (!idx) return;
+      let best = members[0], bd = Infinity;
+      for (let q = 0; q < idx; q++) {
+        const o = members[q].n, d = Math.hypot(m.n.bx - o.bx, m.n.by - o.by, m.n.bz - o.bz);
+        if (d < bd) { bd = d; best = members[q]; }
+      }
+      projEdges.push({ a: best.i, b: m.i, j });
+    });
+  });
+  return { verts, nodes, edges, projects, projEdges };
+}
+
+// Até onde a luz do projeto chegou nesta lembrança (0..1), sem a acomodada: a linha cresce com isto
+function attackOf(n, s) {
+  if (n.proj === undefined) return 0;
+  return clamp((s - (0.6 + n.proj * 0.55 + n.pd * 0.5)) / 0.28);
+}
+// Quanto a lembrança está acesa: ataque rápido, pico e um brilho estável que ela leva para a queda
+function litOf(n, s, projects) {
+  if (n.proj === undefined) return 0;
+  const x = (s - (0.6 + n.proj * 0.55 + n.pd * 0.5)) / 0.28;
+  if (x <= 0) return 0;
+  let v = Math.min(1, x) * (x > 1 ? 0.55 + 0.45 * Math.exp(-(x - 1) * 0.9) : 1);
+  if (projects[n.proj].future) v *= 0.72 + 0.28 * Math.sin(s * 2.6 + n.proj * 1.7);
+  return v;
+}
+
+function diamond(ctx, x, y, r, rot) {
+  ctx.beginPath();
+  for (let i = 0; i < 4; i++) { const a = rot + i * Math.PI / 2; const px = x + Math.cos(a) * r, py = y + Math.sin(a) * r; if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+  ctx.closePath(); ctx.stroke();
+}
+
+// Cria a intro. draw() devolve false quando acabou; angle() é o ângulo do orbe no fim (para o AtlasOrb seguir dele).
+// "from" pula o começo (em segundos): 0 é a versão completa, SHORT_FROM a curta.
+export function createIntro(from = 0) {
+  const { verts, nodes, edges, projects, projEdges } = buildBrain();
+  let start = -1, last = 0, yaw = 0, skipAt = -1, current = from;
+  const brainScale = 290 / 92;   // raio da nuvem em relação ao do orbe (protótipo: 290 para R = 92)
+
+  function draw(ctx, cx, cy, R, now, w, h) {
+    if (start < 0) { start = now; last = from; }
+    let s = from + (now - start) / 1000;
+    if (skipAt >= 0) s = INTRO_END;       // pular: vai direto ao estado final (sem esmaecer nada)
+    current = s;
+    if (s >= INTRO_END) return false;
+    const dt = Math.min(0.1, Math.max(0, s - last)); last = s;
+    const t = now / 1000;                  // mesmo relógio do AtlasOrb (respiração e nebulosa)
+    // A perspectiva encolhe a nuvem (fator ≤ 0,77 na frente): 0,62 do menor lado cabe no canvas
+    const RAD = Math.min(R * brainScale, Math.min(w, h) * 0.62);
+    const breath = Math.sin(t / 5.2 * Math.PI * 2);
+    const glow = 0.85 * (1 + 0.1 * breath);
+    const angle = 0.18 * s;
+
+    const ks = nodes.map((n) => fall((s - T_IN - n.delay) / DUR));
+    const meanK = ks.reduce((acc, k) => acc + clamp(k), 0) / ks.length;
+    // Momento angular: a nuvem gira mais rápido ao encolher
+    const spread = 1 - 0.75 * meanK;
+    yaw += Math.min(3.2, 0.3 / (spread * spread)) * dt;
+    const ca = Math.cos(yaw), sa = Math.sin(yaw);
+    const cloudBreath = 1 + 0.025 * Math.sin(s * 1.6);
+
+    const orbV = verts.map((v) => {
+      const sol = SOLIDS[v.si];
+      const q = rotate(v.p, angle * sol.ax[0] * 1.3, angle * sol.ax[1] * 1.3, angle * sol.ax[2] * 1.3);
+      const r = R * sol.r * (1 + 0.035 * breath), sc = 4 / (4 + q[2]);
+      return { x: cx + q[0] * r * sc, y: cy + q[1] * r * sc, z: q[2] };
+    });
+    const nG = KEYS.length;
+    const orbG = KEYS.map((_, i) => {
+      const yy = 1 - ((i + 0.5) / nG) * 2, rr = Math.sqrt(1 - yy * yy), tt = i * 2.39996;
+      const p = rotate([Math.cos(tt) * rr, yy, Math.sin(tt) * rr], angle * 0.39, angle * -0.52, angle * 1.3);
+      const sc = 4 / (4 + p[2]);
+      return { x: cx + p[0] * R * GLYPH_ORBIT * sc, y: cy + p[1] * R * GLYPH_ORBIT * sc, depth: (p[2] + 1) / 2 };
+    });
+    const pos = nodes.map((n, i) => {
+      const X = n.bx * ca + n.bz * sa, Z = -n.bx * sa + n.bz * ca, sc = 1 / (1.9 - Z * 0.6);
+      const bx = cx + X * RAD * sc * cloudBreath, by = cy + n.by * RAD * sc * cloudBreath;
+      const o = n.kind === "v" ? orbV[n.vi] : orbG[n.gi];
+      const k = ks[i];
+      return { x: bx + (o.x - bx) * k, y: by + (o.y - by) * k, Z, k: clamp(k), o, lit: litOf(n, s, projects), att: attackOf(n, s) };
+    });
+    // Enquanto os projetos acendem, o resto da mente recua um pouco
+    const hush = 0.4 * clamp((s - 0.6) / 3.2);
+
+    // Nebulosa e estrela nascem do centro quando as lembranças pousam (crescem, não aparecem)
+    const grow = fall((s - LAND + 0.35) / 0.8);
+    const flare = s > LAND ? 1.1 * Math.exp(-(s - LAND) / 0.45) : 0;
+    if (grow > 0.01) {
+      const neb = nebula(t, angle, MAG), nr = R * 0.84 * Math.min(1.05, grow);
+      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, nr, 0, Math.PI * 2); ctx.clip();
+      ctx.globalAlpha = 0.35 * Math.min(1, glow); ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(neb, cx - nr, cy - nr, nr * 2, nr * 2); ctx.restore();
+    }
+
+    const TH = currentTheme();
+    const previous = ctx.globalCompositeOperation;
+    ctx.globalCompositeOperation = TH.blend;
+    ctx.lineCap = "round";
+    const wireW = Math.max(0.6, Math.min(1.1, R / 40));
+    for (const e of edges) {
+      const A = pos[e.a], B = pos[e.b];
+      const brainA = Math.min(1, ((0.05 + 0.12 * ((A.Z + B.Z) / 2 + 1) / 2) * (1 - hush) + 0.25 * Math.min(A.lit, B.lit)) * TH.aK), kk = Math.min(A.k, B.k);
+      let alpha, width, color, ex = B.x, ey = B.y;
+      if (e.kind === "wire") {
+        const dz = (A.o.z + B.o.z) / 2;
+        const orbA = (0.3 + 0.5 * (dz + 1) / 2) * (0.55 + 0.5 * glow);
+        alpha = brainA + (orbA - brainA) * kk; width = 0.7 * TH.wK + (wireW - 0.7 * TH.wK) * kk;
+        color = mix(TH.edge, MAG, kk);
+      } else {
+        // As duas pontas de uma fold pousam no mesmo vértice; cruzando a nuvem no meio da queda faziam um
+        // emaranhado de ~1 s. Agora ela se RECOLHE para a primeira ponta no começo da queda: encolhe, não esmaece
+        const r = clamp(Math.max(A.k, B.k) * 2.5);
+        if (r >= 0.99) continue;
+        ex = A.x + (B.x - A.x) * (1 - r); ey = A.y + (B.y - A.y) * (1 - r);
+        alpha = brainA; width = 0.7 * TH.wK * (1 - 0.5 * r); color = TH.edge;
+      }
+      if (alpha < 0.01) continue;
+      ctx.strokeStyle = rgba(color, alpha); ctx.lineWidth = width;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(ex, ey); ctx.stroke();
+    }
+    for (const e of projEdges) {
+      const A = pos[e.a], B = pos[e.b];
+      const reach = B.att * (1 - clamp(Math.max(A.k, B.k) * 1.8));
+      if (reach < 0.02) continue;
+      const ex = A.x + (B.x - A.x) * reach, ey = A.y + (B.y - A.y) * reach;
+      ctx.strokeStyle = rgba(mix(projects[e.j].rgb, [0, 0, 0], TH.proj), Math.min(1, (0.2 + 0.55 * Math.max(A.lit, B.lit)) * (TH.light ? 1.4 : 1)));
+      ctx.lineWidth = 0.9 * TH.wK;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(ex, ey); ctx.stroke();
+    }
+    nodes.forEach((n, i) => {
+      const P = pos[i], k = P.k, lit = P.lit;
+      const shrink = Math.pow(1 - k, 0.8);
+      if (shrink > 0.02) {
+        const size = (n.big ? 4.6 : 2.4) * (1 + P.Z * 0.3) * (1 + 0.45 * lit) * shrink;
+        const target = n.kind === "v" ? MAG : hexToRgb(FAMILY_COLOR[GLYPHS[KEYS[n.gi]].family]);
+        let col = n.big ? TH.big : TH.node;
+        if (lit > 0) col = mix(col, mix(projects[n.proj].rgb, [0, 0, 0], TH.proj), lit);
+        col = mix(col, target, k);
+        const a0 = Math.min(1, (0.35 + 0.45 * (P.Z + 1) / 2) * (1 - hush) * (TH.light ? 1.5 : 1));
+        if (lit > 0.05) {
+          ctx.fillStyle = rgba(col, 0.2 * lit * shrink);
+          ctx.beginPath(); ctx.arc(P.x, P.y, size * 2.6, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.strokeStyle = rgba(col, a0 + (0.98 - a0) * lit);
+        ctx.lineWidth = (1 + 0.3 * lit) * TH.wK;
+        diamond(ctx, P.x, P.y, size, Math.PI / 4 + s * 0.5 + n.spin);
+      }
+      if (n.kind === "g" && k > 0.02) {
+        const g = GLYPHS[KEYS[n.gi]], d = P.o.depth;
+        const alpha = 0.28 * (0.45 + 0.55 * d) * (0.4 + 0.6 * k);
+        ctx.save(); ctx.translate(P.x, P.y);
+        ctx.strokeStyle = rgba(hexToRgb(FAMILY_COLOR[g.family]), alpha);
+        ctx.lineWidth = 1.25; ctx.lineJoin = "round";
+        strokeGlyph(ctx, g, R * GLYPH_SIZE * Math.pow(k, 1.4));
+        ctx.restore();
+      }
+    });
+    paintStar(ctx, cx, cy, R, { angle, glow, pulse: 1, breath, color: MAG }, APPROVED_LOOK, { scale: Math.max(0, grow), flare });
+    ctx.globalCompositeOperation = previous;
+    return true;
+  }
+
+  return {
+    draw,
+    skip() { skipAt = 1; },
+    angle() { return 0.18 * INTRO_END; },
+    time() { return current; },   // segundos da intro (a página se escreve neste relógio)
+  };
+}

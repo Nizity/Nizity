@@ -1,7 +1,7 @@
 // Textos da página de projetos (acrescentados ao objeto de i18n.js)
 Object.assign(translations.pt, {
   "meta.title.projects": "Projetos — Nizity",
-  "meta.description.projects": "Projetos e stack de Guilherme (Nizity), dev full-stack.",
+  "meta.description.projects": "Projetos e stack de Guilherme (Nizity).",
   "projects.kicker": "Projetos",
   "projects.title": "O que estou <strong>construindo.</strong>",
   "projects.lead": "Produtos próprios, cada um nascido de um problema real.",
@@ -16,13 +16,20 @@ Object.assign(translations.pt, {
   "projects.p4.title": "Núcleo",
   "projects.p4.problem": "Assistentes de IA na nuvem veem tudo o que você faz.",
   "projects.p4.solution": "Uma IA que roda no próprio computador, com voz e segurança por construção. O orbe da página inicial mostra o estado dela.",
+  "projects.p3.title": "Nizity Salão",
+  "projects.p3.problem": "Pedido anotado em papel se perde, sai ilegível ou demora a chegar na cozinha.",
+  "projects.p3.solution": "O garçom lança o pedido no celular e a cozinha vê na hora, num telão; quando fica pronto, o garçom é avisado.",
+  "projects.demo.open": "Ver funcionando",
+  "projects.demo.try": "Experimentar a demo",
+  "projects.demo.soon": "Vídeo em breve.",
+  "projects.demo.close": "Fechar",
   "contact.titleProjects": "Vamos <strong>conversar?</strong>",
   "contact.textProjects": "Vagas, parcerias ou só trocar ideia sobre algum projeto."
 });
 
 Object.assign(translations.en, {
   "meta.title.projects": "Projects — Nizity",
-  "meta.description.projects": "Projects and stack of Guilherme (Nizity), full-stack developer.",
+  "meta.description.projects": "Projects and stack of Guilherme (Nizity).",
   "projects.kicker": "Projects",
   "projects.title": "What I'm <strong>building.</strong>",
   "projects.lead": "My own products, each one born from a real problem.",
@@ -37,6 +44,41 @@ Object.assign(translations.en, {
   "projects.p4.title": "Nucleus",
   "projects.p4.problem": "Cloud AI assistants see everything you do.",
   "projects.p4.solution": "An AI that runs on your own computer, with voice and security by design. The orb on the home page shows its state.",
+  "projects.p3.title": "Nizity Salão",
+  "projects.p3.problem": "Orders written on paper get lost, come out unreadable or reach the kitchen late.",
+  "projects.p3.solution": "The waiter sends the order from the phone and the kitchen sees it at once on a screen; when it's ready, the waiter is notified.",
+  "projects.demo.open": "See it working",
+  "projects.demo.try": "Try the live demo",
+  "projects.demo.soon": "Video coming soon.",
+  "projects.demo.close": "Close",
   "contact.titleProjects": "Let's <strong>talk?</strong>",
   "contact.textProjects": "Jobs, partnerships or just a chat about a project."
+});
+
+Object.assign(translations.es, {
+  "meta.title.projects": "Proyectos — Nizity",
+  "meta.description.projects": "Proyectos y stack de Guilherme (Nizity).",
+  "projects.kicker": "Proyectos",
+  "projects.title": "Lo que estoy <strong>construyendo.</strong>",
+  "projects.lead": "Productos propios, cada uno nacido de un problema real.",
+  "projects.listTitle": "En construcción",
+  "projects.status.dev": "En desarrollo",
+  "projects.status.lab": "Laboratorio",
+  "projects.field.problem": "Problema",
+  "projects.field.solution": "Solución",
+  "projects.p2.title": "Recolección de campo",
+  "projects.p2.problem": "Equipos de campo sin internet, perdiendo datos en papel.",
+  "projects.p2.solution": "App offline-first y marca blanca: guarda en el dispositivo y sincroniza cuando vuelve la conexión.",
+  "projects.p4.title": "Núcleo",
+  "projects.p4.problem": "Los asistentes de IA en la nube ven todo lo que haces.",
+  "projects.p4.solution": "Una IA que corre en tu propia computadora, con voz y seguridad desde el diseño. El orbe de la página de inicio muestra su estado.",
+  "projects.p3.title": "Nizity Salão",
+  "projects.p3.problem": "El pedido anotado en papel se pierde, sale ilegible o llega tarde a la cocina.",
+  "projects.p3.solution": "El mesero envía el pedido desde el celular y la cocina lo ve al instante en una pantalla; cuando está listo, el mesero recibe el aviso.",
+  "projects.demo.open": "Verlo funcionando",
+  "projects.demo.try": "Probar la demo en vivo",
+  "projects.demo.soon": "Video próximamente.",
+  "projects.demo.close": "Cerrar",
+  "contact.titleProjects": "¿<strong>Hablamos?</strong>",
+  "contact.textProjects": "Empleos, alianzas o solo una charla sobre algún proyecto.",
 });

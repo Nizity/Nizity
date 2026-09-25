@@ -1,0 +1,11 @@
+# Arquivos do repositório que NÃO podem ir para o site publicado (Cloudflare Workers, arquivos estáticos).
+# Sem isto, nizity.com servia o .git inteiro (histórico) e os documentos internos.
+.git
+.github
+docs
+CLAUDE.md
+README.md
+.nojekyll
+.assetsignore
+tools
+wrangler.jsonc

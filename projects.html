@@ -4,11 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos — Nizity</title>
-  <meta name="description" content="Projetos e stack de Guilherme (Nizity), dev full-stack.">
+  <meta name="description" content="Projetos e stack de Guilherme (Nizity).">
   <meta property="og:title" content="Projetos — Nizity">
   <meta property="og:url" content="https://nizity.com/projects.html">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#07070B">
+  <meta property="og:image" content="https://nizity.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nizity: sites e sistemas sob medida">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#07070B" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ECEAF3" media="(prefers-color-scheme: light)">
+  <script src="assets/theme.js"></script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-tight-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -20,20 +27,18 @@
 <body data-page="projects">
   <header class="site-header">
     <div class="container nav">
-      <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
+      <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
+      <a class="logo" href="index.html" aria-label="Nizity"><span aria-hidden="true">n<span class="logo-i">ı<svg class="logo-orb" viewBox="-1.12 -1.12 2.24 2.24"><g stroke-width="0.14" stroke-linecap="round"><line x1="0.526" y1="0.304" x2="0.000" y2="0.982" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.851" y2="0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.851" y1="-0.491" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.526" y1="0.304" x2="-0.851" y2="-0.491" stroke-opacity="1"/></g></svg></span>zity</span></a>
       <nav class="nav-links" id="nav-links">
-        <a href="index.html#services" data-i18n="nav.services">Serviços</a>
-        <a href="index.html#process" data-i18n="nav.process">Processo</a>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
+        <a href="products.html" data-i18n="nav.products">Produtos</a>
         <a href="projects.html" aria-current="page" data-i18n="nav.projects">Projetos</a>
-        <a href="#contact" data-i18n="nav.contact">Contato</a>
+        <div class="nav-prefs">
+          <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
+          <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
+        </div>
       </nav>
-      <div class="nav-actions">
-        <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false">Som off</button>
-        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/5521997464308" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
     </div>
   </header>
 
@@ -68,6 +73,7 @@
             </div>
             <ul class="chips"><li>Python</li><li>LLM local</li></ul>
           </div>
+          <button class="item-foot demo-open" type="button" data-video="nucleus" data-title="projects.p4.title"><span data-i18n="projects.demo.open">Ver funcionando</span><span aria-hidden="true">▶</span></button>
         </article>
 
 
@@ -84,6 +90,23 @@
             </div>
             <ul class="chips"><li>Expo</li><li>SQLite</li><li>FastAPI</li></ul>
           </div>
+          <button class="item-foot demo-open" type="button" data-video="field" data-title="projects.p2.title"><span data-i18n="projects.demo.open">Ver funcionando</span><span aria-hidden="true">▶</span></button>
+        </article>
+
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-02</span>
+            <h3 data-i18n="projects.p3.title">Nizity Salão</h3>
+            <span class="status" data-i18n="projects.status.dev">Em desenvolvimento</span>
+          </div>
+          <div class="item-body">
+            <div class="project-fields">
+              <div><span class="item-type" data-i18n="projects.field.problem">Problema</span><p data-i18n="projects.p3.problem">Pedido anotado em papel se perde, sai ilegível ou demora a chegar na cozinha.</p></div>
+              <div><span class="item-type" data-i18n="projects.field.solution">Solução</span><p data-i18n="projects.p3.solution">O garçom lança o pedido no celular e a cozinha vê na hora, num telão; quando fica pronto, o garçom é avisado.</p></div>
+            </div>
+            <ul class="chips"><li>FastAPI</li><li>PostgreSQL</li><li>React</li><li>WebSocket</li></ul>
+          </div>
+          <a class="item-foot" href="demo/salao/"><span data-i18n="projects.demo.try">Experimentar a demo</span><span aria-hidden="true">→</span></a>
         </article>
 
       </div>
@@ -95,13 +118,43 @@
         <p data-i18n="contact.textProjects">Vagas, parcerias ou só trocar ideia sobre algum projeto.</p>
       </div>
       <div class="contact-actions">
-        <a class="btn" id="whatsapp-link" href="#" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
+        <a class="btn" href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
         <a class="btn btn-ghost" id="email-link" href="#" hidden>E-mail</a>
       </div>
     </section>
+
+    <!-- Prévia em vídeo: uma janela só, preenchida por assets/demo.js -->
+    <dialog class="demo" id="demo" aria-labelledby="demo-title">
+      <div class="demo-head">
+        <h2 id="demo-title"></h2>
+        <button class="demo-close" type="button" id="demo-close" data-i18n="projects.demo.close">Fechar</button>
+      </div>
+      <video id="demo-video" muted loop playsinline controls preload="none" hidden></video>
+      <p class="demo-soon" id="demo-soon" data-i18n="projects.demo.soon" hidden>Vídeo em breve.</p>
+    </dialog>
   </main>
 
   <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="Nizity"><span aria-hidden="true">n<span class="logo-i">ı<svg class="logo-orb" viewBox="-1.12 -1.12 2.24 2.24"><g stroke-width="0.14" stroke-linecap="round"><line x1="0.526" y1="0.304" x2="0.000" y2="0.982" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.851" y2="0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.851" y1="-0.491" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.526" y1="0.304" x2="-0.851" y2="-0.491" stroke-opacity="1"/></g></svg></span>zity</span></a>
+        <p data-i18n="footer.tagline">Sites e sistemas sob medida, direto com quem faz.</p>
+      </div>
+      <nav class="footer-col" aria-label="Navegar" data-i18n-label="footer.nav">
+        <p class="footer-title" data-i18n="footer.nav">Navegar</p>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
+        <a href="products.html" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.contact">Contato</p>
+        <a href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.legal">Legal</p>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+      </div>
+    </div>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Nizity</span>
       <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
@@ -110,8 +163,10 @@
 
   <script src="assets/i18n.js"></script>
   <script src="assets/i18n-projects.js"></script>
-  <script src="assets/orb.js"></script>
   <script src="assets/fx.js"></script>
   <script src="assets/main.js"></script>
+  <script src="assets/chat.js"></script>
+  <script src="assets/demo.js"></script>
+  <script type="module" src="assets/orb-mount.js"></script>
 </body>
 </html>

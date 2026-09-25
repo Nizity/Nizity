@@ -1,15 +1,20 @@
-// Efeitos: entrada ao rolar, sons de interface (desligados por padrão) e "segurar E" no botão do topo.
+// Efeitos: entrada ao rolar, sons de interface (sempre ligados) e "segurar E" no botão do topo.
 // Os sons são sintetizados com Web Audio: não há arquivos de áudio.
-const SOUND_KEY = "nizity-sound";
 const HOLD_MS = 600;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const sound = {
-  enabled: false,
   audio: null,
+  unlocked: false,
   lastHover: 0,
+  // O navegador só libera áudio depois do primeiro clique ou tecla do visitante
   init() {
-    try { this.enabled = localStorage.getItem(SOUND_KEY) === "on"; } catch (e) { /* ignora */ }
+    const unlock = () => {
+      this.unlocked = true;
+      this.context().resume();
+    };
+    window.addEventListener("pointerdown", unlock, { once: true });
+    window.addEventListener("keydown", unlock, { once: true });
   },
   context() {
     if (!this.audio) this.audio = new (window.AudioContext || window.webkitAudioContext)();
@@ -17,7 +22,7 @@ const sound = {
   },
   // Um tom curto com envelope; frequência pode deslizar de "from" para "to"
   tone(from, to, duration, volume, type = "sine") {
-    if (!this.enabled) return;
+    if (!this.unlocked) return;
     const ctx = this.context();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -47,7 +52,7 @@ const sound = {
 };
 
 function setupReveal() {
-  const targets = document.querySelectorAll(".hero > div:first-child > *, .section-title, .item, .step, .band, .contact, .intro > div");
+  const targets = document.querySelectorAll(".hero > div:first-child > *, .section-title, .item, .step, .contact, .intro > div");
   if (reduceMotion || !("IntersectionObserver" in window)) return;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -65,53 +70,41 @@ function setupReveal() {
   });
 }
 
-function setupSoundToggle(getLabel) {
-  const toggle = document.getElementById("sound-toggle");
-  if (!toggle) return;
-  const render = () => {
-    toggle.setAttribute("aria-pressed", String(sound.enabled));
-    toggle.textContent = getLabel(sound.enabled);
-  };
-  toggle.addEventListener("click", () => {
-    sound.enabled = !sound.enabled;
-    try { localStorage.setItem(SOUND_KEY, sound.enabled ? "on" : "off"); } catch (e) { /* ignora */ }
-    render();
-    sound.confirm();
-  });
-  render();
-  return render;
-}
-
 function setupInteractionSounds() {
-  document.querySelectorAll(".item, .btn, .nav-links a, .item-foot, .lang-toggle").forEach((el) => {
+  document.querySelectorAll(".item, .btn, .nav-links a, .item-foot, .lang-toggle, .demo-close").forEach((el) => {
     el.addEventListener("pointerenter", () => sound.hover());
   });
   document.addEventListener("click", (event) => {
-    if (event.target.closest("a, button:not(#sound-toggle)")) sound.click();
+    if (event.target.closest("a, button")) sound.click();
   });
 }
 
-// Segurar E enche o botão do topo e, ao completar, leva ao contato
+// Segurar E enche o botão do topo e, ao completar, faz o mesmo que o clique (abre o chat ou, sem ele, o WhatsApp)
 function setupHoldToConfirm() {
   const button = document.querySelector(".btn-hold");
-  const contact = document.getElementById("contact");
-  if (!contact) return;
+  if (!button) return;
   let start = null;
   let frame = null;
   const reset = () => {
     start = null;
     cancelAnimationFrame(frame);
-    if (button) button.style.setProperty("--hold", 0);
+    button.style.setProperty("--hold", 0);
   };
   const go = () => {
     reset();
     sound.confirm();
-    contact.scrollIntoView();
-    contact.querySelector("a:not([hidden])")?.focus({ preventScroll: true });
+    // Com o chat (chat.js) montado, o botão abre o chat
+    if (button.hasAttribute("data-chat-open") && document.querySelector(".chat")) return button.click();
+    if (button.getAttribute("href") === "#") return;
+    // Com "noopener" o window.open sempre devolve null; por isso o opener é cortado à mão.
+    // Se o navegador bloquear a nova aba, abre na mesma.
+    const tab = window.open(button.href, "_blank");
+    if (tab) tab.opener = null;
+    else window.location.href = button.href;
   };
   const tick = (time) => {
     const progress = Math.min((time - start) / HOLD_MS, 1);
-    if (button) button.style.setProperty("--hold", progress);
+    button.style.setProperty("--hold", progress);
     if (progress >= 1) return go();
     frame = requestAnimationFrame(tick);
   };
@@ -119,7 +112,7 @@ function setupHoldToConfirm() {
     if (event.key.toLowerCase() !== "e" || event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
     if (event.target.closest("input, textarea, select, [contenteditable]")) return;
     // Sem animação (movimento reduzido ou sem o botão): vai direto
-    if (reduceMotion || !button) return go();
+    if (reduceMotion) return go();
     start = performance.now();
     sound.tone(300, 900, HOLD_MS / 1000, 0.03);
     frame = requestAnimationFrame(tick);

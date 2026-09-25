@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nizity Salão — comanda digital para restaurantes</title>
+  <meta name="description" content="Nizity Salão: o garçom lança o pedido no celular, a cozinha acompanha no tablet e no telão, e o cliente consulta o cardápio pelo QR da mesa. Piloto gratuito.">
+  <meta property="og:title" content="Nizity Salão — comanda digital para restaurantes">
+  <meta property="og:url" content="https://nizity.com/salao.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://nizity.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nizity: sites e sistemas sob medida">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#07070B" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ECEAF3" media="(prefers-color-scheme: light)">
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-tight-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="salao">
+  <header class="site-header">
+    <div class="container nav">
+      <button class="lang-toggle menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu" data-i18n-label="nav.menu">☰</button>
+      <a class="logo" href="index.html" aria-label="Nizity"><span aria-hidden="true">n<span class="logo-i">ı<svg class="logo-orb" viewBox="-1.12 -1.12 2.24 2.24"><g stroke-width="0.14" stroke-linecap="round"><line x1="0.526" y1="0.304" x2="0.000" y2="0.982" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.851" y2="0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.851" y1="-0.491" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.526" y1="0.304" x2="-0.851" y2="-0.491" stroke-opacity="1"/></g></svg></span>zity</span></a>
+      <nav class="nav-links" id="nav-links">
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
+        <a href="products.html" aria-current="true" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+        <div class="nav-prefs">
+          <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
+          <select class="lang-toggle lang-select" id="lang-toggle" aria-label="Idioma / Language"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
+        </div>
+      </nav>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/5521997464308" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" data-i18n="nav.quote">Orçamento</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="cs-hero">
+        <div>
+          <p class="kicker"><span><span data-i18n="salao.kicker">Produto</span> · NZ-P1</span></p>
+          <h1 data-i18n="products.p1.title" data-vt="salao">Nizity Salão</h1>
+          <p class="lead" data-i18n="salao.lead">Comanda no celular do garçom e telão da cozinha em tempo real, para restaurantes.</p>
+          <div class="cs-acts">
+            <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo">Testar a demo</span></a>
+            <a class="home-link" href="https://wa.me/5521997464308" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta">Quero ser piloto</span><span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <img class="shot is-cutout" src="assets/img/salao-vitrine.webp" width="1260" height="720" alt="Telão da cozinha e celular do garçom no Nizity Salão" data-i18n-alt="home.prod.alt">
+      </section>
+
+      <section class="cs-sec" aria-labelledby="salao-problem">
+        <p class="kicker" data-i18n="salao.problem.kicker">01 · O problema</p>
+        <h2 id="salao-problem" data-i18n="salao.problem.title">O pedido anotado em papel se perde no caminho.</h2>
+        <p class="cs-text" data-i18n="salao.problem.text">Sai ilegível ou demora a chegar na cozinha, e o garçom não sabe quando o prato ficou pronto.</p>
+      </section>
+
+      <section class="cs-sec" aria-labelledby="salao-flow">
+        <p class="kicker" data-i18n="salao.flow.kicker">02 · Como funciona</p>
+        <h2 id="salao-flow" data-i18n="salao.flow.title">Cada um na sua tela, na hora.</h2>
+        <ul class="flow">
+          <li class="flow-step">
+            <div>
+              <h3 data-i18n="salao.flow.waiter.title">Garçom · no celular</h3>
+              <p data-i18n="salao.flow.waiter.text">Lança o pedido da mesa, com observação, e recebe o aviso quando fica pronto.</p>
+            </div>
+            <img class="shot flow-img is-phone" src="assets/img/salao-garcom.webp" width="520" height="986" loading="lazy" alt="Celular do garçom com os avisos de prato pronto e o cardápio da Mesa 3" data-i18n-alt="salao.flow.waiter.alt">
+          </li>
+          <li class="flow-step">
+            <div>
+              <h3 data-i18n="salao.flow.control.title">Cozinha · no tablet da bancada</h3>
+              <p data-i18n="salao.flow.control.text">Vê o pedido na hora e marca "preparando" e "pronto".</p>
+            </div>
+            <img class="shot flow-img" src="assets/img/salao-tablet.webp" width="1120" height="766" loading="lazy" alt="Tablet da cozinha com os pedidos de cada mesa e os botões Preparar e Pronto" data-i18n-alt="salao.flow.control.alt">
+          </li>
+          <li class="flow-step">
+            <div>
+              <h3 data-i18n="salao.flow.tv.title">Cozinha · no telão da parede</h3>
+              <p data-i18n="salao.flow.tv.text">Mostra a fila para a cozinha toda, em letra grande. Só mostra.</p>
+            </div>
+            <img class="shot flow-img" src="assets/img/salao-telao.webp" width="1200" height="676" loading="lazy" alt="Telão da cozinha com a fila de pedidos em letra grande" data-i18n-alt="salao.flow.tv.alt">
+          </li>
+          <li class="flow-step">
+            <div>
+              <h3 data-i18n="salao.flow.guest.title">Cliente · no QR da mesa</h3>
+              <p data-i18n="salao.flow.guest.text">Consulta o cardápio. Não pede nem paga pelo app.</p>
+            </div>
+            <img class="shot flow-img is-phone" src="assets/img/salao-cardapio.webp" width="520" height="986" loading="lazy" alt="Cardápio da mesa aberto pelo QR Code, só para consulta" data-i18n-alt="salao.flow.guest.alt">
+          </li>
+        </ul>
+      </section>
+
+      <!-- Tecnologias em uma linha de etiquetas (sem fichas): detalhe para quem quer saber, sem pesar para o dono -->
+      <section class="cs-sec cs-tech" aria-labelledby="salao-tech">
+        <p class="kicker" id="salao-tech" data-i18n="salao.tech.kicker">03 · Tecnologias</p>
+        <ul class="chips"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>WebSocket</li><li>React</li><li>TypeScript</li></ul>
+        <p class="cs-note" data-i18n="salao.flow.note">Funciona no navegador do celular, do tablet e da TV, sem instalar nada. Se o Wi-Fi da cozinha cair, reconecta sem perder pedido.</p>
+      </section>
+
+      <section class="cs-end" aria-labelledby="salao-end">
+        <h2 id="salao-end" data-i18n-html="salao.end.title">Tem um <strong>restaurante?</strong></h2>
+        <p data-i18n="salao.end.text">Piloto gratuito: procuro o primeiro restaurante para usar no dia a dia. Teste a demo ou fale comigo.</p>
+        <div class="cs-acts">
+          <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo">Testar a demo</span></a>
+          <a class="home-link" href="https://wa.me/5521997464308" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta">Quero ser piloto</span><span aria-hidden="true">→</span></a>
+        </div>
+        <a class="cs-back" href="products.html"><span aria-hidden="true">←</span> <span data-i18n="salao.back">Todos os produtos</span></a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="Nizity"><span aria-hidden="true">n<span class="logo-i">ı<svg class="logo-orb" viewBox="-1.12 -1.12 2.24 2.24"><g stroke-width="0.14" stroke-linecap="round"><line x1="0.526" y1="0.304" x2="0.000" y2="0.982" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.526" y1="0.304" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.000" y2="-0.607" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.982" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.851" y2="0.491" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="0.000" y1="0.982" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.000" y1="-0.607" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.526" y2="0.304" stroke-opacity="1"/><line x1="-0.851" y1="0.491" x2="-0.851" y2="-0.491" stroke-opacity="1"/><line x1="0.851" y1="-0.491" x2="0.851" y2="0.491" stroke-opacity="1"/><line x1="-0.526" y1="0.304" x2="-0.851" y2="-0.491" stroke-opacity="1"/></g></svg></span>zity</span></a>
+        <p data-i18n="footer.tagline">Sites e sistemas sob medida, direto com quem faz.</p>
+      </div>
+      <nav class="footer-col" aria-label="Navegar" data-i18n-label="footer.nav">
+        <p class="footer-title" data-i18n="footer.nav">Navegar</p>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
+        <a href="products.html" aria-current="true" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.contact">Contato</p>
+        <a href="#" data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="contact.whatsapp">WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title" data-i18n="footer.legal">Legal</p>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+      </div>
+    </div>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Nizity</span>
+      <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-salao.js"></script>
+  <script src="assets/fx.js"></script>
+  <script src="assets/main.js"></script>
+  <script src="assets/chat.js"></script>
+</body>
+</html>

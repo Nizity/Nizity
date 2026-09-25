@@ -37,6 +37,7 @@ Módulos que valem aqui, pelo tipo: **FRONTEND** (painel web), **PRODUTO** (usu�
 - Diário de bordo e pendências: `docs/DIARIO.md`
 - Desenhado mas vetado: `docs/MODULOS_FUTUROS.md`
 - Roteiro de entrevista com restaurantes: `docs/SALAO_ROTEIRO_ENTREVISTA.md`
+- **Código do Salão:** repo privado `Nizity/salao` (contexto em `docs/SALAO_CONTEXTO.md`). A demo pública em `demo/salao/` é o build dele (`npm run build:demo`).
 
 ## 4. Como rodar
 
@@ -50,4 +51,4 @@ python3 -m http.server 8000   # depois abra http://localhost:8000
 - Textos PT/EN: `assets/i18n.js` (comuns + home) e `assets/i18n-projects.js`. Contato (WhatsApp/e-mail): `CONTACT` em `assets/main.js`.
 - Orbe do Núcleo: `assets/orb.js` (só visual; hoje em modo demonstração, sem ligação real).
 - **Código em inglês** (identificadores, ids, classes); comentários em português.
-- Estilos: `assets/css/` (`tokens` → `base` → `components` → `pages`); componentes só usam tokens semânticos. Fontes locais em `assets/fonts/` (licenças OFL). Domínio do GitHub Pages: `CNAME`.
+- Estilos: `assets/css/` (`tokens` → `base` → `components` → `pages`); componentes só usam tokens semânticos. Fontes locais em `assets/fonts/` (licenças OFL). Páginas de serviço, privacidade e 404 são geradas por `tools/gen_pages.py`.

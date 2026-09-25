@@ -34,16 +34,26 @@
 }
 .btn-hold > * { position: relative; }
 
-/* Botão de som no cabeçalho */
-.sound-toggle {
-  font-family: var(--font-mono);
-  font-size: .75rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  background: none;
-  border: 1px solid var(--color-line);
-  padding: 6px 10px;
-  color: var(--color-muted);
+/* Transição entre páginas (card de serviço ↔ página do serviço). Navegador sem suporte troca de página normalmente */
+@view-transition { navigation: auto; }
+[data-vt="svc-landing"] { view-transition-name: svc-landing; }
+[data-vt="svc-system"] { view-transition-name: svc-system; }
+[data-vt="svc-maintenance"] { view-transition-name: svc-maintenance; }
+/* Nome do Salão: da vitrine de produtos ao título da página dele */
+[data-vt="salao"] { view-transition-name: salao; }
+/* O título do card cresce até virar o título da página; o resto da página desce e sobe no lugar */
+::view-transition-group(*) { animation-duration: .55s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+::view-transition-old(root) { animation: vt-out .3s ease both; }
+::view-transition-new(root) { animation: vt-in .5s cubic-bezier(.2, .7, .2, 1) .08s both; }
+@keyframes vt-out { to { opacity: 0; transform: scale(.985); filter: blur(4px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(24px); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
 }
-.sound-toggle[aria-pressed="true"] { color: var(--color-accent); border-color: var(--color-accent); }
-.sound-toggle:hover { border-color: var(--color-line-strong); }
+
+/* A home sendo construída pelo Núcleo (build-page.js). Antes do script rodar, as peças já
+   começam escondidas (recortadas até sumir); o script vai abrindo o recorte */
+.building .hero h1, .building .hero .lead, .building .hero .btn-hold, .building .hero .hero-more, .building .nav-links a, .building .menu-toggle, .building .nav-cta { clip-path: inset(0 100% 0 0); }
+/* Segurança: se o script falhar, a página aparece sozinha depois de 12 s */
+.building .hero h1, .building .hero .lead, .building .hero .btn-hold, .building .hero .hero-more, .building .nav-links a, .building .menu-toggle, .building .nav-cta { animation: build-failsafe 0s 12s forwards; }
+@keyframes build-failsafe { to { clip-path: none; } }
