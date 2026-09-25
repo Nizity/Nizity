@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacidade — Nizity</title>
+  <meta name="description" content="Como o nizity.com trata os seus dados: sem cookies, sem rastreamento, nada guardado no site.">
+  <meta property="og:title" content="Privacidade — Nizity">
+  <meta property="og:url" content="https://nizity.com/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://nizity.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nizity: sites e sistemas sob medida">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#07070B" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ECEAF3" media="(prefers-color-scheme: light)">
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-tight-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="privacy">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html" data-i18n="nav.home">Início</a>
+        <a class="btn btn-nav" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container intro">
+      <div>
+        <p class="kicker" data-i18n="privacy.kicker">Privacidade</p>
+        <h1 data-i18n-html="privacy.title">Seus dados <strong>no nizity.com.</strong></h1>
+        <p data-i18n="privacy.lead">Resumo: o site não usa cookies, não rastreia você e não guarda o que você escreve.</p>
+      </div>
+    </section>
+
+    <section class="container section">
+      <dl class="faq">
+        <div><dt data-i18n="privacy.s1.title">O que o site guarda</dt><dd data-i18n="privacy.s1.text">Nada no nosso lado. No seu próprio navegador ficam só três preferências: o idioma, o tema (claro ou escuro) e se você já viu a animação de abertura. Elas não saem do seu aparelho e você pode apagá-las limpando os dados do site no navegador.</dd></div>
+        <div><dt data-i18n="privacy.s2.title">O chat e o WhatsApp</dt><dd data-i18n="privacy.s2.text">O que você escreve no chat não é enviado nem guardado pelo site: ao tocar em enviar, a mensagem abre pronta no seu WhatsApp, e só é enviada se você confirmar lá. A partir daí vale a política de privacidade do WhatsApp. Uso seu nome, número e mensagens só para responder e conversar sobre o seu projeto, e não passo esses dados para ninguém.</dd></div>
+        <div><dt data-i18n="privacy.s3.title">Hospedagem</dt><dd data-i18n="privacy.s3.text">O site é hospedado na Cloudflare, que processa dados técnicos da conexão (como o endereço IP) para entregar as páginas e proteger o site contra ataques. O site não usa cookies nem ferramentas de rastreamento ou publicidade.</dd></div>
+        <div><dt data-i18n="privacy.s4.title">Seus direitos</dt><dd data-i18n="privacy.s4.text">Pela LGPD, você pode pedir para saber quais dados seus eu tenho, corrigi-los ou apagá-los. Basta pedir pelo mesmo WhatsApp da nossa conversa.</dd></div>
+        <div><dt data-i18n="privacy.s5.title">Quem é o responsável</dt><dd data-i18n="privacy.s5.text">Guilherme, responsável pelo nizity.com. Se algo aqui mudar, esta página é atualizada e a data acima muda junto.</dd></div>
+      </dl>
+      <p class="privacy-updated" data-i18n="privacy.updated">Atualizado em 25 de setembro de 2026.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Nizity</span>
+      <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+      <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-privacy.js"></script>
+  <script src="assets/fx.js"></script>
+  <script src="assets/main.js"></script>
+  <script src="assets/chat.js"></script>
+</body>
+</html>

@@ -127,3 +127,8 @@ button.item-foot { width: 100%; background: none; border: 0; border-top: 1px sol
   .svc-detail { grid-template-columns: 1fr; }
   .svc-cta { justify-items: start; }
 }
+
+/* Privacidade e 404 */
+.privacy-updated { margin-top: 18px; font-size: .8rem; color: var(--color-muted); }
+.notfound { min-height: 50vh; }
+.notfound .btn { margin-top: 28px; }

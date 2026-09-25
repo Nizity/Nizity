@@ -1,0 +1,38 @@
+// Textos da página de privacidade (acrescentados ao objeto de i18n.js). Descreve só o que o site faz de fato.
+Object.assign(translations.pt, {
+  "meta.title.privacy": "Privacidade — Nizity",
+  "meta.description.privacy": "Como o nizity.com trata os seus dados: sem cookies, sem rastreamento, nada guardado no site.",
+  "privacy.kicker": "Privacidade",
+  "privacy.title": "Seus dados <strong>no nizity.com.</strong>",
+  "privacy.lead": "Resumo: o site não usa cookies, não rastreia você e não guarda o que você escreve.",
+  "privacy.updated": "Atualizado em 25 de setembro de 2026.",
+  "privacy.s1.title": "O que o site guarda",
+  "privacy.s1.text": "Nada no nosso lado. No seu próprio navegador ficam só três preferências: o idioma, o tema (claro ou escuro) e se você já viu a animação de abertura. Elas não saem do seu aparelho e você pode apagá-las limpando os dados do site no navegador.",
+  "privacy.s2.title": "O chat e o WhatsApp",
+  "privacy.s2.text": "O que você escreve no chat não é enviado nem guardado pelo site: ao tocar em enviar, a mensagem abre pronta no seu WhatsApp, e só é enviada se você confirmar lá. A partir daí vale a política de privacidade do WhatsApp. Uso seu nome, número e mensagens só para responder e conversar sobre o seu projeto, e não passo esses dados para ninguém.",
+  "privacy.s3.title": "Hospedagem",
+  "privacy.s3.text": "O site é hospedado na Cloudflare, que processa dados técnicos da conexão (como o endereço IP) para entregar as páginas e proteger o site contra ataques. O site não usa cookies nem ferramentas de rastreamento ou publicidade.",
+  "privacy.s4.title": "Seus direitos",
+  "privacy.s4.text": "Pela LGPD, você pode pedir para saber quais dados seus eu tenho, corrigi-los ou apagá-los. Basta pedir pelo mesmo WhatsApp da nossa conversa.",
+  "privacy.s5.title": "Quem é o responsável",
+  "privacy.s5.text": "Guilherme, responsável pelo nizity.com. Se algo aqui mudar, esta página é atualizada e a data acima muda junto.",
+});
+
+Object.assign(translations.en, {
+  "meta.title.privacy": "Privacy — Nizity",
+  "meta.description.privacy": "How nizity.com handles your data: no cookies, no tracking, nothing stored on the site.",
+  "privacy.kicker": "Privacy",
+  "privacy.title": "Your data <strong>on nizity.com.</strong>",
+  "privacy.lead": "In short: the site uses no cookies, doesn't track you and doesn't store what you write.",
+  "privacy.updated": "Updated on September 25, 2026.",
+  "privacy.s1.title": "What the site stores",
+  "privacy.s1.text": "Nothing on our side. Your own browser keeps only three preferences: language, theme (light or dark) and whether you've seen the opening animation. They never leave your device and you can erase them by clearing this site's data in your browser.",
+  "privacy.s2.title": "The chat and WhatsApp",
+  "privacy.s2.text": "What you write in the chat is not sent or stored by the site: when you tap send, the message opens ready in your WhatsApp and is only sent if you confirm it there. From then on, WhatsApp's privacy policy applies. I use your name, number and messages only to reply and talk about your project, and I don't share them with anyone.",
+  "privacy.s3.title": "Hosting",
+  "privacy.s3.text": "The site is hosted on Cloudflare, which processes technical connection data (such as your IP address) to deliver the pages and protect the site against attacks. The site uses no cookies and no tracking or advertising tools.",
+  "privacy.s4.title": "Your rights",
+  "privacy.s4.text": "Under Brazil's data protection law (LGPD), you can ask what data of yours I have, correct it or have it deleted. Just ask on the same WhatsApp chat.",
+  "privacy.s5.title": "Who is responsible",
+  "privacy.s5.text": "Guilherme, who runs nizity.com. If anything here changes, this page is updated along with the date above.",
+});

@@ -11,11 +11,13 @@ assets/css/             Estilos: tokens, base, componentes e seções
 assets/fonts/           Inter Tight e Geist Mono (woff2, licenças OFL)
 assets/i18n.js          Textos PT/EN comuns e da página principal
 assets/i18n-projects.js Textos PT/EN da página de projetos
+service-*.html, privacy.html, 404.html  Gerados por tools/gen_pages.py (não editar à mão)
+wrangler.jsonc          Worker de arquivos estáticos (404 própria)
+sitemap.xml, robots.txt Para buscadores
 assets/orb.js           Orbe do Núcleo (visual; hoje em demonstração)
 assets/main.js          Contato, idioma, menu mobile e atalho da tecla E
 assets/favicon.svg      Ícone
 _headers                Cabeçalhos de segurança (lidos pela Cloudflare)
-CNAME                   Domínio para o GitHub Pages (não usado no Cloudflare)
 ```
 
 ## Editar textos
@@ -40,5 +42,3 @@ O site é publicado como **Worker com arquivos estáticos** na Cloudflare, conec
 2. Em **Configurações → Build → Branch control**, o branch de produção deve ser `main`.
 3. Em **Domínios → Adicionar → Domínio personalizado**, adicione `nizity.com` (e, se quiser, `www.nizity.com`). Como o DNS já está na Cloudflare, o registro e o HTTPS são criados sozinhos.
 4. O arquivo `_headers` aplica os cabeçalhos de segurança (CSP, anti-clickjacking). Ao ligar o orbe a um Worker de estado, acrescente a URL dele em `connect-src`.
-
-O arquivo `CNAME` só é usado se um dia o site for para o GitHub Pages.

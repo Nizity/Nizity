@@ -51,4 +51,4 @@ python3 -m http.server 8000   # depois abra http://localhost:8000
 - Textos PT/EN: `assets/i18n.js` (comuns + home) e `assets/i18n-projects.js`. Contato (WhatsApp/e-mail): `CONTACT` em `assets/main.js`.
 - Orbe do Núcleo: `assets/orb.js` (só visual; hoje em modo demonstração, sem ligação real).
 - **Código em inglês** (identificadores, ids, classes); comentários em português.
-- Estilos: `assets/css/` (`tokens` → `base` → `components` → `pages`); componentes só usam tokens semânticos. Fontes locais em `assets/fonts/` (licenças OFL). Domínio do GitHub Pages: `CNAME`.
+- Estilos: `assets/css/` (`tokens` → `base` → `components` → `pages`); componentes só usam tokens semânticos. Fontes locais em `assets/fonts/` (licenças OFL). Páginas de serviço, privacidade e 404 são geradas por `tools/gen_pages.py`.

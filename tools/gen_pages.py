@@ -1,5 +1,6 @@
-# Gera as 3 páginas de serviço (service-*.html) com a mesma estrutura. Rodar: python3 tools/gen_services.py
-# Os textos ficam em assets/i18n-services.js; o português é escrito direto no HTML (sem JS e para o Google).
+# Gera as páginas que seguem um molde: as 3 de serviço (service-*.html), a de privacidade e a 404.
+# Rodar: python3 tools/gen_pages.py (depois de mudar o <head> de projects.html, os textos ou este arquivo).
+# Os textos ficam em assets/i18n*.js; o português é escrito direto no HTML (sem JS e para o Google).
 import json, os, re, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = [
@@ -9,7 +10,7 @@ PAGES = [
   ("service-maintenance.html", "maintenance", "NZ-03", "s3", [], False, ""),
 ]
 PT = json.loads(subprocess.check_output(["node", "-e",
-  "const fs=require('fs');eval(fs.readFileSync('assets/i18n.js','utf8')+fs.readFileSync('assets/i18n-services.js','utf8')+';console.log(JSON.stringify(translations.pt))')"], cwd=ROOT))
+  "const fs=require('fs');eval(fs.readFileSync('assets/i18n.js','utf8')+fs.readFileSync('assets/i18n-services.js','utf8')+fs.readFileSync('assets/i18n-privacy.js','utf8')+';console.log(JSON.stringify(translations.pt))')"], cwd=ROOT))
 
 def fill(html):
     # Texto em português já no HTML (para quem abre sem JS e para o Google); o main.js troca o idioma
@@ -129,6 +130,7 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
   <footer class="site-footer">
     <div class="container footer-inner">
       <span>© <span id="year"></span> Nizity</span>
+      <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
       <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
     </div>
   </footer>
@@ -144,3 +146,77 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
     html = fill(html).replace("{title}", PT[f"meta.title.svc-{key}"]).replace("{desc}", PT[f"meta.description.svc-{key}"])
     open(f"{ROOT}/{file}", "w").write(html)
     print(file)
+
+
+# Cabeçalho e rodapé das páginas simples (privacidade e 404)
+def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
+    head = (HEAD.replace("<title>Projetos — Nizity</title>", f"<title>{PT[title_key]}</title>")
+                .replace('content="Projetos e stack de Guilherme (Nizity)."', f'content="{PT.get(desc_key, PT["meta.description.home"])}"')
+                .replace('<meta property="og:title" content="Projetos — Nizity">', f'<meta property="og:title" content="{PT[title_key]}">')
+                .replace("https://nizity.com/projects.html", f"https://nizity.com/{file}"))
+    html = f'''{head}</head>
+<body data-page="{page}">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html" data-i18n="nav.home">Início</a>
+        <a class="btn btn-nav" href="#" data-chat-open data-whatsapp="contact.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Mudar idioma / Change language">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+{body}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Nizity</span>
+      <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+      <a href="#" data-i18n="footer.top">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.js"></script>{i18n_extra}
+  <script src="assets/fx.js"></script>
+  <script src="assets/main.js"></script>
+  <script src="assets/chat.js"></script>
+</body>
+</html>
+'''
+    html = fill(html)
+    if file == "404.html":
+        # A 404 é servida em qualquer endereço (ex.: /a/b): caminhos absolutos para não quebrar
+        html = re.sub(r'(href|src)="(?!https?:|#|/|mailto:)', r'\1="/', html)
+    open(f"{ROOT}/{file}", "w").write(html)
+    print(file)
+
+sections = "\n".join(f'''        <div><dt data-i18n="privacy.s{i}.title"></dt><dd data-i18n="privacy.s{i}.text"></dd></div>''' for i in range(1, 6))
+simple_page("privacy.html", "privacy", "meta.title.privacy", "meta.description.privacy", f'''    <section class="container intro">
+      <div>
+        <p class="kicker" data-i18n="privacy.kicker"></p>
+        <h1 data-i18n-html="privacy.title"></h1>
+        <p data-i18n="privacy.lead"></p>
+      </div>
+    </section>
+
+    <section class="container section">
+      <dl class="faq">
+{sections}
+      </dl>
+      <p class="privacy-updated" data-i18n="privacy.updated"></p>
+    </section>''', "\n  <script src=\"assets/i18n-privacy.js\"></script>")
+
+simple_page("404.html", "notfound", "meta.title.notfound", "", '''    <section class="container intro notfound">
+      <div>
+        <p class="kicker" data-i18n="notfound.kicker"></p>
+        <h1 data-i18n-html="notfound.title"></h1>
+        <p data-i18n="notfound.text"></p>
+        <a class="btn" href="index.html"><span data-i18n="notfound.home"></span></a>
+      </div>
+    </section>''')
