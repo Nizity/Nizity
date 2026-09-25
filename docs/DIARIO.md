@@ -132,3 +132,11 @@
 - Demo do Salão ganhou tema claro na casca (Lavanda do site), seguindo a escolha salva no site ("nizity-theme") ou o sistema, com botão ☀/☾ que sincroniza os dois. Script de tema externo por causa da CSP. Evidência: axe 0 violações em 44 telas, E2E 9/9, sem piscar no 1º quadro, sem erro de CSP no site local.
 - Fundador pediu gestão de funcionários e financeiro. Funcionários já existem (Admin → Equipe). Financeiro completo foi recusado por escopo (uma dor só, sem piloto, dinheiro vetado); o fundador recortou para "resumo tirado das comandas" e isso foi aprovado como Fatia 4 (ver PLANO).
 - Erro meu registrado: a página longa do Salão e a animação do pedido deixaram o tablet da bancada de fora (é nele que a cozinha marca preparando/pronto). Corrigir antes de publicar.
+
+**Vitrine de produtos e página do Salão (2026-09-25)**
+- Esboços aprovados pelo fundador, implementados pelo `gen_pages.py`:
+  - `/products` virou vitrine longa: Salão com texto, "Testar a demo", "Conhecer o Salão" e a tela real; Arena com "Em breve" e caixa pontilhada (sem tela inventada). O piloto gratuito segue numa linha com o WhatsApp.
+  - `/salao` (nova, no sitemap, "Produtos" marcado no menu): problema, como funciona, tecnologias, situação e convite final. Textos em pt/en/es em `assets/i18n-salao.js`.
+- Corrigido o erro registrado antes: "Como funciona" tem 4 telas reais (garçom no celular, cozinha no tablet da bancada que marca preparando/pronto, telão da parede que só mostra, cliente no QR que só consulta). O título virou "Cada um na sua tela, na hora.", porque o cliente não participa do pedido.
+- Evidência: capturas página inteira em 1440 e 390, claro e escuro, pt e es; axe sem violações; sem rolagem lateral de 320 a 1440 px; sem erro de console com a CSP do `_headers`; imagens novas de 20 a 28 KB; testes antigos (home, menu, espanhol, construção) passando.
+- Pendente (fundador): "Quero ser piloto" como link com seta na página do Salão, depois deste trabalho. Nada publicado: commits só locais.
