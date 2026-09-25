@@ -34,6 +34,8 @@ Decisão do fundador: a home, que é para clientes, separa **Serviços** (sob me
   - **Nizity Salão:** piloto gratuito, sem preço porque ainda não foi validado com restaurante. Links para a demo e para o WhatsApp.
   - **App de comunidade esportiva (Arena):** "em breve", sem link.
 - [ ] Nome público e texto do app esportivo: confirmar com o fundador.
+- [x] Páginas de serviço (`service-*.html`, geradas por `tools/gen_services.py`) com exemplos só de trabalho real; transição animada card → página.
+- [x] Chat do site que termina no WhatsApp (`assets/chat.js`): aberto na lateral esquerda em tela ≥ 1880 px, botão no resto; nada é guardado; o orbe da home fica "ouvindo" enquanto a pessoa escreve. Chat ao vivo de verdade (servidor, atendimento em tempo real) fica para quando houver volume.
 - [x] Evidência: capturas de desktop e celular, PT/EN e claro/escuro, e axe.
 
 ## Fase 2 — Validação do Salão (sem código)

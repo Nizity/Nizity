@@ -79,9 +79,16 @@ function setupHero(orb, canvas) {
 
 function runDemo(apply) {
   let index = 0;
+  let listening = false;
+  // Enquanto a pessoa escreve no chat (chat.js), o orbe fica "ouvindo"; depois a demonstração segue
+  document.addEventListener("nizity:chat-typing", (event) => {
+    if (event.detail === listening) return;
+    listening = event.detail;
+    if (listening) apply("listening", "ouvir");
+  });
   const step = () => {
     const [state, capability, duration] = DEMO_SEQUENCE[index];
-    apply(state, capability);
+    if (!listening) apply(state, capability);
     index = (index + 1) % DEMO_SEQUENCE.length;
     setTimeout(step, duration);
   };

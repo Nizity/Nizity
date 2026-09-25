@@ -137,6 +137,7 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
   <script src="assets/i18n-services.js"></script>
   <script src="assets/fx.js"></script>
   <script src="assets/main.js"></script>
+  <script src="assets/chat.js"></script>
 </body>
 </html>
 '''
