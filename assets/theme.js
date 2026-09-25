@@ -8,6 +8,15 @@
   try { saved = localStorage.getItem(KEY); } catch (e) { /* armazenamento bloqueado */ }
   if (saved === "light" || saved === "dark") root.dataset.theme = saved;
 
+  // Na home, na 1ª visita, o Núcleo "constrói" a página (build-page.js). A classe
+  // entra aqui, antes de pintar, para o conteúdo não aparecer e sumir; movimento reduzido vê a página pronta
+  let seen = false;
+  try { seen = localStorage.getItem("nizity-intro-seen") === "1"; } catch (e) { /* sem armazenamento: versão completa */ }
+  const home = /^\/(index(\.html)?)?$/.test(location.pathname);
+  if (home && !seen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    root.classList.add("building");
+  }
+
   const current = () => root.dataset.theme || (media.matches ? "light" : "dark");
 
   // O botão mostra o tema para o qual vai trocar

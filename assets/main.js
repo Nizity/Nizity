@@ -48,6 +48,10 @@ function applyLang(lang) {
     const text = dict[el.dataset.i18n];
     if (text) el.textContent = text;
   });
+  document.querySelectorAll("[data-i18n-label]").forEach((el) => {
+    const text = dict[el.dataset.i18nLabel];
+    if (text) el.setAttribute("aria-label", text);
+  });
   // Textos com destaque em negrito: vêm só dos nossos arquivos de tradução, nunca de fora
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
     const html = dict[el.dataset.i18nHtml];

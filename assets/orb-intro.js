@@ -100,7 +100,7 @@ function strokeGlyph(ctx, prims, s) {
 /* ------------------------------ fim da cópia ------------------------------ */
 
 const MAG = [224, 82, 156], LIL = [201, 184, 255];
-const T_IN = 4.3, DUR = 1.5;               // a nuvem respira e acende os projetos; depois cai em 1,5 s
+export const T_IN = 4.3; const DUR = 1.5;               // a nuvem respira e acende os projetos; depois cai em 1,5 s
 const LAND = T_IN + 0.55 + DUR;            // ≈ 6,35 s: nebulosa e estrela nascem
 export const INTRO_END = LAND + 1.6;       // clarão apagado: o AtlasOrb assume
 export const SHORT_FROM = T_IN - 0.4;      // versão curta (visitas seguintes): começa com os projetos já acesos, pouco antes da queda
@@ -173,6 +173,13 @@ function buildBrain() {
       projEdges.push({ a: best.i, b: m.i, j });
     });
   });
+  // Os losangos grandes de cada projeto (os que mais aparecem quando ele acende); sem nenhum grande,
+  // vale o membro mais perto do centro da região
+  projects.forEach((p, j) => {
+    const members = nodes.map((n, i) => ({ n, i })).filter((m) => m.n.proj === j).sort((a, b) => a.n.pd - b.n.pd);
+    const big = members.filter((m) => m.n.big);
+    p.marks = (big.length ? big : members.slice(0, 1)).map((m) => m.i);
+  });
   return { verts, nodes, edges, projects, projEdges };
 }
 
@@ -201,13 +208,14 @@ function diamond(ctx, x, y, r, rot) {
 // "from" pula o começo (em segundos): 0 é a versão completa, SHORT_FROM a curta.
 export function createIntro(from = 0) {
   const { verts, nodes, edges, projects, projEdges } = buildBrain();
-  let start = -1, last = 0, yaw = 0, skipAt = -1;
+  let start = -1, last = 0, yaw = 0, skipAt = -1, current = from, projectPts = [];
   const brainScale = 290 / 92;   // raio da nuvem em relação ao do orbe (protótipo: 290 para R = 92)
 
   function draw(ctx, cx, cy, R, now, w, h) {
     if (start < 0) { start = now; last = from; }
     let s = from + (now - start) / 1000;
     if (skipAt >= 0) s = INTRO_END;       // pular: vai direto ao estado final (sem esmaecer nada)
+    current = s;
     if (s >= INTRO_END) return false;
     const dt = Math.min(0.1, Math.max(0, s - last)); last = s;
     const t = now / 1000;                  // mesmo relógio do AtlasOrb (respiração e nebulosa)
@@ -245,6 +253,8 @@ export function createIntro(from = 0) {
       const k = ks[i];
       return { x: bx + (o.x - bx) * k, y: by + (o.y - by) * k, Z, k: clamp(k), o, lit: litOf(n, s, projects), att: attackOf(n, s) };
     });
+    // Onde estão os losangos grandes dos projetos neste quadro (giram com a mente) (a construção da página tira os feixes daqui)
+    projectPts = projects.flatMap((p) => p.marks.map((i) => ({ x: pos[i].x, y: pos[i].y, lit: pos[i].lit, future: p.future })));
     // Enquanto os projetos acendem, o resto da mente recua um pouco
     const hush = 0.4 * clamp((s - 0.6) / 3.2);
 
@@ -321,5 +331,7 @@ export function createIntro(from = 0) {
     draw,
     skip() { skipAt = 1; },
     angle() { return 0.18 * INTRO_END; },
+    time() { return current; },
+    projectPoints() { return projectPts; },   // em px do canvas   // segundos da intro (a construção da página segue este relógio)
   };
 }

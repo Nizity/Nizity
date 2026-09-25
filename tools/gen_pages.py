@@ -1,4 +1,4 @@
-# Gera as páginas que seguem um molde: as 3 de serviço (service-*.html), produtos, privacidade e 404.
+# Gera as páginas que seguem um molde: serviços (services.html e as 3 service-*.html), produtos, privacidade e 404.
 # Rodar: python3 tools/gen_pages.py (depois de mudar o <head> de projects.html, os textos ou este arquivo).
 # Os textos ficam em assets/i18n*.js; o português é escrito direto no HTML (sem JS e para o Google).
 import json, os, re, subprocess
@@ -50,8 +50,9 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
     <div class="container nav">
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
-        <a href="index.html#services" data-i18n="svc.back">Serviços</a>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
         <a href="products.html" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
@@ -143,6 +144,7 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
 </body>
 </html>
 '''
+    html = html.replace('<a href="services.html" data-i18n=', '<a href="services.html" aria-current="true" data-i18n=')
     html = fill(html).replace("{title}", PT[f"meta.title.svc-{key}"]).replace("{desc}", PT[f"meta.description.svc-{key}"])
     open(f"{ROOT}/{file}", "w").write(html)
     print(file)
@@ -160,8 +162,9 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
     <div class="container nav">
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
-        <a href="index.html" data-i18n="nav.home">Início</a>
+        <a href="services.html" data-i18n="nav.services">Serviços</a>
         <a href="products.html" data-i18n="nav.products">Produtos</a>
+        <a href="projects.html" data-i18n="nav.projects">Projetos</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>
@@ -189,8 +192,7 @@ def simple_page(file, page, title_key, desc_key, body, i18n_extra=""):
 </body>
 </html>
 '''
-    if file == "products.html":
-        html = html.replace('<a href="products.html" data-i18n="nav.products">Produtos</a>', '<a href="projects.html" data-i18n="nav.projects">Projetos</a>')
+    html = html.replace(f'<a href="{file}" data-i18n=', f'<a href="{file}" aria-current="page" data-i18n=')
     html = fill(html)
     if file == "404.html":
         # A 404 é servida em qualquer endereço (ex.: /a/b): caminhos absolutos para não quebrar
@@ -270,3 +272,86 @@ simple_page("products.html", "products", "meta.title.products", "meta.descriptio
     <section class="container section">
 {PRODUCT_CARDS}
     </section>''')
+
+# Serviços: os 3 pacotes; cada card leva à página do serviço (com a transição do título)
+SERVICE_CARDS = '''      <div class="cards">
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-01</span>
+            <h3 data-i18n="services.s1.title" data-vt="svc-landing">Landing page</h3>
+            <span class="item-price" data-i18n="services.price">Sob consulta</span>
+            <span class="item-type" data-i18n="services.s1.type">Página única</span>
+          </div>
+          <div class="item-body">
+            <p data-i18n="services.s1.text">Uma página rápida que apresenta seu negócio e leva o cliente até você.</p>
+            <ul class="stats">
+              <li class="stat"><span data-i18n="stat.scope">Escopo</span><span class="bar"><i style="width: 30%"></i></span></li>
+              <li class="stat"><span data-i18n="stat.time">Prazo</span><span class="bar"><i style="width: 25%"></i></span></li>
+              <li class="stat"><span data-i18n="stat.support">Acompanhamento</span><span class="bar"><i style="width: 40%"></i></span></li>
+            </ul>
+            <ul class="perks">
+              <li class="perk" data-i18n="services.s1.p1">Funciona no celular e no computador</li>
+              <li class="perk" data-i18n="services.s1.p2">Botão direto para o seu WhatsApp</li>
+              <li class="perk" data-i18n="services.s1.p3">Domínio próprio e HTTPS</li>
+            </ul>
+          </div>
+          <a class="item-foot" href="service-landing.html"><span data-i18n="services.more">Saiba mais</span><span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="item exotic">
+          <div class="item-head">
+            <span class="item-code">NZ-02</span>
+            <h3 data-i18n="services.s2.title" data-vt="svc-system">Sistema sob medida</h3>
+            <span class="item-price" data-i18n="services.price">Sob consulta</span>
+            <span class="item-type" data-i18n="services.s2.type">Web e app</span>
+          </div>
+          <div class="item-body">
+            <p data-i18n="services.s2.text">Painel ou app para organizar o que hoje vive em planilha e WhatsApp.</p>
+            <ul class="stats">
+              <li class="stat"><span data-i18n="stat.scope">Escopo</span><span class="bar"><i style="width: 90%"></i></span></li>
+              <li class="stat"><span data-i18n="stat.time">Prazo</span><span class="bar"><i style="width: 80%"></i></span></li>
+              <li class="stat"><span data-i18n="stat.support">Acompanhamento</span><span class="bar"><i style="width: 70%"></i></span></li>
+            </ul>
+            <ul class="perks">
+              <li class="perk" data-i18n="services.s2.p1">Entendo o problema antes do código</li>
+              <li class="perk" data-i18n="services.s2.p2">Web e/ou app Android</li>
+              <li class="perk" data-i18n="services.s2.p3">Segurança e LGPD desde o início</li>
+            </ul>
+          </div>
+          <a class="item-foot" href="service-system.html"><span data-i18n="services.more">Saiba mais</span><span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="item">
+          <div class="item-head">
+            <span class="item-code">NZ-03</span>
+            <h3 data-i18n="services.s3.title" data-vt="svc-maintenance">Manutenção</h3>
+            <span class="item-price" data-i18n="services.price">Sob consulta</span>
+            <span class="item-type" data-i18n="services.s3.type">Mensal</span>
+          </div>
+          <div class="item-body">
+            <p data-i18n="services.s3.text">Seu site ou sistema no ar, seguro e atualizado todo mês.</p>
+            <ul class="stats">
+              <li class="stat"><span data-i18n="stat.scope">Escopo</span><span class="bar"><i style="width: 35%"></i></span></li>
+              <li class="stat"><span data-i18n="stat.time">Prazo</span><span class="bar"><i style="width: 100%"></i></span></li>
+              <li class="stat"><span data-i18n="stat.support">Acompanhamento</span><span class="bar"><i style="width: 100%"></i></span></li>
+            </ul>
+            <ul class="perks">
+              <li class="perk" data-i18n="services.s3.p1">Correções e pequenas melhorias</li>
+              <li class="perk" data-i18n="services.s3.p2">Atualizações de segurança</li>
+              <li class="perk" data-i18n="services.s3.p3">Suporte direto comigo</li>
+            </ul>
+          </div>
+          <a class="item-foot" href="service-maintenance.html"><span data-i18n="services.more">Saiba mais</span><span aria-hidden="true">→</span></a>
+        </article>
+      </div>'''
+simple_page("services.html", "services", "meta.title.services", "meta.description.services", f'''    <section class="container intro">
+      <div>
+        <p class="kicker" data-i18n="services.kicker"></p>
+        <h1 data-i18n-html="services.pageTitle"></h1>
+        <p data-i18n="services.lead"></p>
+      </div>
+    </section>
+
+    <section class="container section">
+{SERVICE_CARDS}
+    </section>''', "\n  <script src=\"assets/i18n-services.js\"></script>")

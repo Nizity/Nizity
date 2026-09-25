@@ -2,6 +2,7 @@
 // roda uma demonstração que passa pelos estados e capacidades. Só visual: sem legenda.
 import { AtlasOrb, GLYPHS } from "./atlas_orb.js";
 import { createIntro, SHORT_FROM } from "./orb-intro.js";
+import { createBuilder } from "./build-page.js";
 
 // [estado, capacidade em uso, duração em ms]
 const DEMO_SEQUENCE = [
@@ -113,13 +114,15 @@ if (heroCanvas) {
   const intro = reduceMotion ? null : createIntro(introSeen() ? SHORT_FROM : 0);
   let orb = null;
   const start = () => runDemo(setupHero(orb, heroCanvas));
-  orb = mountOrb(heroCanvas, 0.32, 60, 170, intro, () => { heroCanvas.dataset.intro = "done"; start(); });
+  // O Núcleo constrói a página no mesmo relógio da intro
+  const builder = intro ? createBuilder(heroCanvas, intro) : null;
+  orb = mountOrb(heroCanvas, 0.26, 80, 240, intro, () => { heroCanvas.dataset.intro = "done"; builder?.finish(); start(); });
   if (intro) {
     heroCanvas.dataset.intro = "running";
-    // Um clique/toque no orbe ou qualquer tecla pula a animação
-    const skip = () => intro.skip();
-    heroCanvas.addEventListener("pointerdown", skip, { once: true });
-    window.addEventListener("keydown", skip, { once: true });
+    if (builder) {
+      const follow = () => { builder.update(intro.time()); if (heroCanvas.dataset.intro === "running") requestAnimationFrame(follow); };
+      requestAnimationFrame(follow);
+    }
   } else {
     heroCanvas.dataset.intro = "none";
     start();
