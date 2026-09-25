@@ -2,92 +2,16 @@
 // Animação aprovada pelo fundador na Base do Núcleo (D-109, 24/09). Regra de ouro: nada esmaece;
 // tudo que aparece cresce de algo, e tudo que some encolhe para dentro de algo. Sem texto.
 // Terminada a queda, o mesmo canvas passa a ser desenhado pelo AtlasOrb (orb-mount.js), no mesmo ângulo.
-import { GLYPHS, hexToRgb, rgba } from "./atlas_orb.js";
+import { APPROVED_LOOK, FAMILY_COLOR, GLYPHS, GLYPH_ORBIT, GLYPH_SIZE, SOLIDS, hexToRgb, nebula, paintStar, rgba, rotate } from "./atlas_orb.js";
 
 /* ---------------------------------------------------------------------------
- * CÓPIA TEMPORÁRIA de partes do atlas_orb.js que ele não exporta (SOLIDS, rotate,
- * cores de família, nebulosa, estrela, traço do glifo). Valores idênticos aos de lá.
- * Quando o Núcleo exportar SOLIDS/rotate/FAMILY_COLOR/nebula/paintStar, apagar este
- * bloco e importar: duas cópias divergem no primeiro ajuste.
+ * CÓPIA TEMPORÁRIA: o traço do glifo (strokeGlyph) ainda não é exportado pelo atlas_orb.js.
+ * Mesma assinatura do app, (ctx, glyph, size); quando o Núcleo exportar, apagar e importar.
+ * O resto (SOLIDS, rotate, cores, nebulosa, estrela) já vem do atlas_orb.js (app 37016f4).
  * ------------------------------------------------------------------------- */
-const PHI = (1 + Math.sqrt(5)) / 2;
-const norm = (v) => { const l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l]; };
-const TETRA = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map(norm);
-const OCTA = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
-const ICOSA = (() => {
-  const out = [];
-  for (const base of [[0, 1, PHI], [1, PHI, 0], [PHI, 0, 1]]) for (const s1 of [1, -1]) for (const s2 of [1, -1]) {
-    const v = base.slice(); const nz = v.map((a, i) => (a !== 0 ? i : -1)).filter((i) => i >= 0);
-    v[nz[0]] *= s1; v[nz[1]] *= s2; out.push(norm(v));
-  }
-  return out;
-})();
-function edgesOf(verts) {
-  let min = Infinity; const d = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
-  for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) min = Math.min(min, d(verts[i], verts[j]));
-  const out = [];
-  for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) if (d(verts[i], verts[j]) < min * 1.01) out.push([i, j]);
-  return out;
-}
-const SOLIDS = [
-  { verts: TETRA, edges: edgesOf(TETRA), r: 0.35, ax: [1, 0.7, 0.2] },
-  { verts: OCTA, edges: edgesOf(OCTA), r: 0.6, ax: [-0.5, 1, 0.3] },
-  { verts: ICOSA, edges: edgesOf(ICOSA), r: 0.88, ax: [0.3, -0.4, 1] },
-];
-function rotate(p, a, b, c) {
-  let [x, y, z] = p; let t;
-  t = y * Math.cos(a) - z * Math.sin(a); z = y * Math.sin(a) + z * Math.cos(a); y = t;
-  t = x * Math.cos(b) + z * Math.sin(b); z = -x * Math.sin(b) + z * Math.cos(b); x = t;
-  t = x * Math.cos(c) - y * Math.sin(c); y = x * Math.sin(c) + y * Math.cos(c); x = t;
-  return [x, y, z];
-}
-const FAMILY_COLOR = { sentidos: "#E0529C", arquivos: "#9DD8FF", execucao: "#C9B8FF", aparelhos: "#6FE3C1", elenco: "#8FB4FF", capacidades: "#E8C97A" };
-const NEB = 48, LILAC = [201, 184, 255], DEEP = [26, 10, 40];
-let nebCanvas = null, nebImage = null;
-function nebula(t, angle, color) {
-  if (!nebCanvas) { nebCanvas = document.createElement("canvas"); nebCanvas.width = NEB; nebCanvas.height = NEB; nebImage = nebCanvas.getContext("2d").createImageData(NEB, NEB); }
-  const d = nebImage.data, half = NEB / 2, sector = Math.PI * 2 / 8;
-  for (let yy = 0; yy < NEB; yy++) for (let xx = 0; xx < NEB; xx++) {
-    let u = (xx - half) / half, w = (yy - half) / half;
-    const r = Math.hypot(u, w);
-    let a = Math.atan2(w, u) + angle * 0.5;
-    a = ((a % sector) + sector) % sector; a = Math.abs(a - sector / 2);
-    u = Math.cos(a) * r; w = Math.sin(a) * r;
-    const n = Math.sin(u * 5 + t * 0.7 + Math.sin(w * 4 - t * 0.5) * 1.5) * 0.5 + Math.sin(w * 7 - t * 0.4 + Math.cos(u * 6 + t * 0.3)) * 0.3 + Math.sin(r * 9 - t * 1.2) * 0.2;
-    const m = Math.pow(0.5 + 0.5 * n, 2.2), k = (yy * NEB + xx) * 4, edge = Math.max(0, 1 - r), eye = Math.min(1, r / 0.2);
-    for (let ch = 0; ch < 3; ch++) d[k + ch] = (DEEP[ch] * (1 - m) + (color[ch] * 0.7 + LILAC[ch] * 0.3) * m) * eye;
-    d[k + 3] = 255 * edge;
-  }
-  nebCanvas.getContext("2d").putImageData(nebImage, 0, 0);
-  return nebCanvas;
-}
-function star(ctx, cx, cy, R, angle, glow, color, scale, flare) {
-  if (scale <= 0.01) return;
-  const s = R * 0.105 * scale, g = glow * (1 + flare);
-  const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, s * 4.5);
-  halo.addColorStop(0, rgba([255, 255, 255], 0.9 * g));
-  halo.addColorStop(0.22, rgba(color, 0.7 * g));
-  halo.addColorStop(1, rgba(color, 0));
-  ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, s * 4.5, 0, Math.PI * 2); ctx.fill();
-  const ray = (len, a, width, al) => {
-    ctx.save(); ctx.translate(cx, cy); ctx.rotate(a);
-    const gr = ctx.createLinearGradient(-len, 0, len, 0);
-    gr.addColorStop(0, rgba(color, 0)); gr.addColorStop(0.5, rgba([255, 255, 255], al)); gr.addColorStop(1, rgba(color, 0));
-    ctx.fillStyle = gr; ctx.fillRect(-len, -width / 2, len * 2, width); ctx.restore();
-  };
-  const L = s * 7, w = Math.max(0.8, R / 63);
-  ray(L, angle * 0.4, w, 0.75 * g);
-  ray(L, angle * 0.4 + Math.PI / 2, w, 0.75 * g);
-  ray(L * 0.55, angle * 0.4 + Math.PI / 4, w * 0.66, 0.45 * g);
-  ray(L * 0.55, angle * 0.4 - Math.PI / 4, w * 0.66, 0.45 * g);
-  ctx.save(); ctx.translate(cx, cy); ctx.rotate(-angle * 1.5);
-  ctx.fillStyle = rgba([255, 255, 255], 0.95);
-  ctx.beginPath(); ctx.moveTo(0, -s); ctx.lineTo(s * 0.45, 0); ctx.lineTo(0, s); ctx.lineTo(-s * 0.45, 0); ctx.closePath(); ctx.fill();
-  ctx.restore();
-}
-function strokeGlyph(ctx, prims, s) {
+function strokeGlyph(ctx, glyph, s) {
   ctx.beginPath();
-  for (const p of prims) {
+  for (const p of glyph.prims) {
     if (p.l) { ctx.moveTo(p.l[0] * s, p.l[1] * s); ctx.lineTo(p.l[2] * s, p.l[3] * s); }
     else if (p.r) ctx.rect(p.r[0] * s, p.r[1] * s, p.r[2] * s, p.r[3] * s);
     else if (p.c) { ctx.moveTo((p.c[0] + p.c[2]) * s, p.c[1] * s); ctx.arc(p.c[0] * s, p.c[1] * s, p.c[2] * s, 0, Math.PI * 2); }
@@ -173,13 +97,6 @@ function buildBrain() {
       projEdges.push({ a: best.i, b: m.i, j });
     });
   });
-  // Os losangos grandes de cada projeto (os que mais aparecem quando ele acende); sem nenhum grande,
-  // vale o membro mais perto do centro da região
-  projects.forEach((p, j) => {
-    const members = nodes.map((n, i) => ({ n, i })).filter((m) => m.n.proj === j).sort((a, b) => a.n.pd - b.n.pd);
-    const big = members.filter((m) => m.n.big);
-    p.marks = (big.length ? big : members.slice(0, 1)).map((m) => m.i);
-  });
   return { verts, nodes, edges, projects, projEdges };
 }
 
@@ -208,7 +125,7 @@ function diamond(ctx, x, y, r, rot) {
 // "from" pula o começo (em segundos): 0 é a versão completa, SHORT_FROM a curta.
 export function createIntro(from = 0) {
   const { verts, nodes, edges, projects, projEdges } = buildBrain();
-  let start = -1, last = 0, yaw = 0, skipAt = -1, current = from, projectPts = [];
+  let start = -1, last = 0, yaw = 0, skipAt = -1, current = from;
   const brainScale = 290 / 92;   // raio da nuvem em relação ao do orbe (protótipo: 290 para R = 92)
 
   function draw(ctx, cx, cy, R, now, w, h) {
@@ -244,7 +161,7 @@ export function createIntro(from = 0) {
       const yy = 1 - ((i + 0.5) / nG) * 2, rr = Math.sqrt(1 - yy * yy), tt = i * 2.39996;
       const p = rotate([Math.cos(tt) * rr, yy, Math.sin(tt) * rr], angle * 0.39, angle * -0.52, angle * 1.3);
       const sc = 4 / (4 + p[2]);
-      return { x: cx + p[0] * R * 1.16 * sc, y: cy + p[1] * R * 1.16 * sc, depth: (p[2] + 1) / 2 };
+      return { x: cx + p[0] * R * GLYPH_ORBIT * sc, y: cy + p[1] * R * GLYPH_ORBIT * sc, depth: (p[2] + 1) / 2 };
     });
     const pos = nodes.map((n, i) => {
       const X = n.bx * ca + n.bz * sa, Z = -n.bx * sa + n.bz * ca, sc = 1 / (1.9 - Z * 0.6);
@@ -253,8 +170,6 @@ export function createIntro(from = 0) {
       const k = ks[i];
       return { x: bx + (o.x - bx) * k, y: by + (o.y - by) * k, Z, k: clamp(k), o, lit: litOf(n, s, projects), att: attackOf(n, s) };
     });
-    // Onde estão os losangos grandes dos projetos neste quadro (giram com a mente) (a construção da página tira os feixes daqui)
-    projectPts = projects.flatMap((p) => p.marks.map((i) => ({ x: pos[i].x, y: pos[i].y, lit: pos[i].lit, future: p.future })));
     // Enquanto os projetos acendem, o resto da mente recua um pouco
     const hush = 0.4 * clamp((s - 0.6) / 3.2);
 
@@ -318,11 +233,11 @@ export function createIntro(from = 0) {
         ctx.save(); ctx.translate(P.x, P.y);
         ctx.strokeStyle = rgba(hexToRgb(FAMILY_COLOR[g.family]), alpha);
         ctx.lineWidth = 1.25; ctx.lineJoin = "round";
-        strokeGlyph(ctx, g.prims, R * 0.053 * Math.pow(k, 1.4));
+        strokeGlyph(ctx, g, R * GLYPH_SIZE * Math.pow(k, 1.4));
         ctx.restore();
       }
     });
-    star(ctx, cx, cy, R, angle, glow, MAG, Math.max(0, grow) * (1 + 0.04 * breath), flare);
+    paintStar(ctx, cx, cy, R, { angle, glow, pulse: 1, breath, color: MAG }, APPROVED_LOOK, { scale: Math.max(0, grow), flare });
     ctx.globalCompositeOperation = previous;
     return true;
   }
@@ -331,7 +246,6 @@ export function createIntro(from = 0) {
     draw,
     skip() { skipAt = 1; },
     angle() { return 0.18 * INTRO_END; },
-    time() { return current; },
-    projectPoints() { return projectPts; },   // em px do canvas   // segundos da intro (a construção da página segue este relógio)
+    time() { return current; },   // segundos da intro (a página se escreve neste relógio)
   };
 }
