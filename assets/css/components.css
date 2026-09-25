@@ -41,6 +41,12 @@
 }
 .btn:hover { background: var(--color-text); color: var(--color-bg); }
 .btn-ghost { border-color: var(--color-line-strong); }
+/* Botão principal (cheio): a ação que a gente quer que a pessoa faça */
+.btn-primary { background: var(--color-text); color: var(--color-bg); border-color: var(--color-text); }
+.btn-primary:hover { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); }
+@media (max-width: 860px) {
+  .btn-primary-m { background: var(--color-text); color: var(--color-bg); border-color: var(--color-text); }
+}
 .key {
   font-family: var(--font-mono);
   font-size: .7rem;

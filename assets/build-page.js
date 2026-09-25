@@ -9,6 +9,7 @@ const STEPS = [
   [".hero h1", 2.2, 0.8, "write"],
   [".hero .lead", 2.2, 0.9, "write"],
   [".hero .btn-hold", 2.25, 0.7, "line"],
+  [".hero .hero-more", 2.45, 0.6, "line"],
   [".nav-links a:nth-child(1)", 3.2, 0.45, "write"],
   [".nav-links a:nth-child(2)", 3.2, 0.45, "write"],
   [".nav-links a:nth-child(3)", 3.2, 0.45, "write"],

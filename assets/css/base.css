@@ -153,3 +153,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Texto só para leitor de tela */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Só no celular: some a partir de 861 px (a home do computador fica limpa, estilo Polestar) */
+@media (min-width: 861px) {
+  .m-only { display: none !important; }
+}
