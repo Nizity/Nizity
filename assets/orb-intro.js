@@ -23,7 +23,7 @@ function strokeGlyph(ctx, glyph, s) {
 }
 /* ------------------------------ fim da cópia ------------------------------ */
 
-const MAG = [224, 82, 156], LIL = [201, 184, 255];
+const MAG = [224, 82, 156];
 export const T_IN = 4.3; const DUR = 1.5;               // a nuvem respira e acende os projetos; depois cai em 1,5 s
 const LAND = T_IN + 0.55 + DUR;            // ≈ 6,35 s: nebulosa e estrela nascem
 export const INTRO_END = LAND + 1.6;       // clarão apagado: o AtlasOrb assume
@@ -38,6 +38,19 @@ function fall(x) {
   return 1 + 0.05 * Math.cos(u * Math.PI * 1.5) * (1 - u);
 }
 const clamp = (x) => Math.max(0, Math.min(1, x));
+// A nuvem por tema (ajuste aprovado pelo fundador, quadro G v12): no lavanda do site as linhas finas e
+// claras sumiam, então o claro desenha a nuvem mais escura, mais grossa e com mistura normal. O escuro é o
+// visual aprovado, sem mudança. O orbe (estrela, nebulosa, AtlasOrb) mantém as cores nos dois temas.
+const THEMES = {
+  dark: { edge: [224, 82, 156], node: [201, 184, 255], big: [224, 82, 156], wK: 1, aK: 1, blend: "lighter", proj: 0, light: false },
+  light: { edge: [150, 38, 98], node: [88, 66, 168], big: [176, 40, 110], wK: 1.6, aK: 2.2, blend: "source-over", proj: 0.35, light: true },
+};
+// Mesma regra do theme.js: a escolha salva ou, sem ela, o tema do sistema
+function currentTheme() {
+  const saved = document.documentElement.dataset.theme;
+  const light = saved ? saved === "light" : window.matchMedia("(prefers-color-scheme: light)").matches;
+  return light ? THEMES.light : THEMES.dark;
+}
 const mix = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
 function rng(seed) {
   let a = seed;
@@ -183,30 +196,39 @@ export function createIntro(from = 0) {
       ctx.drawImage(neb, cx - nr, cy - nr, nr * 2, nr * 2); ctx.restore();
     }
 
+    const TH = currentTheme();
     const previous = ctx.globalCompositeOperation;
-    ctx.globalCompositeOperation = "lighter";
+    ctx.globalCompositeOperation = TH.blend;
     ctx.lineCap = "round";
     const wireW = Math.max(0.6, Math.min(1.1, R / 40));
     for (const e of edges) {
       const A = pos[e.a], B = pos[e.b];
-      const brainA = (0.05 + 0.12 * ((A.Z + B.Z) / 2 + 1) / 2) * (1 - hush) + 0.25 * Math.min(A.lit, B.lit), kk = Math.min(A.k, B.k);
-      let alpha, width;
+      const brainA = Math.min(1, ((0.05 + 0.12 * ((A.Z + B.Z) / 2 + 1) / 2) * (1 - hush) + 0.25 * Math.min(A.lit, B.lit)) * TH.aK), kk = Math.min(A.k, B.k);
+      let alpha, width, color, ex = B.x, ey = B.y;
       if (e.kind === "wire") {
         const dz = (A.o.z + B.o.z) / 2;
         const orbA = (0.3 + 0.5 * (dz + 1) / 2) * (0.55 + 0.5 * glow);
-        alpha = brainA + (orbA - brainA) * kk; width = 0.7 + (wireW - 0.7) * kk;
-      } else { alpha = brainA * (1 - kk); width = 0.7; }
+        alpha = brainA + (orbA - brainA) * kk; width = 0.7 * TH.wK + (wireW - 0.7 * TH.wK) * kk;
+        color = mix(TH.edge, MAG, kk);
+      } else {
+        // As duas pontas de uma fold pousam no mesmo vértice; cruzando a nuvem no meio da queda faziam um
+        // emaranhado de ~1 s. Agora ela se RECOLHE para a primeira ponta no começo da queda: encolhe, não esmaece
+        const r = clamp(Math.max(A.k, B.k) * 2.5);
+        if (r >= 0.99) continue;
+        ex = A.x + (B.x - A.x) * (1 - r); ey = A.y + (B.y - A.y) * (1 - r);
+        alpha = brainA; width = 0.7 * TH.wK * (1 - 0.5 * r); color = TH.edge;
+      }
       if (alpha < 0.01) continue;
-      ctx.strokeStyle = rgba(MAG, alpha); ctx.lineWidth = width;
-      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+      ctx.strokeStyle = rgba(color, alpha); ctx.lineWidth = width;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(ex, ey); ctx.stroke();
     }
     for (const e of projEdges) {
       const A = pos[e.a], B = pos[e.b];
       const reach = B.att * (1 - clamp(Math.max(A.k, B.k) * 1.8));
       if (reach < 0.02) continue;
       const ex = A.x + (B.x - A.x) * reach, ey = A.y + (B.y - A.y) * reach;
-      ctx.strokeStyle = rgba(projects[e.j].rgb, 0.2 + 0.55 * Math.max(A.lit, B.lit));
-      ctx.lineWidth = 0.9;
+      ctx.strokeStyle = rgba(mix(projects[e.j].rgb, [0, 0, 0], TH.proj), Math.min(1, (0.2 + 0.55 * Math.max(A.lit, B.lit)) * (TH.light ? 1.4 : 1)));
+      ctx.lineWidth = 0.9 * TH.wK;
       ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(ex, ey); ctx.stroke();
     }
     nodes.forEach((n, i) => {
@@ -215,16 +237,16 @@ export function createIntro(from = 0) {
       if (shrink > 0.02) {
         const size = (n.big ? 4.6 : 2.4) * (1 + P.Z * 0.3) * (1 + 0.45 * lit) * shrink;
         const target = n.kind === "v" ? MAG : hexToRgb(FAMILY_COLOR[GLYPHS[KEYS[n.gi]].family]);
-        let col = n.big ? MAG : LIL;
-        if (lit > 0) col = mix(col, projects[n.proj].rgb, lit);
+        let col = n.big ? TH.big : TH.node;
+        if (lit > 0) col = mix(col, mix(projects[n.proj].rgb, [0, 0, 0], TH.proj), lit);
         col = mix(col, target, k);
-        const a0 = (0.35 + 0.45 * (P.Z + 1) / 2) * (1 - hush);
+        const a0 = Math.min(1, (0.35 + 0.45 * (P.Z + 1) / 2) * (1 - hush) * (TH.light ? 1.5 : 1));
         if (lit > 0.05) {
           ctx.fillStyle = rgba(col, 0.2 * lit * shrink);
           ctx.beginPath(); ctx.arc(P.x, P.y, size * 2.6, 0, Math.PI * 2); ctx.fill();
         }
         ctx.strokeStyle = rgba(col, a0 + (0.98 - a0) * lit);
-        ctx.lineWidth = 1 + 0.3 * lit;
+        ctx.lineWidth = (1 + 0.3 * lit) * TH.wK;
         diamond(ctx, P.x, P.y, size, Math.PI / 4 + s * 0.5 + n.spin);
       }
       if (n.kind === "g" && k > 0.02) {
