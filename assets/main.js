@@ -48,10 +48,6 @@ function applyLang(lang) {
     const text = dict[el.dataset.i18n];
     if (text) el.textContent = text;
   });
-  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
-    const text = dict[el.dataset.i18nAlt];
-    if (text) el.setAttribute("alt", text);
-  });
   document.querySelectorAll("[data-i18n-label]").forEach((el) => {
     const text = dict[el.dataset.i18nLabel];
     if (text) el.setAttribute("aria-label", text);
