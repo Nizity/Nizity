@@ -37,6 +37,7 @@ Módulos que valem aqui, pelo tipo: **FRONTEND** (painel web), **PRODUTO** (usu�
 - Diário de bordo e pendências: `docs/DIARIO.md`
 - Desenhado mas vetado: `docs/MODULOS_FUTUROS.md`
 - Roteiro de entrevista com restaurantes: `docs/SALAO_ROTEIRO_ENTREVISTA.md`
+- **Código do Salão:** repo privado `Nizity/salao` (contexto em `docs/SALAO_CONTEXTO.md`). A demo pública em `demo/salao/` é o build dele (`npm run build:demo`).
 
 ## 4. Como rodar
 

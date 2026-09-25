@@ -99,6 +99,10 @@
 - Reforço: o backend recusa segredo JWT com menos de 32 caracteres.
 - O Salão continua **sem push** (21 commits só no container). O `Nizity/salao` ainda não existe.
 
+**Salão salvo no GitHub (2026-09-25)**
+- O fundador criou o `Nizity/salao` (privado). Os 23 commits foram enviados ao `main` e conferidos pela API: mesmo hash no topo (`1490551`) e visibilidade `private`. Antes do push, a checagem de segredos no histórico não achou nada (só as senhas falsas dos testes e a do Postgres local).
+- Perfil do GitHub privado e e-mail escondido, pelo fundador.
+
 **Próximo passo (para a sessão local)**
 1. Rodar o prompt da Base (está no `CLAUDE.md` §1) e confirmar módulos e conflitos.
 2. Levar ao fundador as pendências da Fase 0 do `PLANO.md`. Nada de código novo antes.
