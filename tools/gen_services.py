@@ -50,7 +50,7 @@ for file, key, code, s, examples, faq3, exotic in PAGES:
       <a class="logo" href="index.html" aria-label="Nizity"><span class="diamond"></span>Nizity</a>
       <nav class="nav-links" id="nav-links">
         <a href="index.html#services" data-i18n="svc.back">Serviços</a>
-        <a class="btn btn-nav" href="#" data-whatsapp="services.{s}.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
+        <a class="btn btn-nav" href="#" data-chat-open data-whatsapp="services.{s}.message" target="_blank" rel="noopener" hidden data-i18n="nav.quote">Orçamento</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle theme-toggle" id="theme-toggle" type="button" aria-label="Mudar tema">☀</button>

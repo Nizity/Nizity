@@ -1,5 +1,6 @@
 // Chat do site que termina no WhatsApp: a pessoa escreve aqui e a mensagem abre pronta no WhatsApp.
-// Nada é guardado nem enviado a servidor. Em tela larga fica aberto na lateral esquerda; no resto, um botão abre.
+// Nada é guardado nem enviado a servidor. Em tela larga fica aberto na lateral esquerda; no resto, os botões
+// de orçamento ([data-chat-open]) abrem o painel (no celular, de baixo para cima). Sem JS, eles vão direto ao WhatsApp.
 // Depende de translations (i18n.js) e CONTACT (main.js).
 (() => {
   if (!CONTACT.whatsapp) return;
@@ -9,9 +10,6 @@
   const root = document.createElement("aside");
   root.className = "chat";
   root.innerHTML = `
-    <button class="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel">
-      <span class="chat-toggle-icon" aria-hidden="true"></span><span data-chat="toggle"></span>
-    </button>
     <div class="chat-panel" id="chat-panel" role="region" aria-labelledby="chat-title">
       <div class="chat-head">
         <span class="diamond" aria-hidden="true"></span>
@@ -33,7 +31,7 @@
     </div>`;
   document.body.append(root);
 
-  const toggle = root.querySelector(".chat-toggle");
+  let opener = null;
   const text = root.querySelector("#chat-text");
   const send = root.querySelector(".chat-send");
 
@@ -47,18 +45,22 @@
 
   const setOpen = (open) => {
     root.classList.toggle("is-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    if (open && !docked.matches) text.focus();
+    if (!open && opener) { opener.focus(); opener = null; }
   };
 
   // Orbe da home "ouvindo" enquanto a pessoa escreve (orb-mount.js escuta este evento)
   let typingTimer = 0;
   const typing = (active) => document.dispatchEvent(new CustomEvent("nizity:chat-typing", { detail: active }));
 
-  toggle.addEventListener("click", () => setOpen(!root.classList.contains("is-open")));
-  root.querySelector(".chat-close").addEventListener("click", () => { setOpen(false); toggle.focus(); });
+  document.querySelectorAll("[data-chat-open]").forEach((link) => link.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!docked.matches) opener = link;
+    setOpen(true);
+    text.focus();
+  }));
+  root.querySelector(".chat-close").addEventListener("click", () => setOpen(false));
   root.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !docked.matches) { setOpen(false); toggle.focus(); }
+    if (event.key === "Escape" && !docked.matches) setOpen(false);
   });
 
   // Atalhos só preenchem o texto; a pessoa completa com os detalhes antes de enviar

@@ -79,7 +79,7 @@ function setupInteractionSounds() {
   });
 }
 
-// Segurar E enche o botão do topo e, ao completar, abre o WhatsApp (mesmo destino do botão)
+// Segurar E enche o botão do topo e, ao completar, faz o mesmo que o clique (abre o chat ou, sem ele, o WhatsApp)
 function setupHoldToConfirm() {
   const button = document.querySelector(".btn-hold");
   if (!button) return;
@@ -93,6 +93,8 @@ function setupHoldToConfirm() {
   const go = () => {
     reset();
     sound.confirm();
+    // Com o chat (chat.js) montado, o botão abre o chat
+    if (button.hasAttribute("data-chat-open") && document.querySelector(".chat")) return button.click();
     if (button.getAttribute("href") === "#") return;
     // Com "noopener" o window.open sempre devolve null; por isso o opener é cortado à mão.
     // Se o navegador bloquear a nova aba, abre na mesma.
