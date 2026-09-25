@@ -351,7 +351,7 @@ simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao",
           <p class="lead" data-i18n="salao.lead"></p>
           <div class="cs-acts">
             <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo"></span></a>
-            <a class="btn btn-ghost" {PILOT}</a>
+            <a class="home-link" {PILOT}<span aria-hidden="true">→</span></a>
           </div>
         </div>
         <img class="shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
@@ -391,8 +391,8 @@ simple_page("salao.html", "salao", "meta.title.salao", "meta.description.salao",
         <h2 id="salao-end" data-i18n-html="salao.end.title"></h2>
         <p data-i18n="salao.end.text"></p>
         <div class="cs-acts">
-          <a class="btn btn-primary" {PILOT}</a>
-          <a class="btn btn-ghost" href="demo/salao/"><span data-i18n="products.demo"></span></a>
+          <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo"></span></a>
+          <a class="home-link" {PILOT}<span aria-hidden="true">→</span></a>
         </div>
         <a class="cs-back" href="products.html"><span aria-hidden="true">←</span> <span data-i18n="salao.back"></span></a>
       </section>
