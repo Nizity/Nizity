@@ -43,51 +43,45 @@
   </header>
 
   <main>
-    <section class="container intro">
-      <div>
-        <p class="kicker" data-i18n="products.kicker">Produtos</p>
-        <h1 data-i18n-html="products.pageTitle">Pronto para <strong>usar.</strong></h1>
-        <p data-i18n="products.lead">Soluções prontas para problemas de um tipo de negócio. Sem projeto sob medida: você começa a usar.</p>
-      </div>
-    </section>
+    <div class="container">
+      <section class="intro">
+        <div>
+          <p class="kicker" data-i18n="products.kicker">Produtos</p>
+          <h1 data-i18n-html="products.pageTitle">Pronto para <strong>usar.</strong></h1>
+          <p data-i18n="products.lead">Soluções prontas para problemas de um tipo de negócio. Sem projeto sob medida: você começa a usar.</p>
+        </div>
+      </section>
 
-    <section class="container section">
-      <div class="projects">
-        <article class="item exotic">
-          <div class="item-head">
-            <span class="item-code">NZ-P1</span>
-            <h3 data-i18n="products.p1.title">Nizity Salão</h3>
-            <span class="item-price" data-i18n="products.p1.price">Piloto gratuito</span>
-            <span class="item-type" data-i18n="products.p1.type">Para restaurantes</span>
+      <section class="prod" aria-labelledby="prod-p1">
+        <div class="prod-text">
+          <p class="kicker"><span>NZ-P1 · <span data-i18n="products.p1.type">Para restaurantes</span></span></p>
+          <h2 id="prod-p1" data-i18n="products.p1.title" data-vt="salao">Nizity Salão</h2>
+          <p class="prod-desc" data-i18n="products.p1.text">O garçom lança o pedido no celular e a cozinha vê na hora, num telão. Quando fica pronto, o garçom é avisado.</p>
+          <ul class="prod-list">
+            <li data-i18n="products.p1.p1">Comanda no celular do garçom</li>
+            <li data-i18n="products.p1.p2">Telão da cozinha em tempo real</li>
+            <li data-i18n="products.p1.p3">Cardápio por QR Code na mesa</li>
+          </ul>
+          <div class="prod-acts">
+            <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo">Testar a demo</span></a>
+            <a class="home-link" href="salao.html"><span data-i18n="products.p1.more">Conhecer o Salão</span><span aria-hidden="true">→</span></a>
           </div>
-          <div class="item-body">
-            <p data-i18n="products.p1.text">O garçom lança o pedido no celular e a cozinha vê na hora, num telão. Quando fica pronto, o garçom é avisado.</p>
-            <ul class="perks">
-              <li class="perk" data-i18n="products.p1.p1">Comanda no celular do garçom</li>
-              <li class="perk" data-i18n="products.p1.p2">Telão da cozinha em tempo real</li>
-              <li class="perk" data-i18n="products.p1.p3">Cardápio por QR Code na mesa</li>
-            </ul>
-          </div>
-          <div class="item-actions">
-            <a class="item-foot" href="demo/salao/"><span data-i18n="products.demo">Testar a demo</span><span aria-hidden="true">→</span></a>
-            <a class="item-foot" href="#" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta">Quero ser piloto</span><span aria-hidden="true">→</span></a>
-          </div>
-        </article>
+          <p class="prod-note"><span data-i18n="products.p1.price">Piloto gratuito</span> · <a href="https://wa.me/5521997464308" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta">Quero ser piloto</span> <span aria-hidden="true">→</span></a></p>
+        </div>
+        <img class="shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" alt="Telão da cozinha e celular do garçom no Nizity Salão" data-i18n-alt="home.prod.alt">
+      </section>
 
-        <article class="item">
-          <div class="item-head">
-            <span class="item-code">NZ-P2</span>
-            <h3 data-i18n="products.p2.title">Arena</h3>
-            <span class="item-price" data-i18n="products.soon">Em breve</span>
-            <span class="item-type" data-i18n="products.p2.type">Para comunidades esportivas</span>
-          </div>
-          <div class="item-body">
-            <p data-i18n="products.p2.text">Um app para a sua turma organizar jogos, participantes e as colaborações do grupo.</p>
-          </div>
-          <span class="item-foot is-soon" data-i18n="products.soon">Em breve</span>
-        </article>
-      </div>
-    </section>
+      <section class="prod" aria-labelledby="prod-p2">
+        <div class="prod-text">
+          <p class="tag-soon" data-i18n="products.soon">Em breve</p>
+          <p class="kicker"><span>NZ-P2 · <span data-i18n="products.p2.type">Para comunidades esportivas</span></span></p>
+          <h2 id="prod-p2" data-i18n="products.p2.title">Arena</h2>
+          <p class="prod-desc" data-i18n="products.p2.text">Um app para a sua turma organizar jogos, participantes e as colaborações do grupo.</p>
+        </div>
+        <!-- Sem tela para mostrar ainda: caixa pontilhada no lugar (não inventar imagem) -->
+        <div class="soon-box" aria-hidden="true"><span data-i18n="products.soon">Em breve</span></div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">

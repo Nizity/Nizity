@@ -277,53 +277,47 @@ WA = "https://wa.me/5521997464308"
 def alt(key):
     return f'alt="{html_lib.escape(PT[key])}" data-i18n-alt="{key}"'
 
-# Produtos: o que se vende pronto (a página de projetos continua sendo para recrutadores)
-PRODUCT_CARDS = '''      <div class="projects">
-        <article class="item exotic">
-          <div class="item-head">
-            <span class="item-code">NZ-P1</span>
-            <h3 data-i18n="products.p1.title">Nizity Salão</h3>
-            <span class="item-price" data-i18n="products.p1.price">Piloto gratuito</span>
-            <span class="item-type" data-i18n="products.p1.type">Para restaurantes</span>
-          </div>
-          <div class="item-body">
-            <p data-i18n="products.p1.text">O garçom lança o pedido no celular e a cozinha vê na hora, num telão. Quando fica pronto, o garçom é avisado.</p>
-            <ul class="perks">
-              <li class="perk" data-i18n="products.p1.p1">Comanda no celular do garçom</li>
-              <li class="perk" data-i18n="products.p1.p2">Telão da cozinha em tempo real</li>
-              <li class="perk" data-i18n="products.p1.p3">Cardápio por QR Code na mesa</li>
-            </ul>
-          </div>
-          <div class="item-actions">
-            <a class="item-foot" href="demo/salao/"><span data-i18n="products.demo">Experimentar a demo</span><span aria-hidden="true">→</span></a>
-            <a class="item-foot" href="#" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta">Quero ser piloto</span><span aria-hidden="true">→</span></a>
-          </div>
-        </article>
+# Produtos: vitrine longa, um bloco por produto (texto à esquerda, a tela à direita).
+# A página de projetos continua sendo para recrutadores
+simple_page("products.html", "products", "meta.title.products", "meta.description.products", f'''    <div class="container">
+      <section class="intro">
+        <div>
+          <p class="kicker" data-i18n="products.kicker"></p>
+          <h1 data-i18n-html="products.pageTitle"></h1>
+          <p data-i18n="products.lead"></p>
+        </div>
+      </section>
 
-        <article class="item">
-          <div class="item-head">
-            <span class="item-code">NZ-P2</span>
-            <h3 data-i18n="products.p2.title">Arena</h3>
-            <span class="item-price" data-i18n="products.soon">Em breve</span>
-            <span class="item-type" data-i18n="products.p2.type">Para comunidades esportivas</span>
+      <section class="prod" aria-labelledby="prod-p1">
+        <div class="prod-text">
+          <p class="kicker"><span>NZ-P1 · <span data-i18n="products.p1.type"></span></span></p>
+          <h2 id="prod-p1" data-i18n="products.p1.title" data-vt="salao"></h2>
+          <p class="prod-desc" data-i18n="products.p1.text"></p>
+          <ul class="prod-list">
+            <li data-i18n="products.p1.p1"></li>
+            <li data-i18n="products.p1.p2"></li>
+            <li data-i18n="products.p1.p3"></li>
+          </ul>
+          <div class="prod-acts">
+            <a class="btn btn-primary" href="demo/salao/"><span data-i18n="products.demo"></span></a>
+            <a class="home-link" href="salao.html"><span data-i18n="products.p1.more"></span><span aria-hidden="true">→</span></a>
           </div>
-          <div class="item-body">
-            <p data-i18n="products.p2.text">Um app para a sua turma organizar jogos, participantes e as colaborações do grupo.</p>
-          </div>
-          <span class="item-foot is-soon" data-i18n="products.soon">Em breve</span>
-        </article>
-      </div>'''
-simple_page("products.html", "products", "meta.title.products", "meta.description.products", f'''    <section class="container intro">
-      <div>
-        <p class="kicker" data-i18n="products.kicker"></p>
-        <h1 data-i18n-html="products.pageTitle"></h1>
-        <p data-i18n="products.lead"></p>
-      </div>
-    </section>
+          <p class="prod-note"><span data-i18n="products.p1.price"></span> · <a href="{WA}" data-whatsapp="products.p1.message" target="_blank" rel="noopener"><span data-i18n="products.p1.cta"></span> <span aria-hidden="true">→</span></a></p>
+        </div>
+        <img class="shot" src="assets/img/salao-vitrine.webp" width="1260" height="720" {alt("home.prod.alt")}>
+      </section>
 
-    <section class="container section">
-{PRODUCT_CARDS}
-    </section>''')
+      <section class="prod" aria-labelledby="prod-p2">
+        <div class="prod-text">
+          <p class="tag-soon" data-i18n="products.soon"></p>
+          <p class="kicker"><span>NZ-P2 · <span data-i18n="products.p2.type"></span></span></p>
+          <h2 id="prod-p2" data-i18n="products.p2.title"></h2>
+          <p class="prod-desc" data-i18n="products.p2.text"></p>
+        </div>
+        <!-- Sem tela para mostrar ainda: caixa pontilhada no lugar (não inventar imagem) -->
+        <div class="soon-box" aria-hidden="true"><span data-i18n="products.soon"></span></div>
+      </section>
+    </div>''')
 
 # Salão: página longa do produto (nizity.com/salao). Mora dentro de Produtos no menu.
 # Como funciona = 4 telas: garçom (celular), cozinha na bancada (tablet, marca preparando/pronto),

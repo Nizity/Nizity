@@ -30,9 +30,7 @@
 /* Serviços */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 
-/* Produtos: o Salão tem duas saídas (demo e piloto); o que ainda não existe mostra "em breve" sem link */
-.item-actions { display: grid; grid-template-columns: 1fr 1fr; }
-.item-actions .item-foot + .item-foot { border-left: 1px solid var(--color-line); }
+/* Produto que ainda não existe: a ficha mostra "em breve" sem link */
 .item-foot.is-soon { color: var(--color-muted); }
 
 /* Processo, no estilo de etapas de missão */
@@ -77,8 +75,6 @@
   .cards, .steps, .projects { grid-template-columns: 1fr; }
   .contact, .intro { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
-  .item-actions { grid-template-columns: 1fr; }
-  .item-actions .item-foot + .item-foot { border-left: 0; }
 }
 
 /* Link em caixa-alta com seta (o "Saiba mais" sem caixa) */
@@ -144,11 +140,26 @@ button.item-foot { width: 100%; background: none; border: 0; border-top: 1px sol
   .svc-cta { justify-items: start; }
 }
 
+/* Vitrine de produtos: um bloco por produto, texto à esquerda e a tela à direita (no celular, empilha) */
+.prod { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: center; padding-block: 64px; border-top: 1px solid var(--color-line); }
+.prod > * { min-width: 0; }
+.prod h2 { font-weight: 500; font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 12px; }
+.prod-desc { color: var(--color-muted); font-size: 1.1rem; max-width: 460px; margin-bottom: 24px; }
+.prod-list { list-style: none; display: grid; gap: 8px; margin-bottom: 26px; }
+.prod-list li { display: flex; align-items: center; gap: 12px; }
+.prod-list li::before { content: ""; width: 9px; height: 9px; border: 1.5px solid var(--color-accent); transform: rotate(45deg); flex-shrink: 0; }
+.prod-acts, .cs-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+/* Piloto: linha discreta embaixo dos dois caminhos (demo e página do produto) */
+.prod-note { margin-top: 20px; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--color-muted); }
+.prod-note a { color: var(--color-text); border-bottom: 1px solid var(--color-line-strong); transition: color .15s, border-color .15s; }
+.prod-note a:hover, .prod-note a:focus-visible { color: var(--color-accent); border-color: var(--color-accent); }
 /* Tela real do produto, com o fio das fichas */
 .shot { width: 100%; height: auto; border: 1px solid var(--color-line); }
+/* Produto que ainda não existe: selo e caixa pontilhada no lugar da tela */
+.tag-soon { display: inline-block; margin-bottom: 14px; padding: 4px 10px; border: 1px solid var(--color-line-strong); font-family: var(--font-mono); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-muted); }
+.soon-box { display: grid; place-items: center; aspect-ratio: 16 / 9; border: 1px dashed var(--color-line-strong); font-family: var(--font-mono); font-size: .8rem; letter-spacing: .25em; text-transform: uppercase; color: var(--color-muted); }
 
 /* Página longa de produto (Salão): topo com a tela, seções numeradas "01 · …" e o convite no fim */
-.cs-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .cs-hero { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; padding-block: 72px 40px; }
 .cs-hero > * { min-width: 0; }
 .cs-hero h1 { font-weight: 500; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px; }
@@ -181,8 +192,8 @@ button.item-foot { width: 100%; background: none; border: 0; border-top: 1px sol
 .cs-back { display: inline-block; margin-top: 28px; padding-block: 8px; font-size: .75rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); transition: color .15s; }
 .cs-back:hover, .cs-back:focus-visible { color: var(--color-text); }
 @media (max-width: 860px) {
-  .cs-hero, .flow-step, .cs-status { grid-template-columns: 1fr; gap: 28px; }
-  .cs-sec { padding-block: 48px; }
+  .prod, .cs-hero, .flow-step, .cs-status { grid-template-columns: 1fr; gap: 28px; }
+  .prod, .cs-sec { padding-block: 48px; }
   .cs-hero { padding-block: 36px 24px; }
   .flow-step { padding-block: 28px; }
   .flow-step:nth-child(even) .flow-img { order: 0; }
